@@ -44,7 +44,7 @@ public open class MenuButton : Button() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_IS_SWITCH_ON_HOVER,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -55,14 +55,14 @@ public open class MenuButton : Button() {
   /**
    * The number of items currently in the list.
    */
-  public var itemCount: Long
+  public var itemCount: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_GET_ITEM_COUNT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_SET_ITEM_COUNT, NIL)
     }
 
@@ -79,7 +79,7 @@ public open class MenuButton : Button() {
   public fun getPopup(): PopupMenu? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_GET_POPUP, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as PopupMenu?
+    return (TransferContext.readReturnValue(OBJECT, true) as PopupMenu?)
   }
 
   /**

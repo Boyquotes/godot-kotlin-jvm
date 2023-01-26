@@ -67,7 +67,7 @@ public open class ResourcePreloader : Node() {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEPRELOADER_HAS_RESOURCE,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -77,7 +77,7 @@ public open class ResourcePreloader : Node() {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEPRELOADER_GET_RESOURCE,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Resource?
+    return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
   }
 
   /**
@@ -87,7 +87,7 @@ public open class ResourcePreloader : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEPRELOADER_GET_RESOURCE_LIST,
         PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   public companion object

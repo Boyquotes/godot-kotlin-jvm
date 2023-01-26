@@ -19,7 +19,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
 import kotlin.Boolean
-import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -53,13 +53,13 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   public fun moveAndCollide(
     motion: Vector2,
     testOnly: Boolean = false,
-    safeMargin: Double = 0.08,
+    safeMargin: Float = 0.08f,
     recoveryAsCollision: Boolean = false,
   ): KinematicCollision2D? {
-    TransferContext.writeArguments(VECTOR2 to motion, BOOL to testOnly, DOUBLE to safeMargin, BOOL to recoveryAsCollision)
+    TransferContext.writeArguments(VECTOR2 to motion, BOOL to testOnly, DOUBLE to safeMargin.toDouble(), BOOL to recoveryAsCollision)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_MOVE_AND_COLLIDE,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as KinematicCollision2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as KinematicCollision2D?)
   }
 
   /**
@@ -77,12 +77,12 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
     from: Transform2D,
     motion: Vector2,
     collision: KinematicCollision2D? = null,
-    safeMargin: Double = 0.08,
+    safeMargin: Float = 0.08f,
     recoveryAsCollision: Boolean = false,
   ): Boolean {
-    TransferContext.writeArguments(TRANSFORM2D to from, VECTOR2 to motion, OBJECT to collision, DOUBLE to safeMargin, BOOL to recoveryAsCollision)
+    TransferContext.writeArguments(TRANSFORM2D to from, VECTOR2 to motion, OBJECT to collision, DOUBLE to safeMargin.toDouble(), BOOL to recoveryAsCollision)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_TEST_MOVE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -92,7 +92,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_GET_COLLISION_EXCEPTIONS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<PhysicsBody2D>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<PhysicsBody2D>)
   }
 
   /**

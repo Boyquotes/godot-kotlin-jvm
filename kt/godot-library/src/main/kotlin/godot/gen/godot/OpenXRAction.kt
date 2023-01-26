@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_STRING_ARRAY
@@ -27,7 +26,7 @@ public open class OpenXRAction : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTION_GET_LOCALIZED_NAME,
           STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -40,7 +39,7 @@ public open class OpenXRAction : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTION_GET_ACTION_TYPE,
           LONG)
-      return OpenXRAction.ActionType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return OpenXRAction.ActionType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -52,7 +51,7 @@ public open class OpenXRAction : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTION_GET_TOPLEVEL_PATHS,
           PACKED_STRING_ARRAY)
-      return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_STRING_ARRAY to value)

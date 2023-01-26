@@ -31,7 +31,7 @@ public open class ParallaxBackground : CanvasLayer() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_SCROLL_OFFSET, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
@@ -47,7 +47,7 @@ public open class ParallaxBackground : CanvasLayer() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_SCROLL_BASE_OFFSET, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
@@ -63,7 +63,7 @@ public open class ParallaxBackground : CanvasLayer() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_SCROLL_BASE_SCALE, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
@@ -79,7 +79,7 @@ public open class ParallaxBackground : CanvasLayer() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_LIMIT_BEGIN, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
@@ -95,7 +95,7 @@ public open class ParallaxBackground : CanvasLayer() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_LIMIT_END,
           VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
@@ -111,7 +111,7 @@ public open class ParallaxBackground : CanvasLayer() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_IS_IGNORE_CAMERA_ZOOM, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)

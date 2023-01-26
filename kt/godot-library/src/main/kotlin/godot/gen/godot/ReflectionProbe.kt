@@ -11,7 +11,6 @@ import godot.core.Color
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
@@ -19,6 +18,7 @@ import godot.core.Vector3
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -49,7 +49,7 @@ public open class ReflectionProbe : VisualInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_UPDATE_MODE,
           LONG)
-      return ReflectionProbe.UpdateMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return ReflectionProbe.UpdateMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -60,15 +60,15 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * Defines the reflection intensity. Intensity modulates the strength of the reflection.
    */
-  public var intensity: Double
+  public var intensity: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_INTENSITY,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_INTENSITY,
           NIL)
     }
@@ -78,15 +78,15 @@ public open class ReflectionProbe : VisualInstance3D() {
    *
    * **Note:** The maximum reflection distance is always at least equal to the probe's extents. This means that decreasing [maxDistance] will not always cull objects from reflections, especially if the reflection probe's [size] is already large.
    */
-  public var maxDistance: Double
+  public var maxDistance: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_MAX_DISTANCE,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_MAX_DISTANCE,
           NIL)
     }
@@ -100,7 +100,7 @@ public open class ReflectionProbe : VisualInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_SIZE, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -115,7 +115,7 @@ public open class ReflectionProbe : VisualInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_ORIGIN_OFFSET,
           VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -133,7 +133,7 @@ public open class ReflectionProbe : VisualInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_IS_BOX_PROJECTION_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -149,7 +149,7 @@ public open class ReflectionProbe : VisualInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_IS_SET_AS_INTERIOR, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -165,7 +165,7 @@ public open class ReflectionProbe : VisualInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_ARE_SHADOWS_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -176,15 +176,15 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * Sets the cull mask which determines what objects are drawn by this probe. Every [godot.VisualInstance3D] with a layer included in this cull mask will be rendered by the probe. To improve performance, it is best to only include large objects which are likely to take up a lot of space in the reflection.
    */
-  public var cullMask: Long
+  public var cullMask: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_CULL_MASK,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_CULL_MASK,
           NIL)
     }
@@ -194,15 +194,15 @@ public open class ReflectionProbe : VisualInstance3D() {
    *
    * **Note:** [meshLodThreshold] does not affect [godot.GeometryInstance3D] visibility ranges (also known as "manual" LOD or hierarchical LOD).
    */
-  public var meshLodThreshold: Double
+  public var meshLodThreshold: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_MESH_LOD_THRESHOLD, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_MESH_LOD_THRESHOLD, NIL)
     }
@@ -215,7 +215,7 @@ public open class ReflectionProbe : VisualInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_AMBIENT_MODE,
           LONG)
-      return ReflectionProbe.AmbientMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return ReflectionProbe.AmbientMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -231,7 +231,7 @@ public open class ReflectionProbe : VisualInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_AMBIENT_COLOR,
           COLOR)
-      return TransferContext.readReturnValue(COLOR, false) as Color
+      return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
@@ -242,15 +242,15 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * The custom ambient color energy to use within the [godot.ReflectionProbe]'s [size]. Only effective if [ambientMode] is [AMBIENT_COLOR].
    */
-  public var ambientColorEnergy: Double
+  public var ambientColorEnergy: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_AMBIENT_COLOR_ENERGY, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_AMBIENT_COLOR_ENERGY, NIL)
     }

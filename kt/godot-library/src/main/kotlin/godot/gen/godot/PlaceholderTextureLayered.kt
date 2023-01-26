@@ -14,7 +14,6 @@ import godot.core.Vector2i
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.Suppress
 import kotlin.jvm.JvmName
 
@@ -37,7 +36,7 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PLACEHOLDERTEXTURELAYERED_GET_SIZE, VECTOR2I)
-      return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2I to value)
@@ -48,12 +47,12 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
   /**
    * The number of layers in the texture array.
    */
-  public var layers: Long
+  public var layers: Int
     @JvmName("getLayers_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getLayers()
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PLACEHOLDERTEXTURELAYERED_SET_LAYERS, NIL)
     }

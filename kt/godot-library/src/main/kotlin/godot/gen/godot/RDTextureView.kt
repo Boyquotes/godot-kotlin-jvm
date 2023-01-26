@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Long
 import kotlin.Suppress
 
 /**
@@ -28,7 +28,7 @@ public open class RDTextureView : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREVIEW_GET_FORMAT_OVERRIDE,
           LONG)
-      return RenderingDevice.DataFormat.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return RenderingDevice.DataFormat.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -43,7 +43,7 @@ public open class RDTextureView : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREVIEW_GET_SWIZZLE_R, LONG)
-      return RenderingDevice.TextureSwizzle.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return RenderingDevice.TextureSwizzle.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -57,7 +57,7 @@ public open class RDTextureView : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREVIEW_GET_SWIZZLE_G, LONG)
-      return RenderingDevice.TextureSwizzle.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return RenderingDevice.TextureSwizzle.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -71,7 +71,7 @@ public open class RDTextureView : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREVIEW_GET_SWIZZLE_B, LONG)
-      return RenderingDevice.TextureSwizzle.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return RenderingDevice.TextureSwizzle.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -85,7 +85,7 @@ public open class RDTextureView : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREVIEW_GET_SWIZZLE_A, LONG)
-      return RenderingDevice.TextureSwizzle.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return RenderingDevice.TextureSwizzle.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

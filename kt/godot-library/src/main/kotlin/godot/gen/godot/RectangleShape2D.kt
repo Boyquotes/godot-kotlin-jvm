@@ -35,7 +35,7 @@ public open class RectangleShape2D : Shape2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RECTANGLESHAPE2D_GET_SIZE,
           VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)

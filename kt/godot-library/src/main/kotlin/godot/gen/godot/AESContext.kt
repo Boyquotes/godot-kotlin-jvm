@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedByteArray
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_BYTE_ARRAY
@@ -182,7 +181,7 @@ public open class AESContext : RefCounted() {
   ): GodotError {
     TransferContext.writeArguments(LONG to mode.id, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to iv)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_START, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -194,7 +193,7 @@ public open class AESContext : RefCounted() {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to src)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_UPDATE,
         PACKED_BYTE_ARRAY)
-    return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
   /**
@@ -206,7 +205,7 @@ public open class AESContext : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_GET_IV_STATE,
         PACKED_BYTE_ARRAY)
-    return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
   /**

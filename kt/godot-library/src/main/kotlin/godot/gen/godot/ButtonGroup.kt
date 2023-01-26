@@ -43,7 +43,7 @@ public open class ButtonGroup : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTONGROUP_GET_PRESSED_BUTTON,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as BaseButton?
+    return (TransferContext.readReturnValue(OBJECT, true) as BaseButton?)
   }
 
   /**
@@ -52,7 +52,7 @@ public open class ButtonGroup : Resource() {
   public fun getButtons(): VariantArray<BaseButton> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTONGROUP_GET_BUTTONS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<BaseButton>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<BaseButton>)
   }
 
   public companion object

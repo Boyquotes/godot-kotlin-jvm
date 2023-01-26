@@ -86,7 +86,7 @@ public open class VideoStreamPlayback : Resource() {
   /**
    * Select the audio track `idx`. Called when playback starts, and in response to the [godot.VideoStreamPlayer.audioTrack] setter.
    */
-  public open fun _setAudioTrack(idx: Long): Unit {
+  public open fun _setAudioTrack(idx: Int): Unit {
   }
 
   /**
@@ -105,14 +105,14 @@ public open class VideoStreamPlayback : Resource() {
   /**
    * Returns the number of audio channels.
    */
-  public open fun _getChannels(): Long {
+  public open fun _getChannels(): Int {
     throw NotImplementedError("_get_channels is not implemented for VideoStreamPlayback")
   }
 
   /**
    * Returns the audio sample rate used for mixing.
    */
-  public open fun _getMixRate(): Long {
+  public open fun _getMixRate(): Int {
     throw NotImplementedError("_get_mix_rate is not implemented for VideoStreamPlayback")
   }
 
@@ -120,13 +120,13 @@ public open class VideoStreamPlayback : Resource() {
    * Render `num_frames` audio frames (of [_getChannels] floats each) from `buffer`, starting from index `offset` in the array. Returns the number of audio frames rendered, or -1 on error.
    */
   public fun mixAudio(
-    numFrames: Long,
+    numFrames: Int,
     buffer: PackedFloat32Array = PackedFloat32Array(),
-    offset: Long = 0,
-  ): Long {
-    TransferContext.writeArguments(LONG to numFrames, PACKED_FLOAT_32_ARRAY to buffer, LONG to offset)
+    offset: Int = 0,
+  ): Int {
+    TransferContext.writeArguments(LONG to numFrames.toLong(), PACKED_FLOAT_32_ARRAY to buffer, LONG to offset.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYBACK_MIX_AUDIO, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

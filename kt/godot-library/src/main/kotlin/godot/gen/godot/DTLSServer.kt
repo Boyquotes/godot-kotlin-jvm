@@ -8,12 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Long
 import kotlin.Suppress
 
 /**
@@ -314,7 +314,7 @@ public open class DTLSServer : RefCounted() {
   public fun setup(serverOptions: TLSOptions): GodotError {
     TransferContext.writeArguments(OBJECT to serverOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DTLSSERVER_SETUP, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -325,7 +325,7 @@ public open class DTLSServer : RefCounted() {
   public fun takeConnection(udpPeer: PacketPeerUDP): PacketPeerDTLS? {
     TransferContext.writeArguments(OBJECT to udpPeer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DTLSSERVER_TAKE_CONNECTION, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as PacketPeerDTLS?
+    return (TransferContext.readReturnValue(OBJECT, true) as PacketPeerDTLS?)
   }
 
   public companion object

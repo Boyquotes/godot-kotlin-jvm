@@ -15,6 +15,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -27,29 +28,29 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   /**
    *
    */
-  public var radius: Double
+  public var radius: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_RADIUS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_SET_RADIUS, NIL)
     }
 
   /**
    *
    */
-  public var radialSteps: Long
+  public var radialSteps: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_RADIAL_STEPS,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_SET_RADIAL_STEPS,
           NIL)
     }
@@ -57,29 +58,29 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   /**
    *
    */
-  public var sections: Long
+  public var sections: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_SECTIONS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_SET_SECTIONS, NIL)
     }
 
   /**
    *
    */
-  public var sectionLength: Double
+  public var sectionLength: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_SECTION_LENGTH,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_SET_SECTION_LENGTH,
           NIL)
     }
@@ -87,15 +88,15 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   /**
    *
    */
-  public var sectionRings: Long
+  public var sectionRings: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_SECTION_RINGS,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_SET_SECTION_RINGS,
           NIL)
     }
@@ -107,7 +108,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_IS_CAP_TOP, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -121,7 +122,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_IS_CAP_BOTTOM, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -135,7 +136,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TUBETRAILMESH_GET_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Curve?
+      return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

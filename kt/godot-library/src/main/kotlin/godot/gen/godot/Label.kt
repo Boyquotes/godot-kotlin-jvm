@@ -11,7 +11,6 @@ import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -20,6 +19,7 @@ import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -44,7 +44,7 @@ public open class Label : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_TEXT, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -58,7 +58,7 @@ public open class Label : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_LABEL_SETTINGS, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as LabelSettings?
+      return (TransferContext.readReturnValue(OBJECT, true) as LabelSettings?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -73,7 +73,7 @@ public open class Label : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_HORIZONTAL_ALIGNMENT,
           LONG)
-      return HorizontalAlignment.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return HorizontalAlignment.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -89,7 +89,7 @@ public open class Label : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_VERTICAL_ALIGNMENT,
           LONG)
-      return VerticalAlignment.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return VerticalAlignment.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -103,7 +103,7 @@ public open class Label : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_AUTOWRAP_MODE, LONG)
-      return TextServer.AutowrapMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return TextServer.AutowrapMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -117,7 +117,7 @@ public open class Label : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_IS_CLIPPING_TEXT, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -132,7 +132,7 @@ public open class Label : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_TEXT_OVERRUN_BEHAVIOR,
           LONG)
-      return TextServer.OverrunBehavior.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return TextServer.OverrunBehavior.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -147,7 +147,7 @@ public open class Label : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_IS_UPPERCASE, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -157,28 +157,28 @@ public open class Label : Control() {
   /**
    * The node ignores the first `lines_skipped` lines before it starts to display text.
    */
-  public var linesSkipped: Long
+  public var linesSkipped: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_LINES_SKIPPED, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_LINES_SKIPPED, NIL)
     }
 
   /**
    * Limits the lines of text the node shows on screen.
    */
-  public var maxLinesVisible: Long
+  public var maxLinesVisible: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_MAX_LINES_VISIBLE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_MAX_LINES_VISIBLE, NIL)
     }
 
@@ -187,15 +187,15 @@ public open class Label : Control() {
    *
    * **Note:** Setting this property updates [visibleRatio] accordingly.
    */
-  public var visibleCharacters: Long
+  public var visibleCharacters: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_VISIBLE_CHARACTERS,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_VISIBLE_CHARACTERS, NIL)
     }
 
@@ -207,7 +207,7 @@ public open class Label : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LABEL_GET_VISIBLE_CHARACTERS_BEHAVIOR, LONG)
-      return TextServer.VisibleCharactersBehavior.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return TextServer.VisibleCharactersBehavior.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -220,14 +220,14 @@ public open class Label : Control() {
    *
    * **Note:** Setting this property updates [visibleCharacters] accordingly.
    */
-  public var visibleRatio: Double
+  public var visibleRatio: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_VISIBLE_RATIO, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_VISIBLE_RATIO, NIL)
     }
 
@@ -238,7 +238,7 @@ public open class Label : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_TEXT_DIRECTION, LONG)
-      return Control.TextDirection.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Control.TextDirection.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -252,7 +252,7 @@ public open class Label : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_LANGUAGE, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -267,7 +267,7 @@ public open class Label : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LABEL_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG)
-      return TextServer.StructuredTextParser.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return TextServer.StructuredTextParser.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -283,7 +283,7 @@ public open class Label : Control() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LABEL_GET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
@@ -303,38 +303,38 @@ public open class Label : Control() {
    *
    * If there are no lines, returns font size in pixels.
    */
-  public fun getLineHeight(line: Long = -1): Long {
-    TransferContext.writeArguments(LONG to line)
+  public fun getLineHeight(line: Int = -1): Int {
+    TransferContext.writeArguments(LONG to line.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_LINE_HEIGHT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the number of lines of text the Label has.
    */
-  public fun getLineCount(): Long {
+  public fun getLineCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_LINE_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the number of lines shown. Useful if the [godot.Label]'s height cannot currently display all lines.
    */
-  public fun getVisibleLineCount(): Long {
+  public fun getVisibleLineCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_VISIBLE_LINE_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the total number of printable characters in the text (excluding spaces and newlines).
    */
-  public fun getTotalCharacterCount(): Long {
+  public fun getTotalCharacterCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_TOTAL_CHARACTER_COUNT,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

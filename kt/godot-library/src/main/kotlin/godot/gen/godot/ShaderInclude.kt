@@ -27,7 +27,7 @@ public open class ShaderInclude : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERINCLUDE_GET_CODE, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)

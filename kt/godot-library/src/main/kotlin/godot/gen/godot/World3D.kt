@@ -33,7 +33,7 @@ public open class World3D : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_ENVIRONMENT, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Environment?
+      return (TransferContext.readReturnValue(OBJECT, true) as Environment?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -48,7 +48,7 @@ public open class World3D : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_FALLBACK_ENVIRONMENT,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Environment?
+      return (TransferContext.readReturnValue(OBJECT, true) as Environment?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -64,7 +64,7 @@ public open class World3D : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_CAMERA_ATTRIBUTES,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Material?
+      return (TransferContext.readReturnValue(OBJECT, true) as Material?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -79,7 +79,7 @@ public open class World3D : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_SPACE, _RID)
-      return TransferContext.readReturnValue(_RID, false) as RID
+      return (TransferContext.readReturnValue(_RID, false) as RID)
     }
 
   /**
@@ -89,7 +89,7 @@ public open class World3D : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_NAVIGATION_MAP, _RID)
-      return TransferContext.readReturnValue(_RID, false) as RID
+      return (TransferContext.readReturnValue(_RID, false) as RID)
     }
 
   /**
@@ -99,7 +99,7 @@ public open class World3D : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_SCENARIO, _RID)
-      return TransferContext.readReturnValue(_RID, false) as RID
+      return (TransferContext.readReturnValue(_RID, false) as RID)
     }
 
   /**
@@ -110,7 +110,7 @@ public open class World3D : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_GET_DIRECT_SPACE_STATE,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState3D?
+      return (TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState3D?)
     }
 
   public override fun new(scriptIndex: Int): Boolean {

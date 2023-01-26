@@ -12,7 +12,6 @@ import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -27,6 +26,7 @@ import godot.signals.Signal2
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -59,7 +59,7 @@ public object Input : Object() {
   public fun isAnythingPressed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ANYTHING_PRESSED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -72,7 +72,7 @@ public object Input : Object() {
   public fun isKeyPressed(keycode: Key): Boolean {
     TransferContext.writeArguments(LONG to keycode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_KEY_PRESSED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -85,7 +85,7 @@ public object Input : Object() {
   public fun isPhysicalKeyPressed(keycode: Key): Boolean {
     TransferContext.writeArguments(LONG to keycode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_PHYSICAL_KEY_PRESSED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -94,7 +94,7 @@ public object Input : Object() {
   public fun isKeyLabelPressed(keycode: Key): Boolean {
     TransferContext.writeArguments(LONG to keycode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_KEY_LABEL_PRESSED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -103,16 +103,16 @@ public object Input : Object() {
   public fun isMouseButtonPressed(button: MouseButton): Boolean {
     TransferContext.writeArguments(LONG to button.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_MOUSE_BUTTON_PRESSED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Returns `true` if you are pressing the joypad button (see [enum JoyButton]).
    */
-  public fun isJoyButtonPressed(device: Long, button: JoyButton): Boolean {
-    TransferContext.writeArguments(LONG to device, LONG to button.id)
+  public fun isJoyButtonPressed(device: Int, button: JoyButton): Boolean {
+    TransferContext.writeArguments(LONG to device.toLong(), LONG to button.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_JOY_BUTTON_PRESSED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -125,7 +125,7 @@ public object Input : Object() {
   public fun isActionPressed(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ACTION_PRESSED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -140,7 +140,7 @@ public object Input : Object() {
   public fun isActionJustPressed(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ACTION_JUST_PRESSED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -151,7 +151,7 @@ public object Input : Object() {
   public fun isActionJustReleased(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ACTION_JUST_RELEASED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -159,10 +159,10 @@ public object Input : Object() {
    *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
-  public fun getActionStrength(action: StringName, exactMatch: Boolean = false): Double {
+  public fun getActionStrength(action: StringName, exactMatch: Boolean = false): Float {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_ACTION_STRENGTH, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -170,11 +170,11 @@ public object Input : Object() {
    *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
-  public fun getActionRawStrength(action: StringName, exactMatch: Boolean = false): Double {
+  public fun getActionRawStrength(action: StringName, exactMatch: Boolean = false): Float {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_ACTION_RAW_STRENGTH,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -182,10 +182,10 @@ public object Input : Object() {
    *
    * This is a shorthand for writing `Input.get_action_strength("positive_action") - Input.get_action_strength("negative_action")`.
    */
-  public fun getAxis(negativeAction: StringName, positiveAction: StringName): Double {
+  public fun getAxis(negativeAction: StringName, positiveAction: StringName): Float {
     TransferContext.writeArguments(STRING_NAME to negativeAction, STRING_NAME to positiveAction)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_AXIS, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -200,11 +200,11 @@ public object Input : Object() {
     positiveX: StringName,
     negativeY: StringName,
     positiveY: StringName,
-    deadzone: Double = -1.0,
+    deadzone: Float = -1.0f,
   ): Vector2 {
-    TransferContext.writeArguments(STRING_NAME to negativeX, STRING_NAME to positiveX, STRING_NAME to negativeY, STRING_NAME to positiveY, DOUBLE to deadzone)
+    TransferContext.writeArguments(STRING_NAME to negativeX, STRING_NAME to positiveX, STRING_NAME to negativeY, STRING_NAME to positiveY, DOUBLE to deadzone.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_VECTOR, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -226,37 +226,37 @@ public object Input : Object() {
   /**
    * Returns `true` if the system knows the specified device. This means that it sets all button and axis indices. Unknown joypads are not expected to match these constants, but you can still retrieve events from them.
    */
-  public fun isJoyKnown(device: Long): Boolean {
-    TransferContext.writeArguments(LONG to device)
+  public fun isJoyKnown(device: Int): Boolean {
+    TransferContext.writeArguments(LONG to device.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_JOY_KNOWN, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Returns the current value of the joypad axis at given index (see [enum JoyAxis]).
    */
-  public fun getJoyAxis(device: Long, axis: JoyAxis): Double {
-    TransferContext.writeArguments(LONG to device, LONG to axis.id)
+  public fun getJoyAxis(device: Int, axis: JoyAxis): Float {
+    TransferContext.writeArguments(LONG to device.toLong(), LONG to axis.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_AXIS, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Returns the name of the joypad at the specified device index.
    */
-  public fun getJoyName(device: Long): String {
-    TransferContext.writeArguments(LONG to device)
+  public fun getJoyName(device: Int): String {
+    TransferContext.writeArguments(LONG to device.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_NAME, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Returns a SDL2-compatible device GUID on platforms that use gamepad remapping. Returns `"Default Gamepad"` otherwise.
    */
-  public fun getJoyGuid(device: Long): String {
-    TransferContext.writeArguments(LONG to device)
+  public fun getJoyGuid(device: Int): String {
+    TransferContext.writeArguments(LONG to device.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_GUID, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -265,27 +265,27 @@ public object Input : Object() {
   public fun getConnectedJoypads(): VariantArray<Long> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_CONNECTED_JOYPADS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Long>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Long>)
   }
 
   /**
    * Returns the strength of the joypad vibration: x is the strength of the weak motor, and y is the strength of the strong motor.
    */
-  public fun getJoyVibrationStrength(device: Long): Vector2 {
-    TransferContext.writeArguments(LONG to device)
+  public fun getJoyVibrationStrength(device: Int): Vector2 {
+    TransferContext.writeArguments(LONG to device.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_VIBRATION_STRENGTH,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
    * Returns the duration of the current vibration effect in seconds.
    */
-  public fun getJoyVibrationDuration(device: Long): Double {
-    TransferContext.writeArguments(LONG to device)
+  public fun getJoyVibrationDuration(device: Int): Float {
+    TransferContext.writeArguments(LONG to device.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_VIBRATION_DURATION,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -294,20 +294,20 @@ public object Input : Object() {
    * **Note:** Not every hardware is compatible with long effect durations; it is recommended to restart an effect if it has to be played for more than a few seconds.
    */
   public fun startJoyVibration(
-    device: Long,
-    weakMagnitude: Double,
-    strongMagnitude: Double,
-    duration: Double = 0.0,
+    device: Int,
+    weakMagnitude: Float,
+    strongMagnitude: Float,
+    duration: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(LONG to device, DOUBLE to weakMagnitude, DOUBLE to strongMagnitude, DOUBLE to duration)
+    TransferContext.writeArguments(LONG to device.toLong(), DOUBLE to weakMagnitude.toDouble(), DOUBLE to strongMagnitude.toDouble(), DOUBLE to duration.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_START_JOY_VIBRATION, NIL)
   }
 
   /**
    * Stops the vibration of the joypad started with [startJoyVibration].
    */
-  public fun stopJoyVibration(device: Long): Unit {
-    TransferContext.writeArguments(LONG to device)
+  public fun stopJoyVibration(device: Int): Unit {
+    TransferContext.writeArguments(LONG to device.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_STOP_JOY_VIBRATION, NIL)
   }
 
@@ -322,8 +322,8 @@ public object Input : Object() {
    *
    * **Note:** Some web browsers such as Safari and Firefox for Android do not support [vibrateHandheld].
    */
-  public fun vibrateHandheld(durationMs: Long = 500): Unit {
-    TransferContext.writeArguments(LONG to durationMs)
+  public fun vibrateHandheld(durationMs: Int = 500): Unit {
+    TransferContext.writeArguments(LONG to durationMs.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_VIBRATE_HANDHELD, NIL)
   }
 
@@ -335,7 +335,7 @@ public object Input : Object() {
   public fun getGravity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_GRAVITY, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -348,7 +348,7 @@ public object Input : Object() {
   public fun getAccelerometer(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_ACCELEROMETER, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -359,7 +359,7 @@ public object Input : Object() {
   public fun getMagnetometer(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MAGNETOMETER, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -370,7 +370,7 @@ public object Input : Object() {
   public fun getGyroscope(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_GYROSCOPE, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -420,7 +420,7 @@ public object Input : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_LAST_MOUSE_VELOCITY,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -429,7 +429,7 @@ public object Input : Object() {
   public fun getMouseButtonMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MOUSE_BUTTON_MASK, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, false) as Long
+    return (TransferContext.readReturnValue(OBJECT, false) as Long)
   }
 
   public fun setMouseMode(mode: MouseMode): Unit {
@@ -440,7 +440,7 @@ public object Input : Object() {
   public fun getMouseMode(): MouseMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MOUSE_MODE, LONG)
-    return Input.MouseMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return Input.MouseMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -462,8 +462,8 @@ public object Input : Object() {
    *
    * **Note:** This method will not cause any [godot.Node.Input] calls. It is intended to be used with [isActionPressed] and [isActionJustPressed]. If you want to simulate `_input`, use [parseInputEvent] instead.
    */
-  public fun actionPress(action: StringName, strength: Double = 1.0): Unit {
-    TransferContext.writeArguments(STRING_NAME to action, DOUBLE to strength)
+  public fun actionPress(action: StringName, strength: Float = 1.0f): Unit {
+    TransferContext.writeArguments(STRING_NAME to action, DOUBLE to strength.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_ACTION_PRESS, NIL)
   }
 
@@ -494,7 +494,7 @@ public object Input : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_CURRENT_CURSOR_SHAPE,
         LONG)
-    return Input.CursorShape.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return Input.CursorShape.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -567,7 +567,7 @@ public object Input : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_USING_ACCUMULATED_INPUT,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

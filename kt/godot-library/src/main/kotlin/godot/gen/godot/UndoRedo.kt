@@ -176,7 +176,7 @@ public open class UndoRedo : Object() {
   public fun isCommittingAction(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_IS_COMMITTING_ACTION, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -256,28 +256,28 @@ public open class UndoRedo : Object() {
   /**
    * Returns how many elements are in the history.
    */
-  public fun getHistoryCount(): Long {
+  public fun getHistoryCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_GET_HISTORY_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Gets the index of the current action.
    */
-  public fun getCurrentAction(): Long {
+  public fun getCurrentAction(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_GET_CURRENT_ACTION, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Gets the action name from its index.
    */
-  public fun getActionName(id: Long): String {
-    TransferContext.writeArguments(LONG to id)
+  public fun getActionName(id: Int): String {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_GET_ACTION_NAME, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -297,7 +297,7 @@ public open class UndoRedo : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_GET_CURRENT_ACTION_NAME,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -306,7 +306,7 @@ public open class UndoRedo : Object() {
   public fun hasUndo(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_HAS_UNDO, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -315,7 +315,7 @@ public open class UndoRedo : Object() {
   public fun hasRedo(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_HAS_REDO, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -326,7 +326,7 @@ public open class UndoRedo : Object() {
   public fun getVersion(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_GET_VERSION, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -335,7 +335,7 @@ public open class UndoRedo : Object() {
   public fun redo(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_REDO, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -344,7 +344,7 @@ public open class UndoRedo : Object() {
   public fun undo(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_UNDO, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class MergeMode(

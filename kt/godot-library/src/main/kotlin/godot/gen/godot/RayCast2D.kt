@@ -47,7 +47,7 @@ public open class RayCast2D : Node2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_IS_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -62,7 +62,7 @@ public open class RayCast2D : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_GET_EXCLUDE_PARENT_BODY,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -78,7 +78,7 @@ public open class RayCast2D : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_GET_TARGET_POSITION,
           VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
@@ -89,15 +89,15 @@ public open class RayCast2D : Node2D() {
   /**
    * The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  public var collisionMask: Long
+  public var collisionMask: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_GET_COLLISION_MASK,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_SET_COLLISION_MASK, NIL)
     }
 
@@ -109,7 +109,7 @@ public open class RayCast2D : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RAYCAST2D_IS_HIT_FROM_INSIDE_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -125,7 +125,7 @@ public open class RayCast2D : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RAYCAST2D_IS_COLLIDE_WITH_AREAS_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -141,7 +141,7 @@ public open class RayCast2D : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RAYCAST2D_IS_COLLIDE_WITH_BODIES_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -160,7 +160,7 @@ public open class RayCast2D : Node2D() {
   public fun isColliding(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_IS_COLLIDING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -179,7 +179,7 @@ public open class RayCast2D : Node2D() {
   public fun getCollider(): Object? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_GET_COLLIDER, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Object?
+    return (TransferContext.readReturnValue(OBJECT, true) as Object?)
   }
 
   /**
@@ -188,16 +188,16 @@ public open class RayCast2D : Node2D() {
   public fun getColliderRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_GET_COLLIDER_RID, _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
    * Returns the shape ID of the first object that the ray intersects, or `0` if no object is intersecting the ray (i.e. [isColliding] returns `false`).
    */
-  public fun getColliderShape(): Long {
+  public fun getColliderShape(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_GET_COLLIDER_SHAPE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -209,7 +209,7 @@ public open class RayCast2D : Node2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_GET_COLLISION_POINT,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -219,7 +219,7 @@ public open class RayCast2D : Node2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_GET_COLLISION_NORMAL,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -265,8 +265,8 @@ public open class RayCast2D : Node2D() {
   /**
    * Based on [value], enables or disables the specified layer in the [collisionMask], given a [layerNumber] between 1 and 32.
    */
-  public fun setCollisionMaskValue(layerNumber: Long, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
+  public fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
+    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_SET_COLLISION_MASK_VALUE,
         NIL)
   }
@@ -274,11 +274,11 @@ public open class RayCast2D : Node2D() {
   /**
    * Returns whether or not the specified layer of the [collisionMask] is enabled, given a [layerNumber] between 1 and 32.
    */
-  public fun getCollisionMaskValue(layerNumber: Long): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber)
+  public fun getCollisionMaskValue(layerNumber: Int): Boolean {
+    TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST2D_GET_COLLISION_MASK_VALUE,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

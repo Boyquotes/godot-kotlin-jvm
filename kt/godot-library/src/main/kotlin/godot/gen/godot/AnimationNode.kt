@@ -28,6 +28,7 @@ import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -71,7 +72,7 @@ public open class AnimationNode : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_IS_FILTER_ENABLED,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -154,52 +155,52 @@ public open class AnimationNode : Resource() {
   public fun addInput(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_ADD_INPUT, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Removes an input, call this only when inactive.
    */
-  public fun removeInput(index: Long): Unit {
-    TransferContext.writeArguments(LONG to index)
+  public fun removeInput(index: Int): Unit {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_REMOVE_INPUT, NIL)
   }
 
   /**
    * Sets the name of the input at the given [input] index. If the setting fails, returns `false`.
    */
-  public fun setInputName(input: Long, name: String): Boolean {
-    TransferContext.writeArguments(LONG to input, STRING to name)
+  public fun setInputName(input: Int, name: String): Boolean {
+    TransferContext.writeArguments(LONG to input.toLong(), STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_SET_INPUT_NAME, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Gets the name of an input by index.
    */
-  public fun getInputName(input: Long): String {
-    TransferContext.writeArguments(LONG to input)
+  public fun getInputName(input: Int): String {
+    TransferContext.writeArguments(LONG to input.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_GET_INPUT_NAME,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Amount of inputs in this node, only useful for nodes that go into [godot.AnimationNodeBlendTree].
    */
-  public fun getInputCount(): Long {
+  public fun getInputCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_GET_INPUT_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the input index which corresponds to [name]. If not found, returns `-1`.
    */
-  public fun findInput(name: String): Long {
+  public fun findInput(name: String): Int {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_FIND_INPUT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -217,7 +218,7 @@ public open class AnimationNode : Resource() {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_IS_PATH_FILTERED,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -231,10 +232,10 @@ public open class AnimationNode : Resource() {
     delta: Double,
     seeked: Boolean,
     isExternalSeeking: Boolean,
-    blend: Double,
+    blend: Float,
     loopedFlag: Animation.LoopedFlag = Animation.LoopedFlag.LOOPED_FLAG_NONE,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to animation, DOUBLE to time, DOUBLE to delta, BOOL to seeked, BOOL to isExternalSeeking, DOUBLE to blend, LONG to loopedFlag.id)
+    TransferContext.writeArguments(STRING_NAME to animation, DOUBLE to time, DOUBLE to delta, BOOL to seeked, BOOL to isExternalSeeking, DOUBLE to blend.toDouble(), LONG to loopedFlag.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_BLEND_ANIMATION, NIL)
   }
 
@@ -247,30 +248,30 @@ public open class AnimationNode : Resource() {
     time: Double,
     seek: Boolean,
     isExternalSeeking: Boolean,
-    blend: Double,
+    blend: Float,
     filter: FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
     sync: Boolean = true,
   ): Double {
-    TransferContext.writeArguments(STRING_NAME to name, OBJECT to node, DOUBLE to time, BOOL to seek, BOOL to isExternalSeeking, DOUBLE to blend, LONG to filter.id, BOOL to sync)
+    TransferContext.writeArguments(STRING_NAME to name, OBJECT to node, DOUBLE to time, BOOL to seek, BOOL to isExternalSeeking, DOUBLE to blend.toDouble(), LONG to filter.id, BOOL to sync)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_BLEND_NODE, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
   /**
    * Blend an input. This is only useful for nodes created for an [godot.AnimationNodeBlendTree]. The [time] parameter is a relative delta, unless [seek] is `true`, in which case it is absolute. A filter mode may be optionally passed (see [enum FilterAction] for options).
    */
   public fun blendInput(
-    inputIndex: Long,
+    inputIndex: Int,
     time: Double,
     seek: Boolean,
     isExternalSeeking: Boolean,
-    blend: Double,
+    blend: Float,
     filter: FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
     sync: Boolean = true,
   ): Double {
-    TransferContext.writeArguments(LONG to inputIndex, DOUBLE to time, BOOL to seek, BOOL to isExternalSeeking, DOUBLE to blend, LONG to filter.id, BOOL to sync)
+    TransferContext.writeArguments(LONG to inputIndex.toLong(), DOUBLE to time, BOOL to seek, BOOL to isExternalSeeking, DOUBLE to blend.toDouble(), LONG to filter.id, BOOL to sync)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_BLEND_INPUT, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
   /**
@@ -287,7 +288,7 @@ public open class AnimationNode : Resource() {
   public fun getParameter(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_GET_PARAMETER, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   public enum class FilterAction(

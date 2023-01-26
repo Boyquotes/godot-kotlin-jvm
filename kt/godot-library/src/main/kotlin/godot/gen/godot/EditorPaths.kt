@@ -48,7 +48,7 @@ public open class EditorPaths internal constructor() : Object() {
   public fun getDataDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_DATA_DIR, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -65,7 +65,7 @@ public open class EditorPaths internal constructor() : Object() {
   public fun getConfigDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_CONFIG_DIR, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -82,7 +82,7 @@ public open class EditorPaths internal constructor() : Object() {
   public fun getCacheDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_CACHE_DIR, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -95,7 +95,7 @@ public open class EditorPaths internal constructor() : Object() {
   public fun isSelfContained(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_IS_SELF_CONTAINED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -105,7 +105,7 @@ public open class EditorPaths internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_SELF_CONTAINED_FILE,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -115,7 +115,7 @@ public open class EditorPaths internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_PROJECT_SETTINGS_DIR, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object

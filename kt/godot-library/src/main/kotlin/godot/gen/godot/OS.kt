@@ -12,7 +12,6 @@ import godot.core.PackedStringArray
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_STRING_ARRAY
@@ -54,7 +53,7 @@ public object OS : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CONNECTED_MIDI_INPUTS,
         PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
@@ -103,29 +102,29 @@ public object OS : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_IN_LOW_PROCESSOR_USAGE_MODE,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setLowProcessorUsageModeSleepUsec(usec: Long): Unit {
-    TransferContext.writeArguments(LONG to usec)
+  public fun setLowProcessorUsageModeSleepUsec(usec: Int): Unit {
+    TransferContext.writeArguments(LONG to usec.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_OS_SET_LOW_PROCESSOR_USAGE_MODE_SLEEP_USEC, NIL)
   }
 
-  public fun getLowProcessorUsageModeSleepUsec(): Long {
+  public fun getLowProcessorUsageModeSleepUsec(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_OS_GET_LOW_PROCESSOR_USAGE_MODE_SLEEP_USEC, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the number of *logical* CPU cores available on the host machine. On CPUs with HyperThreading enabled, this number will be greater than the number of *physical* CPU cores.
    */
-  public fun getProcessorCount(): Long {
+  public fun getProcessorCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_PROCESSOR_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -136,7 +135,7 @@ public object OS : Object() {
   public fun getProcessorName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_PROCESSOR_NAME, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -148,7 +147,7 @@ public object OS : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_SYSTEM_FONTS,
         PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
@@ -162,13 +161,13 @@ public object OS : Object() {
    */
   public fun getSystemFontPath(
     fontName: String,
-    weight: Long = 400,
-    stretch: Long = 100,
+    weight: Int = 400,
+    stretch: Int = 100,
     italic: Boolean = false,
   ): String {
-    TransferContext.writeArguments(STRING to fontName, LONG to weight, LONG to stretch, BOOL to italic)
+    TransferContext.writeArguments(STRING to fontName, LONG to weight.toLong(), LONG to stretch.toLong(), BOOL to italic)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_SYSTEM_FONT_PATH, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -187,14 +186,14 @@ public object OS : Object() {
     text: String,
     locale: String = "",
     script: String = "",
-    weight: Long = 400,
-    stretch: Long = 100,
+    weight: Int = 400,
+    stretch: Int = 100,
     italic: Boolean = false,
   ): PackedStringArray {
-    TransferContext.writeArguments(STRING to fontName, STRING to text, STRING to locale, STRING to script, LONG to weight, LONG to stretch, BOOL to italic)
+    TransferContext.writeArguments(STRING to fontName, STRING to text, STRING to locale, STRING to script, LONG to weight.toLong(), LONG to stretch.toLong(), BOOL to italic)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_SYSTEM_FONT_PATH_FOR_TEXT,
         PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
@@ -205,7 +204,7 @@ public object OS : Object() {
   public fun getExecutablePath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_EXECUTABLE_PATH, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -216,7 +215,7 @@ public object OS : Object() {
   public fun readStringFromStdin(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_READ_STRING_FROM_STDIN, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -288,10 +287,10 @@ public object OS : Object() {
     output: VariantArray<Any?> = godot.core.variantArrayOf(),
     readStderr: Boolean = false,
     openConsole: Boolean = false,
-  ): Long {
+  ): Int {
     TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to arguments, ARRAY to output, BOOL to readStderr, BOOL to openConsole)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_EXECUTE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -329,10 +328,10 @@ public object OS : Object() {
     path: String,
     arguments: PackedStringArray,
     openConsole: Boolean = false,
-  ): Long {
+  ): Int {
     TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to arguments, BOOL to openConsole)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CREATE_PROCESS, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -342,10 +341,10 @@ public object OS : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
    */
-  public fun createInstance(arguments: PackedStringArray): Long {
+  public fun createInstance(arguments: PackedStringArray): Int {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to arguments)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CREATE_INSTANCE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -355,10 +354,10 @@ public object OS : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
    */
-  public fun kill(pid: Long): GodotError {
-    TransferContext.writeArguments(LONG to pid)
+  public fun kill(pid: Int): GodotError {
+    TransferContext.writeArguments(LONG to pid.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_KILL, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -377,7 +376,7 @@ public object OS : Object() {
   public fun shellOpen(uri: String): GodotError {
     TransferContext.writeArguments(STRING to uri)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SHELL_OPEN, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -387,10 +386,10 @@ public object OS : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
    */
-  public fun isProcessRunning(pid: Long): Boolean {
-    TransferContext.writeArguments(LONG to pid)
+  public fun isProcessRunning(pid: Int): Boolean {
+    TransferContext.writeArguments(LONG to pid.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_PROCESS_RUNNING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -398,10 +397,10 @@ public object OS : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
    */
-  public fun getProcessId(): Long {
+  public fun getProcessId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_PROCESS_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -412,7 +411,7 @@ public object OS : Object() {
   public fun hasEnvironment(variable: String): Boolean {
     TransferContext.writeArguments(STRING to variable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_HAS_ENVIRONMENT, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -423,7 +422,7 @@ public object OS : Object() {
   public fun getEnvironment(variable: String): String {
     TransferContext.writeArguments(STRING to variable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_ENVIRONMENT, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -558,7 +557,7 @@ public object OS : Object() {
   public fun getName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_NAME, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -573,7 +572,7 @@ public object OS : Object() {
   public fun getDistributionName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_DISTRIBUTION_NAME, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -594,7 +593,7 @@ public object OS : Object() {
   public fun getVersion(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_VERSION, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -674,7 +673,7 @@ public object OS : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CMDLINE_ARGS,
         PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
@@ -692,7 +691,7 @@ public object OS : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CMDLINE_USER_ARGS,
         PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
@@ -708,7 +707,7 @@ public object OS : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_VIDEO_ADAPTER_DRIVER_INFO,
         PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
@@ -732,7 +731,7 @@ public object OS : Object() {
   public fun isRestartOnExitSet(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_RESTART_ON_EXIT_SET, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -742,7 +741,7 @@ public object OS : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_RESTART_ON_EXIT_ARGUMENTS,
         PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
@@ -752,8 +751,8 @@ public object OS : Object() {
    *
    * **Note:** When [delayUsec] is called on the main thread, it will freeze the project and will prevent it from redrawing and registering input until the delay has passed. When using [delayUsec] as part of an [godot.EditorPlugin] or [godot.EditorScript], it will freeze the editor but won't freeze the project if it is currently running (since the project is an independent child process).
    */
-  public fun delayUsec(usec: Long): Unit {
-    TransferContext.writeArguments(LONG to usec)
+  public fun delayUsec(usec: Int): Unit {
+    TransferContext.writeArguments(LONG to usec.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_DELAY_USEC, NIL)
   }
 
@@ -764,8 +763,8 @@ public object OS : Object() {
    *
    * **Note:** When [delayMsec] is called on the main thread, it will freeze the project and will prevent it from redrawing and registering input until the delay has passed. When using [delayMsec] as part of an [godot.EditorPlugin] or [godot.EditorScript], it will freeze the editor but won't freeze the project if it is currently running (since the project is an independent child process).
    */
-  public fun delayMsec(msec: Long): Unit {
-    TransferContext.writeArguments(LONG to msec)
+  public fun delayMsec(msec: Int): Unit {
+    TransferContext.writeArguments(LONG to msec.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_DELAY_MSEC, NIL)
   }
 
@@ -785,7 +784,7 @@ public object OS : Object() {
   public fun getLocale(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_LOCALE, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -796,7 +795,7 @@ public object OS : Object() {
   public fun getLocaleLanguage(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_LOCALE_LANGUAGE, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -807,7 +806,7 @@ public object OS : Object() {
   public fun getModelName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_MODEL_NAME, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -816,7 +815,7 @@ public object OS : Object() {
   public fun isUserfsPersistent(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_USERFS_PERSISTENT, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -825,7 +824,7 @@ public object OS : Object() {
   public fun isStdoutVerbose(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_STDOUT_VERBOSE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -838,7 +837,7 @@ public object OS : Object() {
   public fun isDebugBuild(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_DEBUG_BUILD, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -847,7 +846,7 @@ public object OS : Object() {
   public fun getStaticMemoryUsage(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_STATIC_MEMORY_USAGE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -857,7 +856,7 @@ public object OS : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_STATIC_MEMORY_PEAK_USAGE,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -890,7 +889,7 @@ public object OS : Object() {
   public fun moveToTrash(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_MOVE_TO_TRASH, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -913,7 +912,7 @@ public object OS : Object() {
   public fun getUserDataDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_USER_DATA_DIR, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -926,7 +925,7 @@ public object OS : Object() {
   public fun getSystemDir(dir: SystemDir, sharedStorage: Boolean = true): String {
     TransferContext.writeArguments(LONG to dir.id, BOOL to sharedStorage)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_SYSTEM_DIR, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -937,7 +936,7 @@ public object OS : Object() {
   public fun getConfigDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CONFIG_DIR, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -948,7 +947,7 @@ public object OS : Object() {
   public fun getDataDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_DATA_DIR, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -959,7 +958,7 @@ public object OS : Object() {
   public fun getCacheDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CACHE_DIR, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -972,7 +971,7 @@ public object OS : Object() {
   public fun getUniqueId(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_UNIQUE_ID, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -983,7 +982,7 @@ public object OS : Object() {
   public fun getKeycodeString(code: Key): String {
     TransferContext.writeArguments(LONG to code.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_KEYCODE_STRING, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -992,7 +991,7 @@ public object OS : Object() {
   public fun isKeycodeUnicode(code: Long): Boolean {
     TransferContext.writeArguments(LONG to code)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_KEYCODE_UNICODE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -1001,7 +1000,7 @@ public object OS : Object() {
   public fun findKeycodeFromString(string: String): Key {
     TransferContext.writeArguments(STRING to string)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_FIND_KEYCODE_FROM_STRING, LONG)
-    return Key.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return Key.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -1019,7 +1018,7 @@ public object OS : Object() {
   public fun setThreadName(name: String): GodotError {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SET_THREAD_NAME, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -1030,7 +1029,7 @@ public object OS : Object() {
   public fun getThreadCallerId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_THREAD_CALLER_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -1041,7 +1040,7 @@ public object OS : Object() {
   public fun getMainThreadId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_MAIN_THREAD_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -1052,7 +1051,7 @@ public object OS : Object() {
   public fun hasFeature(tagName: String): Boolean {
     TransferContext.writeArguments(STRING to tagName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_HAS_FEATURE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -1061,7 +1060,7 @@ public object OS : Object() {
   public fun requestPermission(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_REQUEST_PERMISSION, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -1072,7 +1071,7 @@ public object OS : Object() {
   public fun requestPermissions(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_REQUEST_PERMISSIONS, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -1084,7 +1083,7 @@ public object OS : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_GRANTED_PERMISSIONS,
         PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   public enum class RenderingDriver(

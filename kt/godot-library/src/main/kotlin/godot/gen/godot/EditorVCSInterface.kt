@@ -89,7 +89,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
   /**
    * Returns an array of [godot.core.Dictionary] items (see [createDiffFile], [createDiffHunk], [createDiffLine], [addLineDiffsIntoDiffHunk] and [addDiffHunksIntoDiffFile]), each containing information about a diff. If `identifier` is a file path, returns a file diff, and if it is a commit identifier, then returns a commit diff.
    */
-  public open fun _getDiff(identifier: String, area: Long): VariantArray<Dictionary<Any?, Any?>> {
+  public open fun _getDiff(identifier: String, area: Int): VariantArray<Dictionary<Any?, Any?>> {
     throw NotImplementedError("_get_diff is not implemented for EditorVCSInterface")
   }
 
@@ -110,7 +110,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
   /**
    * Returns an [godot.Array] of [godot.core.Dictionary] items (see [createCommit]), each containing the data for a past commit.
    */
-  public open fun _getPreviousCommits(maxCommits: Long): VariantArray<Dictionary<Any?, Any?>> {
+  public open fun _getPreviousCommits(maxCommits: Int): VariantArray<Dictionary<Any?, Any?>> {
     throw NotImplementedError("_get_previous_commits is not implemented for EditorVCSInterface")
   }
 
@@ -196,30 +196,30 @@ public open class EditorVCSInterface internal constructor() : Object() {
    * Helper function to create a `Dictionary` for storing a line diff. `new_line_no` is the line number in the new file (can be `-1` if the line is deleted). `old_line_no` is the line number in the old file (can be `-1` if the line is added). `content` is the diff text. `status` is a single character string which stores the line origin.
    */
   public fun createDiffLine(
-    newLineNo: Long,
-    oldLineNo: Long,
+    newLineNo: Int,
+    oldLineNo: Int,
     content: String,
     status: String,
   ): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(LONG to newLineNo, LONG to oldLineNo, STRING to content, STRING to status)
+    TransferContext.writeArguments(LONG to newLineNo.toLong(), LONG to oldLineNo.toLong(), STRING to content, STRING to status)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_CREATE_DIFF_LINE,
         DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
    * Helper function to create a `Dictionary` for storing diff hunk data. `old_start` is the starting line number in old file. `new_start` is the starting line number in new file. `old_lines` is the number of lines in the old file. `new_lines` is the number of lines in the new file.
    */
   public fun createDiffHunk(
-    oldStart: Long,
-    newStart: Long,
-    oldLines: Long,
-    newLines: Long,
+    oldStart: Int,
+    newStart: Int,
+    oldLines: Int,
+    newLines: Int,
   ): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(LONG to oldStart, LONG to newStart, LONG to oldLines, LONG to newLines)
+    TransferContext.writeArguments(LONG to oldStart.toLong(), LONG to newStart.toLong(), LONG to oldLines.toLong(), LONG to newLines.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_CREATE_DIFF_HUNK,
         DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -229,7 +229,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
     TransferContext.writeArguments(STRING to newFile, STRING to oldFile)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_CREATE_DIFF_FILE,
         DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -245,7 +245,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
     TransferContext.writeArguments(STRING to msg, STRING to author, STRING to id, LONG to unixTimestamp, LONG to offsetMinutes)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_CREATE_COMMIT,
         DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -259,7 +259,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
     TransferContext.writeArguments(STRING to filePath, LONG to changeType.id, LONG to area.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_CREATE_STATUS_FILE, DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -270,7 +270,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
     TransferContext.writeArguments(DICTIONARY to diffFile, ARRAY to diffHunks)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_ADD_DIFF_HUNKS_INTO_DIFF_FILE, DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -281,7 +281,7 @@ public open class EditorVCSInterface internal constructor() : Object() {
     TransferContext.writeArguments(DICTIONARY to diffHunk, ARRAY to lineDiffs)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_ADD_LINE_DIFFS_INTO_DIFF_HUNK, DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**

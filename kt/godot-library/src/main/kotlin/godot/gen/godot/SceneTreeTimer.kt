@@ -73,7 +73,7 @@ public open class SceneTreeTimer internal constructor() : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREETIMER_GET_TIME_LEFT,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)

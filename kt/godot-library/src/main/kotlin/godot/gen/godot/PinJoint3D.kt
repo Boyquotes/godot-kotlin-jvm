@@ -13,6 +13,7 @@ import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -33,18 +34,18 @@ public open class PinJoint3D : Joint3D() {
   /**
    * Sets the value of the specified parameter.
    */
-  public fun setParam(`param`: Param, `value`: Double): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
+  public fun setParam(`param`: Param, `value`: Float): Unit {
+    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PINJOINT3D_SET_PARAM, NIL)
   }
 
   /**
    * Returns the value of the specified parameter.
    */
-  public fun getParam(`param`: Param): Double {
+  public fun getParam(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PINJOINT3D_GET_PARAM, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public enum class Param(

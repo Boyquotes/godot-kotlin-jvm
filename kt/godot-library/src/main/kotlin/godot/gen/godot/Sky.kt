@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -31,7 +30,7 @@ public open class Sky : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKY_GET_MATERIAL, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Material?
+      return (TransferContext.readReturnValue(OBJECT, true) as Material?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -45,7 +44,7 @@ public open class Sky : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKY_GET_PROCESS_MODE, LONG)
-      return Sky.ProcessMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Sky.ProcessMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -63,7 +62,7 @@ public open class Sky : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKY_GET_RADIANCE_SIZE, LONG)
-      return Sky.RadianceSize.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Sky.RadianceSize.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)

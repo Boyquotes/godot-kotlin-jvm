@@ -12,7 +12,6 @@ import godot.core.GodotError
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.CALLABLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
@@ -53,7 +52,7 @@ public open class Thread : RefCounted() {
       GodotError {
     TransferContext.writeArguments(CALLABLE to callable, LONG to priority.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_START, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -62,7 +61,7 @@ public open class Thread : RefCounted() {
   public fun getId(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_GET_ID, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -71,7 +70,7 @@ public open class Thread : RefCounted() {
   public fun isStarted(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_IS_STARTED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -82,7 +81,7 @@ public open class Thread : RefCounted() {
   public fun isAlive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_IS_ALIVE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -97,7 +96,7 @@ public open class Thread : RefCounted() {
   public fun waitToFinish(): Any? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_WAIT_TO_FINISH, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   public enum class Priority(

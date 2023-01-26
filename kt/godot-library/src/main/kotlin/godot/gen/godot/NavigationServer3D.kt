@@ -30,6 +30,7 @@ import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -80,7 +81,7 @@ public object NavigationServer3D : Object() {
   public fun getMaps(): VariantArray<RID> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_GET_MAPS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
   }
 
   /**
@@ -89,7 +90,7 @@ public object NavigationServer3D : Object() {
   public fun mapCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_CREATE, _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
@@ -108,7 +109,7 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_IS_ACTIVE,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -126,14 +127,14 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_UP,
         VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
    * Set the map cell size used to weld the navigation mesh polygons.
    */
-  public fun mapSetCellSize(map: RID, cellSize: Double): Unit {
-    TransferContext.writeArguments(_RID to map, DOUBLE to cellSize)
+  public fun mapSetCellSize(map: RID, cellSize: Float): Unit {
+    TransferContext.writeArguments(_RID to map, DOUBLE to cellSize.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_SET_CELL_SIZE, NIL)
   }
@@ -141,18 +142,18 @@ public object NavigationServer3D : Object() {
   /**
    * Returns the map cell size.
    */
-  public fun mapGetCellSize(map: RID): Double {
+  public fun mapGetCellSize(map: RID): Float {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_CELL_SIZE, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Set the map edge connection margin used to weld the compatible region edges.
    */
-  public fun mapSetEdgeConnectionMargin(map: RID, margin: Double): Unit {
-    TransferContext.writeArguments(_RID to map, DOUBLE to margin)
+  public fun mapSetEdgeConnectionMargin(map: RID, margin: Float): Unit {
+    TransferContext.writeArguments(_RID to map, DOUBLE to margin.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_SET_EDGE_CONNECTION_MARGIN, NIL)
   }
@@ -160,18 +161,18 @@ public object NavigationServer3D : Object() {
   /**
    * Returns the edge connection margin of the map. This distance is the minimum vertex distance needed to connect two edges from different regions.
    */
-  public fun mapGetEdgeConnectionMargin(map: RID): Double {
+  public fun mapGetEdgeConnectionMargin(map: RID): Float {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_EDGE_CONNECTION_MARGIN, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Set the map's link connection radius used to connect links to navigation polygons.
    */
-  public fun mapSetLinkConnectionRadius(map: RID, radius: Double): Unit {
-    TransferContext.writeArguments(_RID to map, DOUBLE to radius)
+  public fun mapSetLinkConnectionRadius(map: RID, radius: Float): Unit {
+    TransferContext.writeArguments(_RID to map, DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_SET_LINK_CONNECTION_RADIUS, NIL)
   }
@@ -179,11 +180,11 @@ public object NavigationServer3D : Object() {
   /**
    * Returns the link connection radius of the map. This distance is the maximum range any link will search for navigation mesh polygons to connect to.
    */
-  public fun mapGetLinkConnectionRadius(map: RID): Double {
+  public fun mapGetLinkConnectionRadius(map: RID): Float {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_LINK_CONNECTION_RADIUS, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -194,12 +195,12 @@ public object NavigationServer3D : Object() {
     origin: Vector3,
     destination: Vector3,
     optimize: Boolean,
-    navigationLayers: Long = 1,
+    navigationLayers: Int = 1,
   ): PackedVector3Array {
-    TransferContext.writeArguments(_RID to map, VECTOR3 to origin, VECTOR3 to destination, BOOL to optimize, LONG to navigationLayers)
+    TransferContext.writeArguments(_RID to map, VECTOR3 to origin, VECTOR3 to destination, BOOL to optimize, LONG to navigationLayers.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_PATH,
         PACKED_VECTOR3_ARRAY)
-    return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
   /**
@@ -214,7 +215,7 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(_RID to map, VECTOR3 to start, VECTOR3 to end, BOOL to useCollision)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_CLOSEST_POINT_TO_SEGMENT, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -224,7 +225,7 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(_RID to map, VECTOR3 to toPoint)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_CLOSEST_POINT, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -234,7 +235,7 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(_RID to map, VECTOR3 to toPoint)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_CLOSEST_POINT_NORMAL, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -244,7 +245,7 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(_RID to map, VECTOR3 to toPoint)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_CLOSEST_POINT_OWNER, _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
@@ -254,7 +255,7 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_LINKS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
   }
 
   /**
@@ -264,7 +265,7 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_REGIONS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
   }
 
   /**
@@ -274,7 +275,7 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_MAP_GET_AGENTS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
   }
 
   /**
@@ -308,14 +309,14 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_CREATE,
         _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
    * Sets the [enterCost] for this [region].
    */
-  public fun regionSetEnterCost(region: RID, enterCost: Double): Unit {
-    TransferContext.writeArguments(_RID to region, DOUBLE to enterCost)
+  public fun regionSetEnterCost(region: RID, enterCost: Float): Unit {
+    TransferContext.writeArguments(_RID to region, DOUBLE to enterCost.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_SET_ENTER_COST, NIL)
   }
@@ -323,18 +324,18 @@ public object NavigationServer3D : Object() {
   /**
    * Returns the enter cost of this [region].
    */
-  public fun regionGetEnterCost(region: RID): Double {
+  public fun regionGetEnterCost(region: RID): Float {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_ENTER_COST, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Sets the [travelCost] for this [region].
    */
-  public fun regionSetTravelCost(region: RID, travelCost: Double): Unit {
-    TransferContext.writeArguments(_RID to region, DOUBLE to travelCost)
+  public fun regionSetTravelCost(region: RID, travelCost: Float): Unit {
+    TransferContext.writeArguments(_RID to region, DOUBLE to travelCost.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_SET_TRAVEL_COST, NIL)
   }
@@ -342,11 +343,11 @@ public object NavigationServer3D : Object() {
   /**
    * Returns the travel cost of this [region].
    */
-  public fun regionGetTravelCost(region: RID): Double {
+  public fun regionGetTravelCost(region: RID): Float {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_TRAVEL_COST, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -365,7 +366,7 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_OWNER_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -379,7 +380,7 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(_RID to region, VECTOR3 to point)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_OWNS_POINT, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -398,14 +399,14 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_MAP,
         _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
    * Set the region's navigation layers. This allows selecting regions from a path request (when using [godot.NavigationServer3D.mapGetPath]).
    */
-  public fun regionSetNavigationLayers(region: RID, navigationLayers: Long): Unit {
-    TransferContext.writeArguments(_RID to region, LONG to navigationLayers)
+  public fun regionSetNavigationLayers(region: RID, navigationLayers: Int): Unit {
+    TransferContext.writeArguments(_RID to region, LONG to navigationLayers.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_SET_NAVIGATION_LAYERS, NIL)
   }
@@ -413,11 +414,11 @@ public object NavigationServer3D : Object() {
   /**
    * Returns the region's navigation layers.
    */
-  public fun regionGetNavigationLayers(region: RID): Long {
+  public fun regionGetNavigationLayers(region: RID): Int {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_NAVIGATION_LAYERS, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -450,31 +451,31 @@ public object NavigationServer3D : Object() {
   /**
    * Returns how many connections this [region] has with other regions in the map.
    */
-  public fun regionGetConnectionsCount(region: RID): Long {
+  public fun regionGetConnectionsCount(region: RID): Int {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_CONNECTIONS_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the starting point of a connection door. [connection] is an index between 0 and the return value of [regionGetConnectionsCount].
    */
-  public fun regionGetConnectionPathwayStart(region: RID, connection: Long): Vector3 {
-    TransferContext.writeArguments(_RID to region, LONG to connection)
+  public fun regionGetConnectionPathwayStart(region: RID, connection: Int): Vector3 {
+    TransferContext.writeArguments(_RID to region, LONG to connection.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_CONNECTION_PATHWAY_START, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
    * Returns the ending point of a connection door. [connection] is an index between 0 and the return value of [regionGetConnectionsCount].
    */
-  public fun regionGetConnectionPathwayEnd(region: RID, connection: Long): Vector3 {
-    TransferContext.writeArguments(_RID to region, LONG to connection)
+  public fun regionGetConnectionPathwayEnd(region: RID, connection: Int): Vector3 {
+    TransferContext.writeArguments(_RID to region, LONG to connection.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_CONNECTION_PATHWAY_END, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -484,7 +485,7 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_CREATE,
         _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
@@ -503,7 +504,7 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_GET_MAP,
         _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
@@ -522,14 +523,14 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_IS_BIDIRECTIONAL, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Set the links's navigation layers. This allows selecting links from a path request (when using [godot.NavigationServer3D.mapGetPath]).
    */
-  public fun linkSetNavigationLayers(link: RID, navigationLayers: Long): Unit {
-    TransferContext.writeArguments(_RID to link, LONG to navigationLayers)
+  public fun linkSetNavigationLayers(link: RID, navigationLayers: Int): Unit {
+    TransferContext.writeArguments(_RID to link, LONG to navigationLayers.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_SET_NAVIGATION_LAYERS, NIL)
   }
@@ -537,11 +538,11 @@ public object NavigationServer3D : Object() {
   /**
    * Returns the navigation layers for this `link`.
    */
-  public fun linkGetNavigationLayers(link: RID): Long {
+  public fun linkGetNavigationLayers(link: RID): Int {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_GET_NAVIGATION_LAYERS, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -560,7 +561,7 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_GET_START_POSITION, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -579,14 +580,14 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_GET_END_POSITION, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
    * Sets the `enter_cost` for this `link`.
    */
-  public fun linkSetEnterCost(link: RID, enterCost: Double): Unit {
-    TransferContext.writeArguments(_RID to link, DOUBLE to enterCost)
+  public fun linkSetEnterCost(link: RID, enterCost: Float): Unit {
+    TransferContext.writeArguments(_RID to link, DOUBLE to enterCost.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_SET_ENTER_COST, NIL)
   }
@@ -594,18 +595,18 @@ public object NavigationServer3D : Object() {
   /**
    * Returns the enter cost of this [link].
    */
-  public fun linkGetEnterCost(link: RID): Double {
+  public fun linkGetEnterCost(link: RID): Float {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_GET_ENTER_COST, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Sets the `travel_cost` for this `link`.
    */
-  public fun linkSetTravelCost(link: RID, travelCost: Double): Unit {
-    TransferContext.writeArguments(_RID to link, DOUBLE to travelCost)
+  public fun linkSetTravelCost(link: RID, travelCost: Float): Unit {
+    TransferContext.writeArguments(_RID to link, DOUBLE to travelCost.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_SET_TRAVEL_COST, NIL)
   }
@@ -613,11 +614,11 @@ public object NavigationServer3D : Object() {
   /**
    * Returns the travel cost of this [link].
    */
-  public fun linkGetTravelCost(link: RID): Double {
+  public fun linkGetTravelCost(link: RID): Float {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_GET_TRAVEL_COST, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -636,7 +637,7 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_GET_OWNER_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -646,7 +647,7 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_CREATE,
         _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
@@ -665,14 +666,14 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_GET_MAP,
         _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
    * Sets the maximum distance to other agents this agent takes into account in the navigation. The larger this number, the longer the running time of the simulation. If the number is too low, the simulation will not be safe.
    */
-  public fun agentSetNeighborDistance(agent: RID, distance: Double): Unit {
-    TransferContext.writeArguments(_RID to agent, DOUBLE to distance)
+  public fun agentSetNeighborDistance(agent: RID, distance: Float): Unit {
+    TransferContext.writeArguments(_RID to agent, DOUBLE to distance.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_NEIGHBOR_DISTANCE, NIL)
   }
@@ -680,8 +681,8 @@ public object NavigationServer3D : Object() {
   /**
    * Sets the maximum number of other agents the agent takes into account in the navigation. The larger this number, the longer the running time of the simulation. If the number is too low, the simulation will not be safe.
    */
-  public fun agentSetMaxNeighbors(agent: RID, count: Long): Unit {
-    TransferContext.writeArguments(_RID to agent, LONG to count)
+  public fun agentSetMaxNeighbors(agent: RID, count: Int): Unit {
+    TransferContext.writeArguments(_RID to agent, LONG to count.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_MAX_NEIGHBORS, NIL)
   }
@@ -689,8 +690,8 @@ public object NavigationServer3D : Object() {
   /**
    * The minimal amount of time for which the agent's velocities that are computed by the simulation are safe with respect to other agents. The larger this number, the sooner this agent will respond to the presence of other agents, but the less freedom this agent has in choosing its velocities. Must be positive.
    */
-  public fun agentSetTimeHorizon(agent: RID, time: Double): Unit {
-    TransferContext.writeArguments(_RID to agent, DOUBLE to time)
+  public fun agentSetTimeHorizon(agent: RID, time: Float): Unit {
+    TransferContext.writeArguments(_RID to agent, DOUBLE to time.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_TIME_HORIZON, NIL)
   }
@@ -698,8 +699,8 @@ public object NavigationServer3D : Object() {
   /**
    * Sets the radius of the agent.
    */
-  public fun agentSetRadius(agent: RID, radius: Double): Unit {
-    TransferContext.writeArguments(_RID to agent, DOUBLE to radius)
+  public fun agentSetRadius(agent: RID, radius: Float): Unit {
+    TransferContext.writeArguments(_RID to agent, DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_RADIUS,
         NIL)
   }
@@ -707,8 +708,8 @@ public object NavigationServer3D : Object() {
   /**
    * Sets the maximum speed of the agent. Must be positive.
    */
-  public fun agentSetMaxSpeed(agent: RID, maxSpeed: Double): Unit {
-    TransferContext.writeArguments(_RID to agent, DOUBLE to maxSpeed)
+  public fun agentSetMaxSpeed(agent: RID, maxSpeed: Float): Unit {
+    TransferContext.writeArguments(_RID to agent, DOUBLE to maxSpeed.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_SET_MAX_SPEED, NIL)
   }
@@ -747,7 +748,7 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_AGENT_IS_MAP_CHANGED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -793,17 +794,17 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_GET_DEBUG_ENABLED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Returns information about the current state of the NavigationServer. See [enum ProcessInfo] for a list of available states.
    */
-  public fun getProcessInfo(processInfo: ProcessInfo): Long {
+  public fun getProcessInfo(processInfo: ProcessInfo): Int {
     TransferContext.writeArguments(LONG to processInfo.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_GET_PROCESS_INFO,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public enum class ProcessInfo(

@@ -56,7 +56,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
     features: PackedStringArray,
     isDebug: Boolean,
     path: String,
-    flags: Long,
+    flags: Int,
   ): Unit {
   }
 

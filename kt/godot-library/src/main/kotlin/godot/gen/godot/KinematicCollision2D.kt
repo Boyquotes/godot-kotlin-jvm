@@ -17,6 +17,7 @@ import godot.core.Vector2
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -42,7 +43,7 @@ public open class KinematicCollision2D : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_POSITION,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -52,7 +53,7 @@ public open class KinematicCollision2D : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_NORMAL,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -62,7 +63,7 @@ public open class KinematicCollision2D : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_TRAVEL,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -72,27 +73,27 @@ public open class KinematicCollision2D : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_REMAINDER,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
    * Returns the collision angle according to [upDirection], which is [godot.Vector2.UP] by default. This value is always positive.
    */
-  public fun getAngle(upDirection: Vector2 = Vector2(0, -1)): Double {
+  public fun getAngle(upDirection: Vector2 = Vector2(0, -1)): Float {
     TransferContext.writeArguments(VECTOR2 to upDirection)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_ANGLE,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Returns the colliding body's length of overlap along the collision normal.
    */
-  public fun getDepth(): Double {
+  public fun getDepth(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_DEPTH,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -102,7 +103,7 @@ public open class KinematicCollision2D : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_LOCAL_SHAPE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Object?
+    return (TransferContext.readReturnValue(OBJECT, true) as Object?)
   }
 
   /**
@@ -112,7 +113,7 @@ public open class KinematicCollision2D : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Object?
+    return (TransferContext.readReturnValue(OBJECT, true) as Object?)
   }
 
   /**
@@ -122,7 +123,7 @@ public open class KinematicCollision2D : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -132,7 +133,7 @@ public open class KinematicCollision2D : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER_RID, _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
@@ -142,17 +143,17 @@ public open class KinematicCollision2D : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER_SHAPE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Object?
+    return (TransferContext.readReturnValue(OBJECT, true) as Object?)
   }
 
   /**
    * Returns the colliding body's shape index. See [godot.CollisionObject2D].
    */
-  public fun getColliderShapeIndex(): Long {
+  public fun getColliderShapeIndex(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER_SHAPE_INDEX, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -162,7 +163,7 @@ public open class KinematicCollision2D : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_COLLIDER_VELOCITY, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   public companion object

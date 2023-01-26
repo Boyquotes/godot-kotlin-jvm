@@ -11,7 +11,6 @@ import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -43,7 +42,7 @@ public open class Shader : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_CODE, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -61,7 +60,7 @@ public open class Shader : Resource() {
   public fun getMode(): Mode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_MODE, LONG)
-    return Shader.Mode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return Shader.Mode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -74,9 +73,9 @@ public open class Shader : Resource() {
   public fun setDefaultTextureParameter(
     name: StringName,
     texture: Texture2D,
-    index: Long = 0,
+    index: Int = 0,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, OBJECT to texture, LONG to index)
+    TransferContext.writeArguments(STRING_NAME to name, OBJECT to texture, LONG to index.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SHADER_SET_DEFAULT_TEXTURE_PARAMETER, NIL)
   }
@@ -88,11 +87,11 @@ public open class Shader : Resource() {
    *
    * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
-  public fun getDefaultTextureParameter(name: StringName, index: Long = 0): Texture2D? {
-    TransferContext.writeArguments(STRING_NAME to name, LONG to index)
+  public fun getDefaultTextureParameter(name: StringName, index: Int = 0): Texture2D? {
+    TransferContext.writeArguments(STRING_NAME to name, LONG to index.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SHADER_GET_DEFAULT_TEXTURE_PARAMETER, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
   /**
@@ -104,7 +103,7 @@ public open class Shader : Resource() {
     TransferContext.writeArguments(BOOL to getGroups)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_SHADER_UNIFORM_LIST,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   public enum class Mode(

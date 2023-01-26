@@ -42,7 +42,7 @@ public open class NavigationPathQueryResult2D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYRESULT2D_GET_PATH, PACKED_VECTOR2_ARRAY)
-      return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
+      return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
@@ -58,7 +58,7 @@ public open class NavigationPathQueryResult2D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYRESULT2D_GET_PATH_TYPES, PACKED_INT_32_ARRAY)
-      return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+      return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
@@ -74,7 +74,7 @@ public open class NavigationPathQueryResult2D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYRESULT2D_GET_PATH_RIDS, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
+      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
@@ -91,7 +91,7 @@ public open class NavigationPathQueryResult2D : RefCounted() {
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYRESULT2D_GET_PATH_OWNER_IDS,
           PACKED_INT_64_ARRAY)
-      return TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array
+      return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_64_ARRAY to value)

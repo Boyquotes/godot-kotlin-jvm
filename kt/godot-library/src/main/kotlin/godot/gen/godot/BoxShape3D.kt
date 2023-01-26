@@ -34,7 +34,7 @@ public open class BoxShape3D : Shape3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXSHAPE3D_GET_SIZE, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)

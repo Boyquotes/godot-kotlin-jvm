@@ -14,7 +14,6 @@ import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -27,6 +26,7 @@ import godot.core.Vector3
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -50,7 +50,7 @@ public open class Camera3D : Node3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_KEEP_ASPECT_MODE,
           LONG)
-      return Camera3D.KeepAspect.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Camera3D.KeepAspect.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -61,14 +61,14 @@ public open class Camera3D : Node3D() {
   /**
    * The culling mask that describes which 3D render layers are rendered by this camera.
    */
-  public var cullMask: Long
+  public var cullMask: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_CULL_MASK, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_CULL_MASK, NIL)
     }
 
@@ -79,7 +79,7 @@ public open class Camera3D : Node3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_ENVIRONMENT, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Environment?
+      return (TransferContext.readReturnValue(OBJECT, true) as Environment?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -93,7 +93,7 @@ public open class Camera3D : Node3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_ATTRIBUTES, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Material?
+      return (TransferContext.readReturnValue(OBJECT, true) as Material?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -103,28 +103,28 @@ public open class Camera3D : Node3D() {
   /**
    * The horizontal (X) offset of the camera viewport.
    */
-  public var hOffset: Double
+  public var hOffset: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_H_OFFSET, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_H_OFFSET, NIL)
     }
 
   /**
    * The vertical (Y) offset of the camera viewport.
    */
-  public var vOffset: Double
+  public var vOffset: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_V_OFFSET, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_V_OFFSET, NIL)
     }
 
@@ -136,7 +136,7 @@ public open class Camera3D : Node3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_DOPPLER_TRACKING,
           LONG)
-      return Camera3D.DopplerTracking.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Camera3D.DopplerTracking.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -151,7 +151,7 @@ public open class Camera3D : Node3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_PROJECTION, LONG)
-      return Camera3D.ProjectionType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Camera3D.ProjectionType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -167,7 +167,7 @@ public open class Camera3D : Node3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_IS_CURRENT, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -187,28 +187,28 @@ public open class Camera3D : Node3D() {
    *
    * - ~121.63 degrees in a 21:9 viewport
    */
-  public var fov: Double
+  public var fov: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_FOV, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_FOV, NIL)
     }
 
   /**
    * The camera's size in meters measured as the diameter of the width or height, depending on [keepAspect]. Only applicable in orthogonal and frustum modes.
    */
-  public var size: Double
+  public var size: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_SIZE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_SIZE, NIL)
     }
 
@@ -222,7 +222,7 @@ public open class Camera3D : Node3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_FRUSTUM_OFFSET,
           VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
@@ -232,28 +232,28 @@ public open class Camera3D : Node3D() {
   /**
    * The distance to the near culling boundary for this camera relative to its local Z axis.
    */
-  public var near: Double
+  public var near: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_NEAR, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_NEAR, NIL)
     }
 
   /**
    * The distance to the far culling boundary for this camera relative to its local Z axis.
    */
-  public var far: Double
+  public var far: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_FAR, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_FAR, NIL)
     }
 
@@ -269,7 +269,7 @@ public open class Camera3D : Node3D() {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_PROJECT_RAY_NORMAL,
         VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -279,7 +279,7 @@ public open class Camera3D : Node3D() {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_PROJECT_LOCAL_RAY_NORMAL,
         VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -289,7 +289,7 @@ public open class Camera3D : Node3D() {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_PROJECT_RAY_ORIGIN,
         VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -308,7 +308,7 @@ public open class Camera3D : Node3D() {
     TransferContext.writeArguments(VECTOR3 to worldPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_UNPROJECT_POSITION,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -319,27 +319,27 @@ public open class Camera3D : Node3D() {
   public fun isPositionBehind(worldPoint: Vector3): Boolean {
     TransferContext.writeArguments(VECTOR3 to worldPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_IS_POSITION_BEHIND, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Returns the 3D point in world space that maps to the given 2D coordinate in the [godot.Viewport] rectangle on a plane that is the given [zDepth] distance into the scene away from the camera.
    */
-  public fun projectPosition(screenPoint: Vector2, zDepth: Double): Vector3 {
-    TransferContext.writeArguments(VECTOR2 to screenPoint, DOUBLE to zDepth)
+  public fun projectPosition(screenPoint: Vector2, zDepth: Float): Vector3 {
+    TransferContext.writeArguments(VECTOR2 to screenPoint, DOUBLE to zDepth.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_PROJECT_POSITION, VECTOR3)
-    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
    * Sets the camera projection to perspective mode (see [PROJECTION_PERSPECTIVE]), by specifying a [fov] (field of view) angle in degrees, and the [zNear] and [zFar] clip planes in world space units.
    */
   public fun setPerspective(
-    fov: Double,
-    zNear: Double,
-    zFar: Double,
+    fov: Float,
+    zNear: Float,
+    zFar: Float,
   ): Unit {
-    TransferContext.writeArguments(DOUBLE to fov, DOUBLE to zNear, DOUBLE to zFar)
+    TransferContext.writeArguments(DOUBLE to fov.toDouble(), DOUBLE to zNear.toDouble(), DOUBLE to zFar.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_PERSPECTIVE, NIL)
   }
 
@@ -347,11 +347,11 @@ public open class Camera3D : Node3D() {
    * Sets the camera projection to orthogonal mode (see [PROJECTION_ORTHOGONAL]), by specifying a [size], and the [zNear] and [zFar] clip planes in world space units. (As a hint, 2D games often use this projection, with values specified in pixels.)
    */
   public fun setOrthogonal(
-    size: Double,
-    zNear: Double,
-    zFar: Double,
+    size: Float,
+    zNear: Float,
+    zFar: Float,
   ): Unit {
-    TransferContext.writeArguments(DOUBLE to size, DOUBLE to zNear, DOUBLE to zFar)
+    TransferContext.writeArguments(DOUBLE to size.toDouble(), DOUBLE to zNear.toDouble(), DOUBLE to zFar.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_ORTHOGONAL, NIL)
   }
 
@@ -359,12 +359,12 @@ public open class Camera3D : Node3D() {
    * Sets the camera projection to frustum mode (see [PROJECTION_FRUSTUM]), by specifying a [size], an [offset], and the [zNear] and [zFar] clip planes in world space units. See also [frustumOffset].
    */
   public fun setFrustum(
-    size: Double,
+    size: Float,
     offset: Vector2,
-    zNear: Double,
-    zFar: Double,
+    zNear: Float,
+    zFar: Float,
   ): Unit {
-    TransferContext.writeArguments(DOUBLE to size, VECTOR2 to offset, DOUBLE to zNear, DOUBLE to zFar)
+    TransferContext.writeArguments(DOUBLE to size.toDouble(), VECTOR2 to offset, DOUBLE to zNear.toDouble(), DOUBLE to zFar.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_FRUSTUM, NIL)
   }
 
@@ -391,7 +391,7 @@ public open class Camera3D : Node3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_CAMERA_TRANSFORM,
         TRANSFORM3D)
-    return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
   /**
@@ -400,7 +400,7 @@ public open class Camera3D : Node3D() {
   public fun getFrustum(): VariantArray<Plane> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_FRUSTUM, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Plane>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Plane>)
   }
 
   /**
@@ -410,7 +410,7 @@ public open class Camera3D : Node3D() {
     TransferContext.writeArguments(VECTOR3 to worldPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_IS_POSITION_IN_FRUSTUM,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -419,7 +419,7 @@ public open class Camera3D : Node3D() {
   public fun getCameraRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_CAMERA_RID, _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
@@ -429,24 +429,24 @@ public open class Camera3D : Node3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_PYRAMID_SHAPE_RID,
         _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
    * Based on [value], enables or disables the specified layer in the [cullMask], given a [layerNumber] between 1 and 20.
    */
-  public fun setCullMaskValue(layerNumber: Long, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
+  public fun setCullMaskValue(layerNumber: Int, `value`: Boolean): Unit {
+    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_SET_CULL_MASK_VALUE, NIL)
   }
 
   /**
    * Returns whether or not the specified layer of the [cullMask] is enabled, given a [layerNumber] between 1 and 20.
    */
-  public fun getCullMaskValue(layerNumber: Long): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber)
+  public fun getCullMaskValue(layerNumber: Int): Boolean {
+    TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_GET_CULL_MASK_VALUE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class ProjectionType(

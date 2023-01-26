@@ -17,6 +17,7 @@ import godot.core.VariantType._RID
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -52,7 +53,7 @@ public open class NavigationRegion2D : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_GET_NAVIGATION_POLYGON, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as NavigationPolygon?
+      return (TransferContext.readReturnValue(OBJECT, true) as NavigationPolygon?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -68,7 +69,7 @@ public open class NavigationRegion2D : Node2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_IS_ENABLED,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -79,15 +80,15 @@ public open class NavigationRegion2D : Node2D() {
   /**
    * A bitfield determining all navigation layers the region belongs to. These navigation layers can be checked upon when requesting a path with [godot.NavigationServer2D.mapGetPath].
    */
-  public var navigationLayers: Long
+  public var navigationLayers: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_GET_NAVIGATION_LAYERS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_SET_NAVIGATION_LAYERS, NIL)
     }
@@ -95,15 +96,15 @@ public open class NavigationRegion2D : Node2D() {
   /**
    * When pathfinding enters this region's navigation mesh from another regions navigation mesh the `enter_cost` value is added to the path distance for determining the shortest path.
    */
-  public var enterCost: Double
+  public var enterCost: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_GET_ENTER_COST,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_SET_ENTER_COST,
           NIL)
     }
@@ -111,15 +112,15 @@ public open class NavigationRegion2D : Node2D() {
   /**
    * When pathfinding moves inside this region's navigation mesh the traveled distances are multiplied with `travel_cost` for determining the shortest path.
    */
-  public var travelCost: Double
+  public var travelCost: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_GET_TRAVEL_COST, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_SET_TRAVEL_COST, NIL)
     }
@@ -132,8 +133,8 @@ public open class NavigationRegion2D : Node2D() {
   /**
    * Based on [value], enables or disables the specified layer in the [navigationLayers] bitmask, given a [layerNumber] between 1 and 32.
    */
-  public fun setNavigationLayerValue(layerNumber: Long, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber, BOOL to value)
+  public fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean): Unit {
+    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_SET_NAVIGATION_LAYER_VALUE, NIL)
   }
@@ -141,11 +142,11 @@ public open class NavigationRegion2D : Node2D() {
   /**
    * Returns whether or not the specified layer of the [navigationLayers] bitmask is enabled, given a [layerNumber] between 1 and 32.
    */
-  public fun getNavigationLayerValue(layerNumber: Long): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber)
+  public fun getNavigationLayerValue(layerNumber: Int): Boolean {
+    TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_GET_NAVIGATION_LAYER_VALUE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -155,7 +156,7 @@ public open class NavigationRegion2D : Node2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_GET_REGION_RID,
         _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   public companion object

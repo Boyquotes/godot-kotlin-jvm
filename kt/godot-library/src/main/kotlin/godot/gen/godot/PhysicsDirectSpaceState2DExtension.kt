@@ -33,7 +33,7 @@ public open class PhysicsDirectSpaceState2DExtension : PhysicsDirectSpaceState2D
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE2DEXTENSION_IS_BODY_EXCLUDED_FROM_QUERY,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

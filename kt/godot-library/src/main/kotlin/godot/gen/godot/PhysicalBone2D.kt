@@ -38,7 +38,7 @@ public open class PhysicalBone2D : RigidBody2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_GET_BONE2D_NODEPATH, NODE_PATH)
-      return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
@@ -49,15 +49,15 @@ public open class PhysicalBone2D : RigidBody2D() {
   /**
    * The index of the [godot.Bone2D] node that this `PhysicalBone2D` node is supposed to be simulating.
    */
-  public var bone2dIndex: Long
+  public var bone2dIndex: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_GET_BONE2D_INDEX,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_SET_BONE2D_INDEX,
           NIL)
     }
@@ -70,7 +70,7 @@ public open class PhysicalBone2D : RigidBody2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_GET_AUTO_CONFIGURE_JOINT, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -88,7 +88,7 @@ public open class PhysicalBone2D : RigidBody2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_GET_SIMULATE_PHYSICS, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -104,7 +104,7 @@ public open class PhysicalBone2D : RigidBody2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_GET_FOLLOW_BONE_WHEN_SIMULATING, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -123,7 +123,7 @@ public open class PhysicalBone2D : RigidBody2D() {
   public fun getJoint(): Joint2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_GET_JOINT, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Joint2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as Joint2D?)
   }
 
   /**
@@ -133,7 +133,7 @@ public open class PhysicalBone2D : RigidBody2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICALBONE2D_IS_SIMULATING_PHYSICS, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

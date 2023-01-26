@@ -38,7 +38,7 @@ public open class CollisionShape3D : Node3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_GET_SHAPE,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Shape3D?
+      return (TransferContext.readReturnValue(OBJECT, true) as Shape3D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -53,7 +53,7 @@ public open class CollisionShape3D : Node3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_IS_DISABLED,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)

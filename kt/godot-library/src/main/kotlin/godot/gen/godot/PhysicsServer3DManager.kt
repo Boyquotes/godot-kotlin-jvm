@@ -15,7 +15,6 @@ import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -46,8 +45,8 @@ public object PhysicsServer3DManager : Object() {
   /**
    * Set the default [godot.PhysicsServer3D] implementation to the one identified by [name], if [priority] is greater than the priority of the current default implementation.
    */
-  public fun setDefaultServer(name: String, priority: Long): Unit {
-    TransferContext.writeArguments(STRING to name, LONG to priority)
+  public fun setDefaultServer(name: String, priority: Int): Unit {
+    TransferContext.writeArguments(STRING to name, LONG to priority.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3DMANAGER_SET_DEFAULT_SERVER, NIL)
   }

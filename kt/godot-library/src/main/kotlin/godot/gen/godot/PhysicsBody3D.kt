@@ -20,9 +20,8 @@ import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
 import kotlin.Boolean
-import kotlin.Double
+import kotlin.Float
 import kotlin.Int
-import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -59,14 +58,14 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   public fun moveAndCollide(
     motion: Vector3,
     testOnly: Boolean = false,
-    safeMargin: Double = 0.001,
+    safeMargin: Float = 0.001f,
     recoveryAsCollision: Boolean = false,
-    maxCollisions: Long = 1,
+    maxCollisions: Int = 1,
   ): KinematicCollision3D? {
-    TransferContext.writeArguments(VECTOR3 to motion, BOOL to testOnly, DOUBLE to safeMargin, BOOL to recoveryAsCollision, LONG to maxCollisions)
+    TransferContext.writeArguments(VECTOR3 to motion, BOOL to testOnly, DOUBLE to safeMargin.toDouble(), BOOL to recoveryAsCollision, LONG to maxCollisions.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_MOVE_AND_COLLIDE,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as KinematicCollision3D?
+    return (TransferContext.readReturnValue(OBJECT, true) as KinematicCollision3D?)
   }
 
   /**
@@ -86,13 +85,13 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
     from: Transform3D,
     motion: Vector3,
     collision: KinematicCollision3D? = null,
-    safeMargin: Double = 0.001,
+    safeMargin: Float = 0.001f,
     recoveryAsCollision: Boolean = false,
-    maxCollisions: Long = 1,
+    maxCollisions: Int = 1,
   ): Boolean {
-    TransferContext.writeArguments(TRANSFORM3D to from, VECTOR3 to motion, OBJECT to collision, DOUBLE to safeMargin, BOOL to recoveryAsCollision, LONG to maxCollisions)
+    TransferContext.writeArguments(TRANSFORM3D to from, VECTOR3 to motion, OBJECT to collision, DOUBLE to safeMargin.toDouble(), BOOL to recoveryAsCollision, LONG to maxCollisions.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_TEST_MOVE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -109,7 +108,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   public fun getAxisLock(axis: PhysicsServer3D.BodyAxis): Boolean {
     TransferContext.writeArguments(LONG to axis.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_GET_AXIS_LOCK, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -119,7 +118,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSBODY3D_GET_COLLISION_EXCEPTIONS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<PhysicsBody3D>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<PhysicsBody3D>)
   }
 
   /**

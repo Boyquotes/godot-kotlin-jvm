@@ -29,7 +29,7 @@ public open class OpenXRActionSet : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_GET_LOCALIZED_NAME, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -37,15 +37,15 @@ public open class OpenXRActionSet : Resource() {
           ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_SET_LOCALIZED_NAME, NIL)
     }
 
-  public var priority: Long
+  public var priority: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_GET_PRIORITY,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_SET_PRIORITY, NIL)
     }
 
@@ -54,7 +54,7 @@ public open class OpenXRActionSet : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_GET_ACTIONS,
           ARRAY)
-      return TransferContext.readReturnValue(ARRAY, true) as VariantArray<Any?>?
+      return (TransferContext.readReturnValue(ARRAY, true) as VariantArray<Any?>?)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
@@ -66,11 +66,11 @@ public open class OpenXRActionSet : Resource() {
     return true
   }
 
-  public fun getActionCount(): Long {
+  public fun getActionCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONSET_GET_ACTION_COUNT,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public fun addAction(action: OpenXRAction): Unit {

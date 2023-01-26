@@ -15,7 +15,6 @@ import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DICTIONARY
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
@@ -56,7 +55,7 @@ public object ProjectSettings : Object() {
   public fun hasSetting(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_HAS_SETTING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -117,7 +116,7 @@ public object ProjectSettings : Object() {
   public fun getSetting(name: String, defaultValue: Any? = null): Any? {
     TransferContext.writeArguments(STRING to name, ANY to defaultValue)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_SETTING, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   /**
@@ -149,7 +148,7 @@ public object ProjectSettings : Object() {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_SETTING_WITH_OVERRIDE, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   /**
@@ -171,24 +170,24 @@ public object ProjectSettings : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_GLOBAL_CLASS_LIST, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
    * Sets the order of a configuration value (influences when saved to the config file).
    */
-  public fun setOrder(name: String, position: Long): Unit {
-    TransferContext.writeArguments(STRING to name, LONG to position)
+  public fun setOrder(name: String, position: Int): Unit {
+    TransferContext.writeArguments(STRING to name, LONG to position.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_ORDER, NIL)
   }
 
   /**
    * Returns the order of a configuration value (influences when saved to the config file).
    */
-  public fun getOrder(name: String): Long {
+  public fun getOrder(name: String): Int {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_ORDER, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -297,7 +296,7 @@ public object ProjectSettings : Object() {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_LOCALIZE_PATH,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -323,7 +322,7 @@ public object ProjectSettings : Object() {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GLOBALIZE_PATH,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -334,7 +333,7 @@ public object ProjectSettings : Object() {
   public fun save(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SAVE, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -347,12 +346,12 @@ public object ProjectSettings : Object() {
   public fun loadResourcePack(
     pack: String,
     replaceFiles: Boolean = true,
-    offset: Long = 0,
+    offset: Int = 0,
   ): Boolean {
-    TransferContext.writeArguments(STRING to pack, BOOL to replaceFiles, LONG to offset)
+    TransferContext.writeArguments(STRING to pack, BOOL to replaceFiles, LONG to offset.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_LOAD_RESOURCE_PACK,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -361,6 +360,6 @@ public object ProjectSettings : Object() {
   public fun saveCustom(`file`: String): GodotError {
     TransferContext.writeArguments(STRING to file)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SAVE_CUSTOM, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 }

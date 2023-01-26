@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType._RID
@@ -33,7 +32,7 @@ public open class RDUniform : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDUNIFORM_GET_UNIFORM_TYPE, LONG)
-      return RenderingDevice.UniformType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return RenderingDevice.UniformType.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -43,14 +42,14 @@ public open class RDUniform : RefCounted() {
   /**
    *
    */
-  public var binding: Long
+  public var binding: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDUNIFORM_GET_BINDING, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDUNIFORM_SET_BINDING, NIL)
     }
 
@@ -81,7 +80,7 @@ public open class RDUniform : RefCounted() {
   public fun getIds(): VariantArray<RID> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDUNIFORM_GET_IDS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
   }
 
   public companion object

@@ -13,7 +13,6 @@ import godot.core.PackedStringArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_BYTE_ARRAY
@@ -23,6 +22,7 @@ import godot.core.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -132,7 +132,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_IS_BIG_ENDIAN, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -160,7 +160,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   public fun getPath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_PATH, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -170,7 +170,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_PATH_ABSOLUTE,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -179,7 +179,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   public fun isOpen(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_IS_OPEN, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -206,7 +206,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   public fun getPosition(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_POSITION, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -215,7 +215,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   public fun getLength(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_LENGTH, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -250,34 +250,34 @@ public open class FileAccess internal constructor() : RefCounted() {
   public fun eofReached(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_EOF_REACHED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Returns the next 8 bits from the file as an integer. See [store8] for details on what values can be stored and retrieved this way.
    */
-  public fun get8(): Long {
+  public fun get8(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_8, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the next 16 bits from the file as an integer. See [store16] for details on what values can be stored and retrieved this way.
    */
-  public fun get16(): Long {
+  public fun get16(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_16, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the next 32 bits from the file as an integer. See [store32] for details on what values can be stored and retrieved this way.
    */
-  public fun get32(): Long {
+  public fun get32(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_32, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -286,16 +286,16 @@ public open class FileAccess internal constructor() : RefCounted() {
   public fun get64(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_64, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
    * Returns the next 32 bits from the file as a floating-point number.
    */
-  public fun getFloat(): Double {
+  public fun getFloat(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_FLOAT, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -304,16 +304,16 @@ public open class FileAccess internal constructor() : RefCounted() {
   public fun getDouble(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_DOUBLE, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
   /**
    * Returns the next bits from the file as a floating-point number.
    */
-  public fun getReal(): Double {
+  public fun getReal(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_REAL, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -323,7 +323,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     TransferContext.writeArguments(LONG to length)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_BUFFER,
         PACKED_BYTE_ARRAY)
-    return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
   /**
@@ -334,7 +334,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   public fun getLine(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_LINE, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -356,7 +356,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     TransferContext.writeArguments(STRING to delim)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_CSV_LINE,
         PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
@@ -367,7 +367,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   public fun getAsText(skipCr: Boolean = false): String {
     TransferContext.writeArguments(BOOL to skipCr)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_AS_TEXT, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -376,7 +376,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   public fun getError(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_ERROR, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -389,7 +389,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   public fun getVar(allowObjects: Boolean = false): Any? {
     TransferContext.writeArguments(BOOL to allowObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_VAR, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   /**
@@ -399,8 +399,8 @@ public open class FileAccess internal constructor() : RefCounted() {
    *
    * To store a signed integer, use [store64], or convert it manually (see [store16] for an example).
    */
-  public fun store8(`value`: Long): Unit {
-    TransferContext.writeArguments(LONG to value)
+  public fun store8(`value`: Int): Unit {
+    TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_STORE_8, NIL)
   }
 
@@ -475,8 +475,8 @@ public open class FileAccess internal constructor() : RefCounted() {
    *
    * [/codeblocks]
    */
-  public fun store16(`value`: Long): Unit {
-    TransferContext.writeArguments(LONG to value)
+  public fun store16(`value`: Int): Unit {
+    TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_STORE_16, NIL)
   }
 
@@ -487,8 +487,8 @@ public open class FileAccess internal constructor() : RefCounted() {
    *
    * To store a signed integer, use [store64], or convert it manually (see [store16] for an example).
    */
-  public fun store32(`value`: Long): Unit {
-    TransferContext.writeArguments(LONG to value)
+  public fun store32(`value`: Int): Unit {
+    TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_STORE_32, NIL)
   }
 
@@ -505,8 +505,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Stores a floating-point number as 32 bits in the file.
    */
-  public fun storeFloat(`value`: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to value)
+  public fun storeFloat(`value`: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_STORE_FLOAT, NIL)
   }
 
@@ -521,8 +521,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Stores a floating-point number in the file.
    */
-  public fun storeReal(`value`: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to value)
+  public fun storeReal(`value`: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_STORE_REAL, NIL)
   }
 
@@ -593,7 +593,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_PASCAL_STRING,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**

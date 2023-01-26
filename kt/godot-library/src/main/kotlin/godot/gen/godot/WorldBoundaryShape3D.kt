@@ -32,7 +32,7 @@ public open class WorldBoundaryShape3D : Shape3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDBOUNDARYSHAPE3D_GET_PLANE,
           PLANE)
-      return TransferContext.readReturnValue(PLANE, false) as Plane
+      return (TransferContext.readReturnValue(PLANE, false) as Plane)
     }
     set(`value`) {
       TransferContext.writeArguments(PLANE to value)

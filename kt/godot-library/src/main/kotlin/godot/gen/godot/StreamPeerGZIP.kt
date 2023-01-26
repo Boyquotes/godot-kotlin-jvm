@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -36,21 +35,21 @@ public open class StreamPeerGZIP : StreamPeer() {
   /**
    * Start the stream in compression mode with the given [bufferSize], if [useDeflate] is `true` uses deflate instead of GZIP.
    */
-  public fun startCompression(useDeflate: Boolean = false, bufferSize: Long = 65535): GodotError {
-    TransferContext.writeArguments(BOOL to useDeflate, LONG to bufferSize)
+  public fun startCompression(useDeflate: Boolean = false, bufferSize: Int = 65535): GodotError {
+    TransferContext.writeArguments(BOOL to useDeflate, LONG to bufferSize.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERGZIP_START_COMPRESSION,
         LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
    * Start the stream in decompression mode with the given [bufferSize], if [useDeflate] is `true` uses deflate instead of GZIP.
    */
-  public fun startDecompression(useDeflate: Boolean = false, bufferSize: Long = 65535): GodotError {
-    TransferContext.writeArguments(BOOL to useDeflate, LONG to bufferSize)
+  public fun startDecompression(useDeflate: Boolean = false, bufferSize: Int = 65535): GodotError {
+    TransferContext.writeArguments(BOOL to useDeflate, LONG to bufferSize.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERGZIP_START_DECOMPRESSION,
         LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -59,7 +58,7 @@ public open class StreamPeerGZIP : StreamPeer() {
   public fun finish(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERGZIP_FINISH, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**

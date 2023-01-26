@@ -176,7 +176,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   /**
    *
    */
-  public open fun _findFunction(className: String, functionName: String): Long {
+  public open fun _findFunction(className: String, functionName: String): Int {
     throw NotImplementedError("_find_function is not implemented for ScriptLanguageExtension")
   }
 
@@ -196,8 +196,8 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
    */
   public open fun _openInExternalEditor(
     script: Script,
-    line: Long,
-    column: Long,
+    line: Int,
+    column: Int,
   ): GodotError {
     throw NotImplementedError("_open_in_external_editor is not implemented for ScriptLanguageExtension")
   }
@@ -237,8 +237,8 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
    */
   public open fun _autoIndentCode(
     code: String,
-    fromLine: Long,
-    toLine: Long,
+    fromLine: Int,
+    toLine: Int,
   ): String {
     throw NotImplementedError("_auto_indent_code is not implemented for ScriptLanguageExtension")
   }
@@ -283,21 +283,21 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   /**
    *
    */
-  public open fun _debugGetStackLevelCount(): Long {
+  public open fun _debugGetStackLevelCount(): Int {
     throw NotImplementedError("_debug_get_stack_level_count is not implemented for ScriptLanguageExtension")
   }
 
   /**
    *
    */
-  public open fun _debugGetStackLevelLine(level: Long): Long {
+  public open fun _debugGetStackLevelLine(level: Int): Int {
     throw NotImplementedError("_debug_get_stack_level_line is not implemented for ScriptLanguageExtension")
   }
 
   /**
    *
    */
-  public open fun _debugGetStackLevelFunction(level: Long): String {
+  public open fun _debugGetStackLevelFunction(level: Int): String {
     throw NotImplementedError("_debug_get_stack_level_function is not implemented for ScriptLanguageExtension")
   }
 
@@ -305,9 +305,9 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
    *
    */
   public open fun _debugGetStackLevelLocals(
-    level: Long,
-    maxSubitems: Long,
-    maxDepth: Long,
+    level: Int,
+    maxSubitems: Int,
+    maxDepth: Int,
   ): Dictionary<Any?, Any?> {
     throw NotImplementedError("_debug_get_stack_level_locals is not implemented for ScriptLanguageExtension")
   }
@@ -316,9 +316,9 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
    *
    */
   public open fun _debugGetStackLevelMembers(
-    level: Long,
-    maxSubitems: Long,
-    maxDepth: Long,
+    level: Int,
+    maxSubitems: Int,
+    maxDepth: Int,
   ): Dictionary<Any?, Any?> {
     throw NotImplementedError("_debug_get_stack_level_members is not implemented for ScriptLanguageExtension")
   }
@@ -326,7 +326,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   /**
    *
    */
-  public open fun _debugGetGlobals(maxSubitems: Long, maxDepth: Long): Dictionary<Any?, Any?> {
+  public open fun _debugGetGlobals(maxSubitems: Int, maxDepth: Int): Dictionary<Any?, Any?> {
     throw NotImplementedError("_debug_get_globals is not implemented for ScriptLanguageExtension")
   }
 
@@ -334,10 +334,10 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
    *
    */
   public open fun _debugParseStackLevelExpression(
-    level: Long,
+    level: Int,
     expression: String,
-    maxSubitems: Long,
-    maxDepth: Long,
+    maxSubitems: Int,
+    maxDepth: Int,
   ): String {
     throw NotImplementedError("_debug_parse_stack_level_expression is not implemented for ScriptLanguageExtension")
   }

@@ -57,7 +57,7 @@ public open class ColorPickerButton : Button() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_PICK_COLOR,
           COLOR)
-      return TransferContext.readReturnValue(COLOR, false) as Color
+      return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
@@ -73,7 +73,7 @@ public open class ColorPickerButton : Button() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_IS_EDITING_ALPHA, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -95,7 +95,7 @@ public open class ColorPickerButton : Button() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_PICKER,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as ColorPicker?
+    return (TransferContext.readReturnValue(OBJECT, true) as ColorPicker?)
   }
 
   /**
@@ -106,7 +106,7 @@ public open class ColorPickerButton : Button() {
   public fun getPopup(): PopupPanel? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_POPUP, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as PopupPanel?
+    return (TransferContext.readReturnValue(OBJECT, true) as PopupPanel?)
   }
 
   public companion object

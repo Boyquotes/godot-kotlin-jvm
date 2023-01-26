@@ -16,6 +16,7 @@ import godot.core.VariantType.TRANSFORM2D
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -41,7 +42,7 @@ public open class Bone2D : Node2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_REST, TRANSFORM2D)
-      return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
+      return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
@@ -68,16 +69,16 @@ public open class Bone2D : Node2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_SKELETON_REST,
         TRANSFORM2D)
-    return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
+    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
   }
 
   /**
    * Returns the node's index as part of the entire skeleton. See [godot.Skeleton2D].
    */
-  public fun getIndexInSkeleton(): Long {
+  public fun getIndexInSkeleton(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_INDEX_IN_SKELETON, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -96,24 +97,24 @@ public open class Bone2D : Node2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_BONE2D_GET_AUTOCALCULATE_LENGTH_AND_ANGLE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Sets the length of the bone in the `Bone2D` node.
    */
-  public fun setLength(length: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to length)
+  public fun setLength(length: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to length.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_LENGTH, NIL)
   }
 
   /**
    * Returns the length of the bone in the `Bone2D` node.
    */
-  public fun getLength(): Double {
+  public fun getLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_LENGTH, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -121,8 +122,8 @@ public open class Bone2D : Node2D() {
    *
    * **Note:** This is different from the `Bone2D`'s rotation. The bone angle is the rotation of the bone shown by the `Bone2D` gizmo, and because `Bone2D` bones are based on positions, this can vary from the actual rotation of the `Bone2D` node.
    */
-  public fun setBoneAngle(angle: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to angle)
+  public fun setBoneAngle(angle: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to angle.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_BONE_ANGLE, NIL)
   }
 
@@ -131,10 +132,10 @@ public open class Bone2D : Node2D() {
    *
    * **Note:** This is different from the `Bone2D`'s rotation. The bone angle is the rotation of the bone shown by the `Bone2D` gizmo, and because `Bone2D` bones are based on positions, this can vary from the actual rotation of the `Bone2D` node.
    */
-  public fun getBoneAngle(): Double {
+  public fun getBoneAngle(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_BONE_ANGLE, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

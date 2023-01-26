@@ -29,7 +29,7 @@ public open class OpenXRIPBinding : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRIPBINDING_GET_ACTION,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as OpenXRAction?
+      return (TransferContext.readReturnValue(OBJECT, true) as OpenXRAction?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -41,7 +41,7 @@ public open class OpenXRIPBinding : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRIPBINDING_GET_PATHS,
           PACKED_STRING_ARRAY)
-      return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
@@ -53,17 +53,17 @@ public open class OpenXRIPBinding : Resource() {
     return true
   }
 
-  public fun getPathCount(): Long {
+  public fun getPathCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRIPBINDING_GET_PATH_COUNT,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public fun hasPath(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRIPBINDING_HAS_PATH, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public fun addPath(path: String): Unit {

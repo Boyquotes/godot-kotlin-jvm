@@ -12,7 +12,6 @@ import godot.core.PackedColorArray
 import godot.core.PackedFloat32Array
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_COLOR_ARRAY
@@ -20,6 +19,7 @@ import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -42,7 +42,7 @@ public open class Gradient : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_INTERPOLATION_MODE,
           LONG)
-      return Gradient.InterpolationMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Gradient.InterpolationMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -58,7 +58,7 @@ public open class Gradient : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_OFFSETS,
           PACKED_FLOAT_32_ARRAY)
-      return TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array
+      return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to value)
@@ -73,7 +73,7 @@ public open class Gradient : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_COLORS,
           PACKED_COLOR_ARRAY)
-      return TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray
+      return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_COLOR_ARRAY to value)
@@ -88,34 +88,34 @@ public open class Gradient : Resource() {
   /**
    * Adds the specified color to the end of the gradient, with the specified offset.
    */
-  public fun addPoint(offset: Double, color: Color): Unit {
-    TransferContext.writeArguments(DOUBLE to offset, COLOR to color)
+  public fun addPoint(offset: Float, color: Color): Unit {
+    TransferContext.writeArguments(DOUBLE to offset.toDouble(), COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_ADD_POINT, NIL)
   }
 
   /**
    * Removes the color at the index [point].
    */
-  public fun removePoint(point: Long): Unit {
-    TransferContext.writeArguments(LONG to point)
+  public fun removePoint(point: Int): Unit {
+    TransferContext.writeArguments(LONG to point.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_REMOVE_POINT, NIL)
   }
 
   /**
    * Sets the offset for the gradient color at index [point].
    */
-  public fun setOffset(point: Long, offset: Double): Unit {
-    TransferContext.writeArguments(LONG to point, DOUBLE to offset)
+  public fun setOffset(point: Int, offset: Float): Unit {
+    TransferContext.writeArguments(LONG to point.toLong(), DOUBLE to offset.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_SET_OFFSET, NIL)
   }
 
   /**
    * Returns the offset of the gradient color at index [point].
    */
-  public fun getOffset(point: Long): Double {
-    TransferContext.writeArguments(LONG to point)
+  public fun getOffset(point: Int): Float {
+    TransferContext.writeArguments(LONG to point.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_OFFSET, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -129,36 +129,36 @@ public open class Gradient : Resource() {
   /**
    * Sets the color of the gradient color at index [point].
    */
-  public fun setColor(point: Long, color: Color): Unit {
-    TransferContext.writeArguments(LONG to point, COLOR to color)
+  public fun setColor(point: Int, color: Color): Unit {
+    TransferContext.writeArguments(LONG to point.toLong(), COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_SET_COLOR, NIL)
   }
 
   /**
    * Returns the color of the gradient color at index [point].
    */
-  public fun getColor(point: Long): Color {
-    TransferContext.writeArguments(LONG to point)
+  public fun getColor(point: Int): Color {
+    TransferContext.writeArguments(LONG to point.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_COLOR, COLOR)
-    return TransferContext.readReturnValue(COLOR, false) as Color
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
   /**
    * Returns the interpolated color specified by `offset`.
    */
-  public fun sample(offset: Double): Color {
-    TransferContext.writeArguments(DOUBLE to offset)
+  public fun sample(offset: Float): Color {
+    TransferContext.writeArguments(DOUBLE to offset.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_SAMPLE, COLOR)
-    return TransferContext.readReturnValue(COLOR, false) as Color
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
   /**
    * Returns the number of colors in the gradient.
    */
-  public fun getPointCount(): Long {
+  public fun getPointCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_POINT_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public enum class InterpolationMode(

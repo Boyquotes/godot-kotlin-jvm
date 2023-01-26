@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -39,7 +38,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS3D_GET_MAP, _RID)
-      return TransferContext.readReturnValue(_RID, false) as RID
+      return (TransferContext.readReturnValue(_RID, false) as RID)
     }
     set(`value`) {
       TransferContext.writeArguments(_RID to value)
@@ -55,7 +54,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS3D_GET_START_POSITION, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -71,7 +70,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS3D_GET_TARGET_POSITION, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -82,15 +81,15 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
   /**
    * The navigation layers the query will use (as a bitmask).
    */
-  public var navigationLayers: Long
+  public var navigationLayers: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS3D_GET_NAVIGATION_LAYERS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS3D_SET_NAVIGATION_LAYERS, NIL)
     }
@@ -103,7 +102,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS3D_GET_PATHFINDING_ALGORITHM, LONG)
-      return NavigationPathQueryParameters3D.PathfindingAlgorithm.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return NavigationPathQueryParameters3D.PathfindingAlgorithm.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -119,7 +118,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS3D_GET_PATH_POSTPROCESSING, LONG)
-      return NavigationPathQueryParameters3D.PathPostProcessing.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return NavigationPathQueryParameters3D.PathPostProcessing.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -135,7 +134,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS3D_GET_METADATA_FLAGS, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, false) as Long
+      return (TransferContext.readReturnValue(OBJECT, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

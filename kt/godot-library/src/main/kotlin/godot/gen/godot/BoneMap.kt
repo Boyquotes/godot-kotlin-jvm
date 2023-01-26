@@ -48,7 +48,7 @@ public open class BoneMap : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEMAP_GET_PROFILE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as SkeletonProfile?
+      return (TransferContext.readReturnValue(OBJECT, true) as SkeletonProfile?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -69,7 +69,7 @@ public open class BoneMap : Resource() {
     TransferContext.writeArguments(STRING_NAME to profileBoneName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEMAP_GET_SKELETON_BONE_NAME,
         STRING_NAME)
-    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   /**
@@ -91,7 +91,7 @@ public open class BoneMap : Resource() {
     TransferContext.writeArguments(STRING_NAME to skeletonBoneName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEMAP_FIND_PROFILE_BONE_NAME,
         STRING_NAME)
-    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   public companion object

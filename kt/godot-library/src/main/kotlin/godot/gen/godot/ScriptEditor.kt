@@ -18,7 +18,6 @@ import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Int
-import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -52,7 +51,7 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_CURRENT_EDITOR,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as ScriptEditorBase?
+    return (TransferContext.readReturnValue(OBJECT, true) as ScriptEditorBase?)
   }
 
   /**
@@ -62,7 +61,7 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_OPEN_SCRIPT_EDITORS, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<ScriptEditorBase>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<ScriptEditorBase>)
   }
 
   /**
@@ -90,8 +89,8 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
   /**
    * Goes to the specified line in the current script.
    */
-  public fun gotoLine(lineNumber: Long): Unit {
-    TransferContext.writeArguments(LONG to lineNumber)
+  public fun gotoLine(lineNumber: Int): Unit {
+    TransferContext.writeArguments(LONG to lineNumber.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GOTO_LINE, NIL)
   }
 
@@ -102,7 +101,7 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_CURRENT_SCRIPT,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Script?
+    return (TransferContext.readReturnValue(OBJECT, true) as Script?)
   }
 
   /**
@@ -112,7 +111,7 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_OPEN_SCRIPTS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Script>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Script>)
   }
 
   /**

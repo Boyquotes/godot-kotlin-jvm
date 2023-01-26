@@ -27,7 +27,7 @@ public open class InputEventShortcut : InputEvent() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSHORTCUT_GET_SHORTCUT,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Shortcut?
+      return (TransferContext.readReturnValue(OBJECT, true) as Shortcut?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

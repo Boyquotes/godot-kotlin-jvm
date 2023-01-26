@@ -45,7 +45,7 @@ public open class RDShaderSPIRV : Resource() {
     TransferContext.writeArguments(LONG to stage.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_BYTECODE,
         PACKED_BYTE_ARRAY)
-    return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
   /**
@@ -64,7 +64,7 @@ public open class RDShaderSPIRV : Resource() {
     TransferContext.writeArguments(LONG to stage.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RDSHADERSPIRV_GET_STAGE_COMPILE_ERROR, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object

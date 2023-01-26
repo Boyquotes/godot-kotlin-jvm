@@ -13,7 +13,6 @@ import godot.core.Transform2D
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -30,6 +29,7 @@ import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -71,7 +71,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_3D_DISABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -85,7 +85,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_XR, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -100,7 +100,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_OWN_WORLD_3D,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -115,7 +115,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_WORLD_3D, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as World3D?
+      return (TransferContext.readReturnValue(OBJECT, true) as World3D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -129,7 +129,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_WORLD_2D, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as World2D?
+      return (TransferContext.readReturnValue(OBJECT, true) as World2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -144,7 +144,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_HAS_TRANSPARENT_BACKGROUND, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -164,7 +164,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_HANDLING_INPUT_LOCALLY, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -180,7 +180,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_SNAP_2D_TRANSFORMS_TO_PIXEL_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -196,7 +196,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_SNAP_2D_VERTICES_TO_PIXEL_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -211,7 +211,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MSAA_2D, LONG)
-      return Viewport.MSAA.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Viewport.MSAA.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -225,7 +225,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MSAA_3D, LONG)
-      return Viewport.MSAA.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Viewport.MSAA.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -240,7 +240,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCREEN_SPACE_AA,
           LONG)
-      return Viewport.ScreenSpaceAA.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Viewport.ScreenSpaceAA.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -256,7 +256,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_TAA, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -272,7 +272,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_DEBANDING, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -289,7 +289,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_OCCLUSION_CULLING, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -304,15 +304,15 @@ public open class Viewport internal constructor() : Node() {
    *
    * **Note:** [meshLodThreshold] does not affect [godot.GeometryInstance3D] visibility ranges (also known as "manual" LOD or hierarchical LOD).
    */
-  public var meshLodThreshold: Double
+  public var meshLodThreshold: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MESH_LOD_THRESHOLD,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_MESH_LOD_THRESHOLD,
           NIL)
     }
@@ -324,7 +324,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEBUG_DRAW, LONG)
-      return Viewport.DebugDraw.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Viewport.DebugDraw.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -341,7 +341,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCALING_3D_MODE,
           LONG)
-      return Viewport.Scaling3DMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Viewport.Scaling3DMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -355,15 +355,15 @@ public open class Viewport internal constructor() : Node() {
    *
    * To control this property on the root viewport, set the [godot.ProjectSettings.rendering/scaling3d/scale] project setting.
    */
-  public var scaling3dScale: Double
+  public var scaling3dScale: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCALING_3D_SCALE,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SCALING_3D_SCALE,
           NIL)
     }
@@ -377,15 +377,15 @@ public open class Viewport internal constructor() : Node() {
    *
    * To control this property on the root viewport, set the [godot.ProjectSettings.rendering/textures/defaultFilters/textureMipmapBias] project setting.
    */
-  public var textureMipmapBias: Double
+  public var textureMipmapBias: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_TEXTURE_MIPMAP_BIAS,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_TEXTURE_MIPMAP_BIAS,
           NIL)
     }
@@ -395,15 +395,15 @@ public open class Viewport internal constructor() : Node() {
    *
    * To control this property on the root viewport, set the [godot.ProjectSettings.rendering/scaling3d/fsrSharpness] project setting.
    */
-  public var fsrSharpness: Double
+  public var fsrSharpness: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_FSR_SHARPNESS,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_FSR_SHARPNESS, NIL)
     }
 
@@ -414,7 +414,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_VRS_MODE, LONG)
-      return Viewport.VRSMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Viewport.VRSMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -443,7 +443,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_VRS_TEXTURE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -458,7 +458,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEFAULT_CANVAS_ITEM_TEXTURE_FILTER, LONG)
-      return Viewport.DefaultCanvasItemTextureFilter.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Viewport.DefaultCanvasItemTextureFilter.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -474,7 +474,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT, LONG)
-      return Viewport.DefaultCanvasItemTextureRepeat.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Viewport.DefaultCanvasItemTextureRepeat.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -490,7 +490,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_AUDIO_LISTENER_2D,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -506,7 +506,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_AUDIO_LISTENER_3D,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -522,7 +522,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_PHYSICS_OBJECT_PICKING, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -540,7 +540,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_PHYSICS_OBJECT_PICKING_SORT, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -555,7 +555,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_INPUT_DISABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -570,7 +570,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_SNAP_CONTROLS_TO_PIXELS_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -586,7 +586,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_EMBEDDING_SUBWINDOWS,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -601,7 +601,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SDF_OVERSIZE, LONG)
-      return Viewport.SDFOversize.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Viewport.SDFOversize.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -615,7 +615,7 @@ public open class Viewport internal constructor() : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SDF_SCALE, LONG)
-      return Viewport.SDFScale.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Viewport.SDFScale.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -627,15 +627,15 @@ public open class Viewport internal constructor() : Node() {
    *
    * **Note:** If this is set to `0`, no shadows will be visible at all (including directional shadows).
    */
-  public var positionalShadowAtlasSize: Long
+  public var positionalShadowAtlasSize: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_SIZE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_SIZE, NIL)
     }
@@ -648,7 +648,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_16_BITS, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -664,7 +664,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments(LONG to 0)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
-      return Viewport.PositionalShadowAtlasQuadrantSubdiv.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Viewport.PositionalShadowAtlasQuadrantSubdiv.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
 
   /**
@@ -675,7 +675,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments(LONG to 1)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
-      return Viewport.PositionalShadowAtlasQuadrantSubdiv.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Viewport.PositionalShadowAtlasQuadrantSubdiv.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
 
   /**
@@ -686,7 +686,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments(LONG to 2)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
-      return Viewport.PositionalShadowAtlasQuadrantSubdiv.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Viewport.PositionalShadowAtlasQuadrantSubdiv.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
 
   /**
@@ -697,7 +697,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments(LONG to 3)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
-      return Viewport.PositionalShadowAtlasQuadrantSubdiv.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return Viewport.PositionalShadowAtlasQuadrantSubdiv.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
 
   /**
@@ -708,7 +708,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CANVAS_TRANSFORM,
           TRANSFORM2D)
-      return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
+      return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
@@ -724,7 +724,7 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_GLOBAL_CANVAS_TRANSFORM, TRANSFORM2D)
-      return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
+      return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
@@ -735,15 +735,15 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The rendering layers in which this [godot.Viewport] renders [godot.CanvasItem] nodes.
    */
-  public var canvasCullMask: Long
+  public var canvasCullMask: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CANVAS_CULL_MASK,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_CANVAS_CULL_MASK,
           NIL)
     }
@@ -759,7 +759,7 @@ public open class Viewport internal constructor() : Node() {
   public fun findWorld2d(): World2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_FIND_WORLD_2D, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as World2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as World2D?)
   }
 
   /**
@@ -769,7 +769,7 @@ public open class Viewport internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_FINAL_TRANSFORM,
         TRANSFORM2D)
-    return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
+    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
   }
 
   /**
@@ -779,7 +779,7 @@ public open class Viewport internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCREEN_TRANSFORM,
         TRANSFORM2D)
-    return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
+    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
   }
 
   /**
@@ -788,16 +788,16 @@ public open class Viewport internal constructor() : Node() {
   public fun getVisibleRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_VISIBLE_RECT, RECT2)
-    return TransferContext.readReturnValue(RECT2, false) as Rect2
+    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
   }
 
   /**
    *
    */
-  public fun getRenderInfo(type: RenderInfoType, info: RenderInfo): Long {
+  public fun getRenderInfo(type: RenderInfoType, info: RenderInfo): Int {
     TransferContext.writeArguments(LONG to type.id, LONG to info.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_RENDER_INFO, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -814,7 +814,7 @@ public open class Viewport internal constructor() : Node() {
   public fun getTexture(): ViewportTexture? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_TEXTURE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as ViewportTexture?
+    return (TransferContext.readReturnValue(OBJECT, true) as ViewportTexture?)
   }
 
   /**
@@ -823,7 +823,7 @@ public open class Viewport internal constructor() : Node() {
   public fun getViewportRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_VIEWPORT_RID, _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
@@ -884,7 +884,7 @@ public open class Viewport internal constructor() : Node() {
   public fun getCamera2d(): Camera2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CAMERA_2D, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Camera2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as Camera2D?)
   }
 
   /**
@@ -894,7 +894,7 @@ public open class Viewport internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MOUSE_POSITION,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -913,7 +913,7 @@ public open class Viewport internal constructor() : Node() {
   public fun guiGetDragData(): Any? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_GET_DRAG_DATA, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   /**
@@ -924,7 +924,7 @@ public open class Viewport internal constructor() : Node() {
   public fun guiIsDragging(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_IS_DRAGGING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -934,7 +934,7 @@ public open class Viewport internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_IS_DRAG_SUCCESSFUL,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -952,15 +952,15 @@ public open class Viewport internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_GET_FOCUS_OWNER,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Control?
+    return (TransferContext.readReturnValue(OBJECT, true) as Control?)
   }
 
   /**
    * Sets the number of subdivisions to use in the specified quadrant. A higher number of subdivisions allows you to have more shadows in the scene at once, but reduces the quality of the shadows. A good practice is to have quadrants with a varying number of subdivisions and to have as few subdivisions as possible.
    */
-  public fun setPositionalShadowAtlasQuadrantSubdiv(quadrant: Long,
+  public fun setPositionalShadowAtlasQuadrantSubdiv(quadrant: Int,
       subdiv: PositionalShadowAtlasQuadrantSubdiv): Unit {
-    TransferContext.writeArguments(LONG to quadrant, LONG to subdiv.id)
+    TransferContext.writeArguments(LONG to quadrant.toLong(), LONG to subdiv.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
   }
@@ -983,14 +983,14 @@ public open class Viewport internal constructor() : Node() {
   public fun isInputHandled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_INPUT_HANDLED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Set/clear individual bits on the rendering layer mask. This simplifies editing this [godot.Viewport]'s layers.
    */
-  public fun setCanvasCullMaskBit(layer: Long, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layer, BOOL to enable)
+  public fun setCanvasCullMaskBit(layer: Int, enable: Boolean): Unit {
+    TransferContext.writeArguments(LONG to layer.toLong(), BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_CANVAS_CULL_MASK_BIT,
         NIL)
   }
@@ -998,11 +998,11 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Returns an individual bit on the rendering layer mask.
    */
-  public fun getCanvasCullMaskBit(layer: Long): Boolean {
-    TransferContext.writeArguments(LONG to layer)
+  public fun getCanvasCullMaskBit(layer: Int): Boolean {
+    TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CANVAS_CULL_MASK_BIT,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -1011,7 +1011,7 @@ public open class Viewport internal constructor() : Node() {
   public fun findWorld3d(): World3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_FIND_WORLD_3D, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as World3D?
+    return (TransferContext.readReturnValue(OBJECT, true) as World3D?)
   }
 
   /**
@@ -1020,7 +1020,7 @@ public open class Viewport internal constructor() : Node() {
   public fun getCamera3d(): Camera3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CAMERA_3D, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Camera3D?
+    return (TransferContext.readReturnValue(OBJECT, true) as Camera3D?)
   }
 
   public enum class PositionalShadowAtlasQuadrantSubdiv(

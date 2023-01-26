@@ -49,7 +49,7 @@ public open class ConfirmationDialog : AcceptDialog() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CONFIRMATIONDIALOG_GET_CANCEL_BUTTON_TEXT, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -71,7 +71,7 @@ public open class ConfirmationDialog : AcceptDialog() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CONFIRMATIONDIALOG_GET_CANCEL_BUTTON, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Button?
+    return (TransferContext.readReturnValue(OBJECT, true) as Button?)
   }
 
   public companion object

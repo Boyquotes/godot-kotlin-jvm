@@ -13,6 +13,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 
@@ -31,15 +32,15 @@ public open class Shape3D internal constructor() : Resource() {
    *
    * When set to `0`, the default value from [godot.ProjectSettings.physics/3d/solver/defaultContactBias] is used.
    */
-  public var customSolverBias: Double
+  public var customSolverBias: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_GET_CUSTOM_SOLVER_BIAS,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_SET_CUSTOM_SOLVER_BIAS,
           NIL)
     }
@@ -49,14 +50,14 @@ public open class Shape3D internal constructor() : Resource() {
    *
    * Collision margins allow collision detection to be more efficient by adding an extra shell around shapes. Collision algorithms are more expensive when objects overlap by more than their margin, so a higher value for margins is better for performance, at the cost of accuracy around edges as it makes them less sharp.
    */
-  public var margin: Double
+  public var margin: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_GET_MARGIN, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_SET_MARGIN, NIL)
     }
 
@@ -71,7 +72,7 @@ public open class Shape3D internal constructor() : Resource() {
   public fun getDebugMesh(): ArrayMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_GET_DEBUG_MESH, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?
+    return (TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?)
   }
 
   public companion object

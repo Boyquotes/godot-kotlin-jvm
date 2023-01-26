@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -46,7 +45,7 @@ public open class VoxelGI : VisualInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_GET_SUBDIV, LONG)
-      return VoxelGI.Subdiv.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return VoxelGI.Subdiv.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -62,7 +61,7 @@ public open class VoxelGI : VisualInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_GET_SIZE, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -77,7 +76,7 @@ public open class VoxelGI : VisualInstance3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_GET_CAMERA_ATTRIBUTES,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Material?
+      return (TransferContext.readReturnValue(OBJECT, true) as Material?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -92,7 +91,7 @@ public open class VoxelGI : VisualInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGI_GET_PROBE_DATA, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as VoxelGIData?
+      return (TransferContext.readReturnValue(OBJECT, true) as VoxelGIData?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

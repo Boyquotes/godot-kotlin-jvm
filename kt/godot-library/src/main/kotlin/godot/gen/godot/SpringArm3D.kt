@@ -17,6 +17,7 @@ import godot.core.VariantType._RID
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -38,15 +39,15 @@ public open class SpringArm3D : Node3D() {
   /**
    * The layers against which the collision check shall be done. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  public var collisionMask: Long
+  public var collisionMask: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_GET_COLLISION_MASK,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_SET_COLLISION_MASK,
           NIL)
     }
@@ -60,7 +61,7 @@ public open class SpringArm3D : Node3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_GET_SHAPE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Shape3D?
+      return (TransferContext.readReturnValue(OBJECT, true) as Shape3D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -72,14 +73,14 @@ public open class SpringArm3D : Node3D() {
    *
    * To know more about how to perform a shape cast or a ray cast, please consult the [godot.PhysicsDirectSpaceState3D] documentation.
    */
-  public var springLength: Double
+  public var springLength: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_GET_LENGTH, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_SET_LENGTH, NIL)
     }
 
@@ -90,14 +91,14 @@ public open class SpringArm3D : Node3D() {
    *
    * This margin is useful for when the SpringArm3D has a [godot.Camera3D] as a child node: without the margin, the [godot.Camera3D] would be placed on the exact point of collision, while with the margin the [godot.Camera3D] would be placed close to the point of collision.
    */
-  public var margin: Double
+  public var margin: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_GET_MARGIN, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_SET_MARGIN, NIL)
     }
 
@@ -109,10 +110,10 @@ public open class SpringArm3D : Node3D() {
   /**
    * Returns the spring arm's current length.
    */
-  public fun getHitLength(): Double {
+  public fun getHitLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_GET_HIT_LENGTH, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -131,7 +132,7 @@ public open class SpringArm3D : Node3D() {
     TransferContext.writeArguments(_RID to RID)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_REMOVE_EXCLUDED_OBJECT,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

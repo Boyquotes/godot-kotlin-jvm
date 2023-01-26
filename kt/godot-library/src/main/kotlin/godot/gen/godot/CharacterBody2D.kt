@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -18,6 +17,7 @@ import godot.core.Vector2
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -44,7 +44,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_MOTION_MODE,
           LONG)
-      return CharacterBody2D.MotionMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return CharacterBody2D.MotionMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -60,7 +60,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_UP_DIRECTION,
           VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
@@ -76,7 +76,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_VELOCITY,
           VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
@@ -91,7 +91,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_IS_SLIDE_ON_CEILING_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -102,15 +102,15 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Maximum number of times the body can change direction before it stops when calling [moveAndSlide].
    */
-  public var maxSlides: Long
+  public var maxSlides: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_MAX_SLIDES,
           LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_SET_MAX_SLIDES,
           NIL)
     }
@@ -118,15 +118,15 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Minimum angle (in radians) where the body is allowed to slide when it encounters a slope. The default value equals 15 degrees. This property only affects movement when [motionMode] is [MOTION_MODE_FLOATING].
    */
-  public var wallMinSlideAngle: Double
+  public var wallMinSlideAngle: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_WALL_MIN_SLIDE_ANGLE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_SET_WALL_MIN_SLIDE_ANGLE, NIL)
     }
@@ -141,7 +141,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_IS_FLOOR_STOP_ON_SLOPE_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -159,7 +159,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_IS_FLOOR_CONSTANT_SPEED_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -175,7 +175,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_IS_FLOOR_BLOCK_ON_WALL_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -186,15 +186,15 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Maximum angle (in radians) where a slope is still considered a floor (or a ceiling), rather than a wall, when calling [moveAndSlide]. The default value equals 45 degrees.
    */
-  public var floorMaxAngle: Double
+  public var floorMaxAngle: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_FLOOR_MAX_ANGLE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_SET_FLOOR_MAX_ANGLE, NIL)
     }
@@ -204,15 +204,15 @@ public open class CharacterBody2D : PhysicsBody2D() {
    *
    * As long as the snapping vector is in contact with the ground and the body moves against [upDirection], the body will remain attached to the surface. Snapping is not applied if the body moves along [upDirection], so it will be able to detach from the ground when jumping.
    */
-  public var floorSnapLength: Double
+  public var floorSnapLength: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_FLOOR_SNAP_LENGTH, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_SET_FLOOR_SNAP_LENGTH, NIL)
     }
@@ -225,7 +225,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_PLATFORM_ON_LEAVE, LONG)
-      return CharacterBody2D.PlatformOnLeave.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return CharacterBody2D.PlatformOnLeave.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -236,15 +236,15 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Collision layers that will be included for detecting floor bodies that will act as moving platforms to be followed by the [godot.CharacterBody2D]. By default, all floor bodies are detected and propagate their velocity.
    */
-  public var platformFloorLayers: Long
+  public var platformFloorLayers: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_PLATFORM_FLOOR_LAYERS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_SET_PLATFORM_FLOOR_LAYERS, NIL)
     }
@@ -252,15 +252,15 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Collision layers that will be included for detecting wall bodies that will act as moving platforms to be followed by the [godot.CharacterBody2D]. By default, all wall bodies are ignored.
    */
-  public var platformWallLayers: Long
+  public var platformWallLayers: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_PLATFORM_WALL_LAYERS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_SET_PLATFORM_WALL_LAYERS, NIL)
     }
@@ -274,15 +274,15 @@ public open class CharacterBody2D : PhysicsBody2D() {
    *
    * A lower value forces the collision algorithm to use more exact detection, so it can be used in cases that specifically require precision, e.g at very low scale to avoid visible jittering, or for stability with a stack of character bodies.
    */
-  public var safeMargin: Double
+  public var safeMargin: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_SAFE_MARGIN,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_SET_SAFE_MARGIN,
           NIL)
     }
@@ -307,7 +307,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_MOVE_AND_SLIDE,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -316,7 +316,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   public fun isOnFloor(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_IS_ON_FLOOR, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -326,7 +326,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_IS_ON_FLOOR_ONLY,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -335,7 +335,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   public fun isOnCeiling(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_IS_ON_CEILING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -345,7 +345,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_IS_ON_CEILING_ONLY,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -354,7 +354,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   public fun isOnWall(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_IS_ON_WALL, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -364,7 +364,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_IS_ON_WALL_ONLY,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -374,7 +374,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_FLOOR_NORMAL,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -384,7 +384,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_WALL_NORMAL,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -394,7 +394,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_LAST_MOTION,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -404,7 +404,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_POSITION_DELTA,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -414,17 +414,17 @@ public open class CharacterBody2D : PhysicsBody2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_REAL_VELOCITY,
         VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
    * Returns the floor's collision angle at the last collision point according to [upDirection], which is `Vector2.UP` by default. This value is always positive and only valid after calling [moveAndSlide] and when [isOnFloor] returns `true`.
    */
-  public fun getFloorAngle(upDirection: Vector2 = Vector2(0, -1)): Double {
+  public fun getFloorAngle(upDirection: Vector2 = Vector2(0, -1)): Float {
     TransferContext.writeArguments(VECTOR2 to upDirection)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_FLOOR_ANGLE,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -434,17 +434,17 @@ public open class CharacterBody2D : PhysicsBody2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_PLATFORM_VELOCITY, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
    * Returns the number of times the body collided and changed direction during the last call to [moveAndSlide].
    */
-  public fun getSlideCollisionCount(): Long {
+  public fun getSlideCollisionCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_SLIDE_COLLISION_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -480,11 +480,11 @@ public open class CharacterBody2D : PhysicsBody2D() {
    *
    * [/codeblocks]
    */
-  public fun getSlideCollision(slideIdx: Long): KinematicCollision2D? {
-    TransferContext.writeArguments(LONG to slideIdx)
+  public fun getSlideCollision(slideIdx: Int): KinematicCollision2D? {
+    TransferContext.writeArguments(LONG to slideIdx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_SLIDE_COLLISION,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as KinematicCollision2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as KinematicCollision2D?)
   }
 
   /**
@@ -494,7 +494,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CHARACTERBODY2D_GET_LAST_SLIDE_COLLISION, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as KinematicCollision2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as KinematicCollision2D?)
   }
 
   public enum class MotionMode(

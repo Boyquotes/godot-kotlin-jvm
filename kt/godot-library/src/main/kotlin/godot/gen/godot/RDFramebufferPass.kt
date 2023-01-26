@@ -34,7 +34,7 @@ public open class RDFramebufferPass : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_GET_COLOR_ATTACHMENTS, PACKED_INT_32_ARRAY)
-      return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+      return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
@@ -50,7 +50,7 @@ public open class RDFramebufferPass : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_GET_INPUT_ATTACHMENTS, PACKED_INT_32_ARRAY)
-      return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+      return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
@@ -66,7 +66,7 @@ public open class RDFramebufferPass : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_GET_RESOLVE_ATTACHMENTS, PACKED_INT_32_ARRAY)
-      return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+      return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
@@ -82,7 +82,7 @@ public open class RDFramebufferPass : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_GET_PRESERVE_ATTACHMENTS, PACKED_INT_32_ARRAY)
-      return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
+      return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
@@ -93,15 +93,15 @@ public open class RDFramebufferPass : RefCounted() {
   /**
    * Depth attachment. ATTACHMENT_UNUSED should be used if no depth buffer is required for this pass.
    */
-  public var depthAttachment: Long
+  public var depthAttachment: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_GET_DEPTH_ATTACHMENT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_SET_DEPTH_ATTACHMENT, NIL)
     }

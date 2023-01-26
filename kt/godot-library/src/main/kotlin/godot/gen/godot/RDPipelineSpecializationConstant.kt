@@ -30,7 +30,7 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINESPECIALIZATIONCONSTANT_GET_VALUE, ANY)
-      return TransferContext.readReturnValue(ANY, true) as Any?
+      return (TransferContext.readReturnValue(ANY, true) as Any?)
     }
     set(`value`) {
       TransferContext.writeArguments(ANY to value)
@@ -41,15 +41,15 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
   /**
    *
    */
-  public var constantId: Long
+  public var constantId: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINESPECIALIZATIONCONSTANT_GET_CONSTANT_ID, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINESPECIALIZATIONCONSTANT_SET_CONSTANT_ID, NIL)
     }

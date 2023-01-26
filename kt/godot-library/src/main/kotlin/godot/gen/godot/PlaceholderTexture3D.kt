@@ -34,7 +34,7 @@ public open class PlaceholderTexture3D : Texture3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLACEHOLDERTEXTURE3D_GET_SIZE,
           VECTOR3I)
-      return TransferContext.readReturnValue(VECTOR3I, false) as Vector3i
+      return (TransferContext.readReturnValue(VECTOR3I, false) as Vector3i)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3I to value)

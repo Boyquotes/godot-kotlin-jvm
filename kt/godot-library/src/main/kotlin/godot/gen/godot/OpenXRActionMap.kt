@@ -29,7 +29,7 @@ public open class OpenXRActionMap : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_GET_ACTION_SETS,
           ARRAY)
-      return TransferContext.readReturnValue(ARRAY, true) as VariantArray<Any?>?
+      return (TransferContext.readReturnValue(ARRAY, true) as VariantArray<Any?>?)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
@@ -42,7 +42,7 @@ public open class OpenXRActionMap : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_GET_INTERACTION_PROFILES, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, true) as VariantArray<Any?>?
+      return (TransferContext.readReturnValue(ARRAY, true) as VariantArray<Any?>?)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
@@ -55,25 +55,25 @@ public open class OpenXRActionMap : Resource() {
     return true
   }
 
-  public fun getActionSetCount(): Long {
+  public fun getActionSetCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_GET_ACTION_SET_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public fun findActionSet(name: String): OpenXRActionSet? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_FIND_ACTION_SET,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as OpenXRActionSet?
+    return (TransferContext.readReturnValue(OBJECT, true) as OpenXRActionSet?)
   }
 
-  public fun getActionSet(idx: Long): OpenXRActionSet? {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getActionSet(idx: Int): OpenXRActionSet? {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_GET_ACTION_SET,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as OpenXRActionSet?
+    return (TransferContext.readReturnValue(OBJECT, true) as OpenXRActionSet?)
   }
 
   public fun addActionSet(actionSet: OpenXRActionSet): Unit {
@@ -87,25 +87,25 @@ public open class OpenXRActionMap : Resource() {
         NIL)
   }
 
-  public fun getInteractionProfileCount(): Long {
+  public fun getInteractionProfileCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_GET_INTERACTION_PROFILE_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public fun findInteractionProfile(name: String): OpenXRInteractionProfile? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_FIND_INTERACTION_PROFILE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as OpenXRInteractionProfile?
+    return (TransferContext.readReturnValue(OBJECT, true) as OpenXRInteractionProfile?)
   }
 
-  public fun getInteractionProfile(idx: Long): OpenXRInteractionProfile? {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getInteractionProfile(idx: Int): OpenXRInteractionProfile? {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_OPENXRACTIONMAP_GET_INTERACTION_PROFILE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as OpenXRInteractionProfile?
+    return (TransferContext.readReturnValue(OBJECT, true) as OpenXRInteractionProfile?)
   }
 
   public fun addInteractionProfile(interactionProfile: OpenXRInteractionProfile): Unit {

@@ -13,7 +13,6 @@ import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -22,6 +21,7 @@ import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -45,7 +45,7 @@ public open class EditorInterface internal constructor() : Node() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_DISTRACTION_FREE_MODE_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -77,7 +77,7 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SELECTION,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorSelection?
+    return (TransferContext.readReturnValue(OBJECT, true) as EditorSelection?)
   }
 
   /**
@@ -87,7 +87,7 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_SETTINGS,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorSettings?
+    return (TransferContext.readReturnValue(OBJECT, true) as EditorSettings?)
   }
 
   /**
@@ -99,7 +99,7 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SCRIPT_EDITOR,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as ScriptEditor?
+    return (TransferContext.readReturnValue(OBJECT, true) as ScriptEditor?)
   }
 
   /**
@@ -111,7 +111,7 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_BASE_CONTROL,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Control?
+    return (TransferContext.readReturnValue(OBJECT, true) as Control?)
   }
 
   /**
@@ -119,11 +119,11 @@ public open class EditorInterface internal constructor() : Node() {
    *
    * **Note:** This value is set via the `interface/editor/display_scale` and `interface/editor/custom_display_scale` editor settings. Editor must be restarted for changes to be properly applied.
    */
-  public fun getEditorScale(): Double {
+  public fun getEditorScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_SCALE,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -147,11 +147,11 @@ public open class EditorInterface internal constructor() : Node() {
    */
   public fun editScript(
     script: Script,
-    line: Long = -1,
-    column: Long = 0,
+    line: Int = -1,
+    column: Int = 0,
     grabFocus: Boolean = true,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to script, LONG to line, LONG to column, BOOL to grabFocus)
+    TransferContext.writeArguments(OBJECT to script, LONG to line.toLong(), LONG to column.toLong(), BOOL to grabFocus)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_EDIT_SCRIPT, NIL)
   }
 
@@ -216,7 +216,7 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_PLAYING_SCENE,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -226,7 +226,7 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_PLAYING_SCENE,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -236,7 +236,7 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_OPEN_SCENES,
         PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
@@ -246,7 +246,7 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITED_SCENE_ROOT, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Node?
+    return (TransferContext.readReturnValue(OBJECT, true) as Node?)
   }
 
   /**
@@ -256,7 +256,7 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_RESOURCE_PREVIEWER, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorResourcePreview?
+    return (TransferContext.readReturnValue(OBJECT, true) as EditorResourcePreview?)
   }
 
   /**
@@ -266,7 +266,7 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_RESOURCE_FILESYSTEM, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorFileSystem?
+    return (TransferContext.readReturnValue(OBJECT, true) as EditorFileSystem?)
   }
 
   /**
@@ -278,18 +278,18 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_MAIN_SCREEN, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as VBoxContainer?
+    return (TransferContext.readReturnValue(OBJECT, true) as VBoxContainer?)
   }
 
   /**
    * Returns mesh previews rendered at the given size as an [godot.Array] of [godot.Texture2D]s.
    */
-  public fun makeMeshPreviews(meshes: VariantArray<Mesh>, previewSize: Long):
+  public fun makeMeshPreviews(meshes: VariantArray<Mesh>, previewSize: Int):
       VariantArray<Texture2D> {
-    TransferContext.writeArguments(ARRAY to meshes, LONG to previewSize)
+    TransferContext.writeArguments(ARRAY to meshes, LONG to previewSize.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_MAKE_MESH_PREVIEWS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Texture2D>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Texture2D>)
   }
 
   /**
@@ -307,7 +307,7 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SELECTED_PATHS,
         PACKED_STRING_ARRAY)
-    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
@@ -317,7 +317,7 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_CURRENT_PATH,
         STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -327,7 +327,7 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_CURRENT_DIRECTORY, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -339,7 +339,7 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_FILE_SYSTEM_DOCK, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as FileSystemDock?
+    return (TransferContext.readReturnValue(OBJECT, true) as FileSystemDock?)
   }
 
   /**
@@ -349,7 +349,7 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_PATHS,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorPaths?
+    return (TransferContext.readReturnValue(OBJECT, true) as EditorPaths?)
   }
 
   /**
@@ -361,7 +361,7 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_COMMAND_PALETTE,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorCommandPalette?
+    return (TransferContext.readReturnValue(OBJECT, true) as EditorCommandPalette?)
   }
 
   /**
@@ -380,7 +380,7 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.writeArguments(STRING to plugin)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_PLUGIN_ENABLED,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -399,7 +399,7 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_MOVIE_MAKER_ENABLED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -411,7 +411,7 @@ public open class EditorInterface internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_INSPECTOR,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorInspector?
+    return (TransferContext.readReturnValue(OBJECT, true) as EditorInspector?)
   }
 
   /**
@@ -420,7 +420,7 @@ public open class EditorInterface internal constructor() : Node() {
   public fun saveScene(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SAVE_SCENE, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**

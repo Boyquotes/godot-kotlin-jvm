@@ -24,6 +24,7 @@ import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -297,7 +298,7 @@ public open class Tween : RefCounted() {
   ): PropertyTweener? {
     TransferContext.writeArguments(OBJECT to _object, NODE_PATH to property, ANY to finalVal, DOUBLE to duration)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_TWEEN_PROPERTY, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?
+    return (TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?)
   }
 
   /**
@@ -374,7 +375,7 @@ public open class Tween : RefCounted() {
   public fun tweenInterval(time: Double): IntervalTweener? {
     TransferContext.writeArguments(DOUBLE to time)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_TWEEN_INTERVAL, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as IntervalTweener?
+    return (TransferContext.readReturnValue(OBJECT, true) as IntervalTweener?)
   }
 
   /**
@@ -433,7 +434,7 @@ public open class Tween : RefCounted() {
   public fun tweenCallback(callback: Callable): CallbackTweener? {
     TransferContext.writeArguments(CALLABLE to callback)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_TWEEN_CALLBACK, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as CallbackTweener?
+    return (TransferContext.readReturnValue(OBJECT, true) as CallbackTweener?)
   }
 
   /**
@@ -519,7 +520,7 @@ public open class Tween : RefCounted() {
   ): MethodTweener? {
     TransferContext.writeArguments(CALLABLE to method, ANY to from, ANY to to, DOUBLE to duration)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_TWEEN_METHOD, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as MethodTweener?
+    return (TransferContext.readReturnValue(OBJECT, true) as MethodTweener?)
   }
 
   /**
@@ -532,7 +533,7 @@ public open class Tween : RefCounted() {
   public fun customStep(delta: Double): Boolean {
     TransferContext.writeArguments(DOUBLE to delta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_CUSTOM_STEP, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -576,7 +577,7 @@ public open class Tween : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_GET_TOTAL_ELAPSED_TIME,
         DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
   /**
@@ -585,7 +586,7 @@ public open class Tween : RefCounted() {
   public fun isRunning(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_IS_RUNNING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -594,7 +595,7 @@ public open class Tween : RefCounted() {
   public fun isValid(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_IS_VALID, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -605,7 +606,7 @@ public open class Tween : RefCounted() {
   public fun bindNode(node: Node): Tween? {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_BIND_NODE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tween?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
   /**
@@ -616,7 +617,7 @@ public open class Tween : RefCounted() {
   public fun setProcessMode(mode: TweenProcessMode): Tween? {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_PROCESS_MODE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tween?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
   /**
@@ -627,7 +628,7 @@ public open class Tween : RefCounted() {
   public fun setPauseMode(mode: TweenPauseMode): Tween? {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_PAUSE_MODE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tween?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
   /**
@@ -636,7 +637,7 @@ public open class Tween : RefCounted() {
   public fun setParallel(parallel: Boolean = true): Tween? {
     TransferContext.writeArguments(BOOL to parallel)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_PARALLEL, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tween?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
   /**
@@ -646,19 +647,19 @@ public open class Tween : RefCounted() {
    *
    * **Warning:** Make sure to always add some duration/delay when using infinite loops. To prevent the game freezing, 0-duration looped animations (e.g. a single [godot.CallbackTweener] with no delay) are stopped after a small number of loops, which may produce unexpected results. If a [godot.Tween]'s lifetime depends on some node, always use [bindNode].
    */
-  public fun setLoops(loops: Long = 0): Tween? {
-    TransferContext.writeArguments(LONG to loops)
+  public fun setLoops(loops: Int = 0): Tween? {
+    TransferContext.writeArguments(LONG to loops.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_LOOPS, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tween?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
   /**
    * Scales the speed of tweening. This affects all [godot.Tweener]s and their delays.
    */
-  public fun setSpeedScale(speed: Double): Tween? {
-    TransferContext.writeArguments(DOUBLE to speed)
+  public fun setSpeedScale(speed: Float): Tween? {
+    TransferContext.writeArguments(DOUBLE to speed.toDouble())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_SPEED_SCALE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tween?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
   /**
@@ -669,7 +670,7 @@ public open class Tween : RefCounted() {
   public fun setTrans(trans: TransitionType): Tween? {
     TransferContext.writeArguments(LONG to trans.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_TRANS, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tween?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
   /**
@@ -680,7 +681,7 @@ public open class Tween : RefCounted() {
   public fun setEase(ease: EaseType): Tween? {
     TransferContext.writeArguments(LONG to ease.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_EASE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tween?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
   /**
@@ -723,7 +724,7 @@ public open class Tween : RefCounted() {
   public fun parallel(): Tween? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_PARALLEL, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tween?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
   /**
@@ -760,7 +761,7 @@ public open class Tween : RefCounted() {
   public fun chain(): Tween? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_CHAIN, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tween?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
   public enum class TweenProcessMode(

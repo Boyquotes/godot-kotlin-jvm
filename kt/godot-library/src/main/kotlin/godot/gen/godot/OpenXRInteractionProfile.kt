@@ -28,7 +28,7 @@ public open class OpenXRInteractionProfile : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_OPENXRINTERACTIONPROFILE_GET_INTERACTION_PROFILE_PATH, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -41,7 +41,7 @@ public open class OpenXRInteractionProfile : Resource() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_OPENXRINTERACTIONPROFILE_GET_BINDINGS, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, true) as VariantArray<Any?>?
+      return (TransferContext.readReturnValue(ARRAY, true) as VariantArray<Any?>?)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
@@ -54,18 +54,18 @@ public open class OpenXRInteractionProfile : Resource() {
     return true
   }
 
-  public fun getBindingCount(): Long {
+  public fun getBindingCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_OPENXRINTERACTIONPROFILE_GET_BINDING_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun getBinding(index: Long): OpenXRIPBinding? {
-    TransferContext.writeArguments(LONG to index)
+  public fun getBinding(index: Int): OpenXRIPBinding? {
+    TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_OPENXRINTERACTIONPROFILE_GET_BINDING, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as OpenXRIPBinding?
+    return (TransferContext.readReturnValue(OBJECT, true) as OpenXRIPBinding?)
   }
 
   public companion object

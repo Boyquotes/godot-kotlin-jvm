@@ -49,7 +49,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_GET_GRAPH_OFFSET, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
@@ -82,7 +82,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_GET_NODE,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as AnimationNode?
+    return (TransferContext.readReturnValue(OBJECT, true) as AnimationNode?)
   }
 
   /**
@@ -110,7 +110,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_HAS_NODE,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -118,10 +118,10 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
    */
   public fun connectNode(
     inputNode: StringName,
-    inputIndex: Long,
+    inputIndex: Int,
     outputNode: StringName,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to inputNode, LONG to inputIndex, STRING_NAME to outputNode)
+    TransferContext.writeArguments(STRING_NAME to inputNode, LONG to inputIndex.toLong(), STRING_NAME to outputNode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_CONNECT_NODE,
         NIL)
   }
@@ -129,8 +129,8 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Disconnects the node connected to the specified input.
    */
-  public fun disconnectNode(inputNode: StringName, inputIndex: Long): Unit {
-    TransferContext.writeArguments(STRING_NAME to inputNode, LONG to inputIndex)
+  public fun disconnectNode(inputNode: StringName, inputIndex: Int): Unit {
+    TransferContext.writeArguments(STRING_NAME to inputNode, LONG to inputIndex.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_DISCONNECT_NODE, NIL)
   }
@@ -151,7 +151,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_GET_NODE_POSITION, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   public companion object {

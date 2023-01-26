@@ -62,7 +62,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_IS_ALLOW_TRANSITION_TO_SELF, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -104,7 +104,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_GET_NODE,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as AnimationNode?
+    return (TransferContext.readReturnValue(OBJECT, true) as AnimationNode?)
   }
 
   /**
@@ -132,7 +132,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_HAS_NODE,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -142,7 +142,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_GET_NODE_NAME, STRING_NAME)
-    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   /**
@@ -161,7 +161,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_GET_NODE_POSITION, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
@@ -171,7 +171,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     TransferContext.writeArguments(STRING_NAME to from, STRING_NAME to to)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_HAS_TRANSITION, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -190,48 +190,48 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Returns the given transition.
    */
-  public fun getTransition(idx: Long): AnimationNodeStateMachineTransition? {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getTransition(idx: Int): AnimationNodeStateMachineTransition? {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_GET_TRANSITION, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as AnimationNodeStateMachineTransition?
+    return (TransferContext.readReturnValue(OBJECT, true) as AnimationNodeStateMachineTransition?)
   }
 
   /**
    * Returns the given transition's start node.
    */
-  public fun getTransitionFrom(idx: Long): StringName {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getTransitionFrom(idx: Int): StringName {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_GET_TRANSITION_FROM, STRING_NAME)
-    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   /**
    * Returns the given transition's end node.
    */
-  public fun getTransitionTo(idx: Long): StringName {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getTransitionTo(idx: Int): StringName {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_GET_TRANSITION_TO, STRING_NAME)
-    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   /**
    * Returns the number of connections in the graph.
    */
-  public fun getTransitionCount(): Long {
+  public fun getTransitionCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_GET_TRANSITION_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Deletes the given transition by index.
    */
-  public fun removeTransitionByIndex(idx: Long): Unit {
-    TransferContext.writeArguments(LONG to idx)
+  public fun removeTransitionByIndex(idx: Int): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_REMOVE_TRANSITION_BY_INDEX, NIL)
   }
@@ -261,7 +261,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_GET_GRAPH_OFFSET, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   public companion object

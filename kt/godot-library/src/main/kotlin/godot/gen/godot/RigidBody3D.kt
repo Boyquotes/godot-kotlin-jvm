@@ -14,7 +14,6 @@ import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BASIS
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -27,6 +26,7 @@ import godot.signals.Signal4
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -102,14 +102,14 @@ public open class RigidBody3D : PhysicsBody3D() {
   /**
    * The body's mass.
    */
-  public var mass: Double
+  public var mass: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_MASS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_MASS, NIL)
     }
 
@@ -166,7 +166,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_INERTIA, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -181,7 +181,7 @@ public open class RigidBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_CENTER_OF_MASS_MODE, LONG)
-      return RigidBody3D.CenterOfMassMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return RigidBody3D.CenterOfMassMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -199,7 +199,7 @@ public open class RigidBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_CENTER_OF_MASS,
           VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -217,7 +217,7 @@ public open class RigidBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_PHYSICS_MATERIAL_OVERRIDE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?
+      return (TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -228,15 +228,15 @@ public open class RigidBody3D : PhysicsBody3D() {
   /**
    * This is multiplied by the global 3D gravity setting found in **Project > Project Settings > Physics > 3d** to produce RigidBody3D's gravity. For example, a value of 1 will be normal gravity, 2 will apply double gravity, and 0.5 will apply half gravity to this object.
    */
-  public var gravityScale: Double
+  public var gravityScale: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_GRAVITY_SCALE,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_GRAVITY_SCALE,
           NIL)
     }
@@ -249,7 +249,7 @@ public open class RigidBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_IS_USING_CUSTOM_INTEGRATOR, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -267,7 +267,7 @@ public open class RigidBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_IS_USING_CONTINUOUS_COLLISION_DETECTION, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -280,15 +280,15 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * **Note:** The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end), and collisions between parallel faces will result in four contacts (one at each corner).
    */
-  public var maxContactsReported: Long
+  public var maxContactsReported: Int
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_MAX_CONTACTS_REPORTED, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_MAX_CONTACTS_REPORTED, NIL)
     }
@@ -303,7 +303,7 @@ public open class RigidBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_IS_CONTACT_MONITOR_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -318,7 +318,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_IS_SLEEPING, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -333,7 +333,7 @@ public open class RigidBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_IS_ABLE_TO_SLEEP,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -348,7 +348,7 @@ public open class RigidBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_IS_LOCK_ROTATION_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -368,7 +368,7 @@ public open class RigidBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_IS_FREEZE_ENABLED,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -385,7 +385,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_FREEZE_MODE, LONG)
-      return RigidBody3D.FreezeMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return RigidBody3D.FreezeMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -400,7 +400,7 @@ public open class RigidBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_LINEAR_VELOCITY,
           VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -416,7 +416,7 @@ public open class RigidBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_LINEAR_DAMP_MODE,
           LONG)
-      return RigidBody3D.DampMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return RigidBody3D.DampMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -429,15 +429,15 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * See [godot.ProjectSettings.physics/3d/defaultLinearDamp] for more details about damping.
    */
-  public var linearDamp: Double
+  public var linearDamp: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_LINEAR_DAMP,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_LINEAR_DAMP, NIL)
     }
 
@@ -449,7 +449,7 @@ public open class RigidBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_ANGULAR_VELOCITY,
           VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -465,7 +465,7 @@ public open class RigidBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_ANGULAR_DAMP_MODE,
           LONG)
-      return RigidBody3D.DampMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return RigidBody3D.DampMode.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -478,15 +478,15 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * See [godot.ProjectSettings.physics/3d/defaultAngularDamp] for more details about damping.
    */
-  public var angularDamp: Double
+  public var angularDamp: Float
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_ANGULAR_DAMP,
           DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_ANGULAR_DAMP, NIL)
     }
 
@@ -500,7 +500,7 @@ public open class RigidBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_CONSTANT_FORCE,
           VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -518,7 +518,7 @@ public open class RigidBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_CONSTANT_TORQUE,
           VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -544,7 +544,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_INVERSE_INERTIA_TENSOR, BASIS)
-    return TransferContext.readReturnValue(BASIS, false) as Basis
+    return (TransferContext.readReturnValue(BASIS, false) as Basis)
   }
 
   /**
@@ -552,10 +552,10 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * **Note:** To retrieve the colliding bodies, use [getCollidingBodies].
    */
-  public fun getContactCount(): Long {
+  public fun getContactCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_CONTACT_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -674,7 +674,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_COLLIDING_BODIES,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node3D>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node3D>)
   }
 
   public enum class FreezeMode(

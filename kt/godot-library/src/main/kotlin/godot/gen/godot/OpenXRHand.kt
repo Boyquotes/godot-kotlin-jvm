@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
@@ -24,7 +23,7 @@ public open class OpenXRHand : Node3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRHAND_GET_HAND, LONG)
-      return OpenXRHand.Hands.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return OpenXRHand.Hands.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -35,7 +34,7 @@ public open class OpenXRHand : Node3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRHAND_GET_MOTION_RANGE, LONG)
-      return OpenXRHand.MotionRange.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+      return OpenXRHand.MotionRange.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
@@ -47,7 +46,7 @@ public open class OpenXRHand : Node3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRHAND_GET_HAND_SKELETON,
           NODE_PATH)
-      return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)

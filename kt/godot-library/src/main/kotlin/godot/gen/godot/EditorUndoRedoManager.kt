@@ -91,7 +91,7 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORUNDOREDOMANAGER_IS_COMMITTING_ACTION, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -175,11 +175,11 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
   /**
    * Returns the history ID deduced from the given [object]. It can be used with [getHistoryUndoRedo].
    */
-  public fun getObjectHistoryId(_object: Object): Long {
+  public fun getObjectHistoryId(_object: Object): Int {
     TransferContext.writeArguments(OBJECT to _object)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORUNDOREDOMANAGER_GET_OBJECT_HISTORY_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -189,11 +189,11 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
    *
    * Best used with [getObjectHistoryId]. This method is only provided in case you need some more advanced methods of [godot.UndoRedo] (but keep in mind that directly operating on the [godot.UndoRedo] object might affect editor's stability).
    */
-  public fun getHistoryUndoRedo(id: Long): UndoRedo? {
-    TransferContext.writeArguments(LONG to id)
+  public fun getHistoryUndoRedo(id: Int): UndoRedo? {
+    TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORUNDOREDOMANAGER_GET_HISTORY_UNDO_REDO, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as UndoRedo?
+    return (TransferContext.readReturnValue(OBJECT, true) as UndoRedo?)
   }
 
   public enum class SpecialHistory(

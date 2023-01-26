@@ -20,7 +20,7 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
-import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -51,19 +51,19 @@ public open class Skeleton2D : Node2D() {
   /**
    * Returns the number of [godot.Bone2D] nodes in the node hierarchy parented by Skeleton2D.
    */
-  public fun getBoneCount(): Long {
+  public fun getBoneCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_BONE_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns a [godot.Bone2D] from the node hierarchy parented by Skeleton2D. The object to return is identified by the parameter [idx]. Bones are indexed by descending the node hierarchy from top to bottom, adding the children of each branch before moving to the next sibling.
    */
-  public fun getBone(idx: Long): Bone2D? {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getBone(idx: Int): Bone2D? {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_BONE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Bone2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as Bone2D?)
   }
 
   /**
@@ -72,7 +72,7 @@ public open class Skeleton2D : Node2D() {
   public fun getSkeleton(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_SKELETON, _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
@@ -91,14 +91,14 @@ public open class Skeleton2D : Node2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_MODIFICATION_STACK,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as SkeletonModificationStack2D?
+    return (TransferContext.readReturnValue(OBJECT, true) as SkeletonModificationStack2D?)
   }
 
   /**
    * Executes all the modifications on the [godot.SkeletonModificationStack2D], if the Skeleton2D has one assigned.
    */
-  public fun executeModifications(delta: Double, executionMode: Long): Unit {
-    TransferContext.writeArguments(DOUBLE to delta, LONG to executionMode)
+  public fun executeModifications(delta: Float, executionMode: Int): Unit {
+    TransferContext.writeArguments(DOUBLE to delta.toDouble(), LONG to executionMode.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_EXECUTE_MODIFICATIONS,
         NIL)
   }
@@ -111,12 +111,12 @@ public open class Skeleton2D : Node2D() {
    * **Note:** The pose transform needs to be a local transform relative to the [godot.Bone2D] node at [boneIdx]!
    */
   public fun setBoneLocalPoseOverride(
-    boneIdx: Long,
+    boneIdx: Int,
     overridePose: Transform2D,
-    strength: Double,
+    strength: Float,
     persistent: Boolean,
   ): Unit {
-    TransferContext.writeArguments(LONG to boneIdx, TRANSFORM2D to overridePose, DOUBLE to strength, BOOL to persistent)
+    TransferContext.writeArguments(LONG to boneIdx.toLong(), TRANSFORM2D to overridePose, DOUBLE to strength.toDouble(), BOOL to persistent)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETON2D_SET_BONE_LOCAL_POSE_OVERRIDE, NIL)
   }
@@ -124,11 +124,11 @@ public open class Skeleton2D : Node2D() {
   /**
    * Returns the local pose override transform for [boneIdx].
    */
-  public fun getBoneLocalPoseOverride(boneIdx: Long): Transform2D {
-    TransferContext.writeArguments(LONG to boneIdx)
+  public fun getBoneLocalPoseOverride(boneIdx: Int): Transform2D {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_BONE_LOCAL_POSE_OVERRIDE, TRANSFORM2D)
-    return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
+    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
   }
 
   public companion object

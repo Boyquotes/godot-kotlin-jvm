@@ -62,11 +62,11 @@ public object TextServerManager : Object() {
   /**
    * Returns the number of interfaces currently registered.
    */
-  public fun getInterfaceCount(): Long {
+  public fun getInterfaceCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_GET_INTERFACE_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -81,11 +81,11 @@ public object TextServerManager : Object() {
   /**
    * Returns the interface registered at a given index.
    */
-  public fun getInterface(idx: Long): TextServer? {
-    TransferContext.writeArguments(LONG to idx)
+  public fun getInterface(idx: Int): TextServer? {
+    TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_GET_INTERFACE,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as TextServer?
+    return (TransferContext.readReturnValue(OBJECT, true) as TextServer?)
   }
 
   /**
@@ -95,7 +95,7 @@ public object TextServerManager : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_GET_INTERFACES,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -105,7 +105,7 @@ public object TextServerManager : Object() {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_FIND_INTERFACE,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as TextServer?
+    return (TransferContext.readReturnValue(OBJECT, true) as TextServer?)
   }
 
   /**
@@ -124,6 +124,6 @@ public object TextServerManager : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVERMANAGER_GET_PRIMARY_INTERFACE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as TextServer?
+    return (TransferContext.readReturnValue(OBJECT, true) as TextServer?)
   }
 }

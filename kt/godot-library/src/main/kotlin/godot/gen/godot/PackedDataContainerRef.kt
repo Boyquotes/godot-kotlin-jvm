@@ -27,10 +27,10 @@ public open class PackedDataContainerRef internal constructor() : RefCounted() {
   /**
    *
    */
-  public fun size(): Long {
+  public fun size(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDDATACONTAINERREF_SIZE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

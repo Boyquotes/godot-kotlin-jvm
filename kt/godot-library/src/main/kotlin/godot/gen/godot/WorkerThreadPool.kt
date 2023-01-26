@@ -41,7 +41,7 @@ public object WorkerThreadPool : Object() {
   ): Long {
     TransferContext.writeArguments(CALLABLE to action, BOOL to highPriority, STRING to description)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORKERTHREADPOOL_ADD_TASK, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -51,7 +51,7 @@ public object WorkerThreadPool : Object() {
     TransferContext.writeArguments(LONG to taskId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORKERTHREADPOOL_IS_TASK_COMPLETED,
         BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -68,15 +68,15 @@ public object WorkerThreadPool : Object() {
    */
   public fun addGroupTask(
     action: Callable,
-    elements: Long,
-    tasksNeeded: Long = -1,
+    elements: Int,
+    tasksNeeded: Int = -1,
     highPriority: Boolean = false,
     description: String = "",
   ): Long {
-    TransferContext.writeArguments(CALLABLE to action, LONG to elements, LONG to tasksNeeded, BOOL to highPriority, STRING to description)
+    TransferContext.writeArguments(CALLABLE to action, LONG to elements.toLong(), LONG to tasksNeeded.toLong(), BOOL to highPriority, STRING to description)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORKERTHREADPOOL_ADD_GROUP_TASK,
         LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -86,17 +86,17 @@ public object WorkerThreadPool : Object() {
     TransferContext.writeArguments(LONG to groupId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WORKERTHREADPOOL_IS_GROUP_TASK_COMPLETED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    *
    */
-  public fun getGroupProcessedElementCount(groupId: Long): Long {
+  public fun getGroupProcessedElementCount(groupId: Long): Int {
     TransferContext.writeArguments(LONG to groupId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WORKERTHREADPOOL_GET_GROUP_PROCESSED_ELEMENT_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**

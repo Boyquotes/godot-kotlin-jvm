@@ -15,7 +15,6 @@ import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
@@ -99,7 +98,7 @@ public open class SceneTree : MainLoop() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_AUTO_ACCEPT_QUIT,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -117,7 +116,7 @@ public open class SceneTree : MainLoop() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_QUIT_ON_GO_BACK,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -135,7 +134,7 @@ public open class SceneTree : MainLoop() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_DEBUGGING_COLLISIONS_HINT, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -153,7 +152,7 @@ public open class SceneTree : MainLoop() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_DEBUGGING_PATHS_HINT,
           BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -171,7 +170,7 @@ public open class SceneTree : MainLoop() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_DEBUGGING_NAVIGATION_HINT, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -190,7 +189,7 @@ public open class SceneTree : MainLoop() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_PAUSED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -205,7 +204,7 @@ public open class SceneTree : MainLoop() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_EDITED_SCENE_ROOT,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Node?
+      return (TransferContext.readReturnValue(OBJECT, true) as Node?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -221,7 +220,7 @@ public open class SceneTree : MainLoop() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_CURRENT_SCENE,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Node?
+      return (TransferContext.readReturnValue(OBJECT, true) as Node?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -235,7 +234,7 @@ public open class SceneTree : MainLoop() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_ROOT, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Window?
+      return (TransferContext.readReturnValue(OBJECT, true) as Window?)
     }
 
   /**
@@ -248,7 +247,7 @@ public open class SceneTree : MainLoop() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_MULTIPLAYER_POLL_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -267,7 +266,7 @@ public open class SceneTree : MainLoop() {
   public fun hasGroup(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_HAS_GROUP, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -323,7 +322,7 @@ public open class SceneTree : MainLoop() {
   ): SceneTreeTimer? {
     TransferContext.writeArguments(DOUBLE to timeSec, BOOL to processAlways, BOOL to processInPhysics, BOOL to ignoreTimeScale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CREATE_TIMER, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as SceneTreeTimer?
+    return (TransferContext.readReturnValue(OBJECT, true) as SceneTreeTimer?)
   }
 
   /**
@@ -332,7 +331,7 @@ public open class SceneTree : MainLoop() {
   public fun createTween(): Tween? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CREATE_TWEEN, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Tween?
+    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
   /**
@@ -342,16 +341,16 @@ public open class SceneTree : MainLoop() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_PROCESSED_TWEENS,
         ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Tween>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Tween>)
   }
 
   /**
    * Returns the number of nodes in this [godot.SceneTree].
    */
-  public fun getNodeCount(): Long {
+  public fun getNodeCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_NODE_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -360,7 +359,7 @@ public open class SceneTree : MainLoop() {
   public fun getFrame(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_FRAME, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -372,8 +371,8 @@ public open class SceneTree : MainLoop() {
    *
    * **Note:** On iOS this method doesn't work. Instead, as recommended by the iOS Human Interface Guidelines, the user is expected to close apps via the Home button.
    */
-  public fun quit(exitCode: Long = 0): Unit {
-    TransferContext.writeArguments(LONG to exitCode)
+  public fun quit(exitCode: Int = 0): Unit {
+    TransferContext.writeArguments(LONG to exitCode.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_QUIT, NIL)
   }
 
@@ -411,11 +410,11 @@ public open class SceneTree : MainLoop() {
    * **Note:** Group call flags are used to control the notification sending behavior. By default, notifications will be sent immediately in a way similar to [notifyGroup]. However, if the [GROUP_CALL_DEFERRED] flag is present in the [callFlags] argument, notifications will be sent with a one-frame delay in a way similar to using `Object.call_deferred("notification", ...)`.
    */
   public fun notifyGroupFlags(
-    callFlags: Long,
+    callFlags: Int,
     group: StringName,
-    notification: Long,
+    notification: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to callFlags, STRING_NAME to group, LONG to notification)
+    TransferContext.writeArguments(LONG to callFlags.toLong(), STRING_NAME to group, LONG to notification.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_NOTIFY_GROUP_FLAGS, NIL)
   }
 
@@ -425,12 +424,12 @@ public open class SceneTree : MainLoop() {
    * **Note:** Group call flags are used to control the property setting behavior. By default, properties will be set immediately in a way similar to [setGroup]. However, if the [GROUP_CALL_DEFERRED] flag is present in the [callFlags] argument, properties will be set with a one-frame delay in a way similar to [godot.Object.callDeferred].
    */
   public fun setGroupFlags(
-    callFlags: Long,
+    callFlags: Int,
     group: StringName,
     `property`: String,
     `value`: Any,
   ): Unit {
-    TransferContext.writeArguments(LONG to callFlags, STRING_NAME to group, STRING to property, ANY to value)
+    TransferContext.writeArguments(LONG to callFlags.toLong(), STRING_NAME to group, STRING to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_GROUP_FLAGS, NIL)
   }
 
@@ -453,8 +452,8 @@ public open class SceneTree : MainLoop() {
    *
    * **Note:** [notifyGroup] will immediately notify all members at once, which can cause stuttering if an expensive method is called as a result of sending the notification lots of members. To wait for one frame, use [notifyGroupFlags] with the [GROUP_CALL_DEFERRED] flag.
    */
-  public fun notifyGroup(group: StringName, notification: Long): Unit {
-    TransferContext.writeArguments(STRING_NAME to group, LONG to notification)
+  public fun notifyGroup(group: StringName, notification: Int): Unit {
+    TransferContext.writeArguments(STRING_NAME to group, LONG to notification.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_NOTIFY_GROUP, NIL)
   }
 
@@ -478,7 +477,7 @@ public open class SceneTree : MainLoop() {
   public fun getNodesInGroup(group: StringName): VariantArray<Node> {
     TransferContext.writeArguments(STRING_NAME to group)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_NODES_IN_GROUP, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node>
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node>)
   }
 
   /**
@@ -488,7 +487,7 @@ public open class SceneTree : MainLoop() {
     TransferContext.writeArguments(STRING_NAME to group)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_FIRST_NODE_IN_GROUP,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Node?
+    return (TransferContext.readReturnValue(OBJECT, true) as Node?)
   }
 
   /**
@@ -502,7 +501,7 @@ public open class SceneTree : MainLoop() {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CHANGE_SCENE_TO_FILE,
         LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -516,7 +515,7 @@ public open class SceneTree : MainLoop() {
     TransferContext.writeArguments(OBJECT to packedScene)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CHANGE_SCENE_TO_PACKED,
         LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -528,7 +527,7 @@ public open class SceneTree : MainLoop() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_RELOAD_CURRENT_SCENE,
         LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return GodotError.values()[(TransferContext.readReturnValue(LONG) as Long).toInt()]
   }
 
   /**
@@ -553,7 +552,7 @@ public open class SceneTree : MainLoop() {
   public fun getMultiplayer(forPath: NodePath = NodePath("")): MultiplayerAPI? {
     TransferContext.writeArguments(NODE_PATH to forPath)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_MULTIPLAYER, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?
+    return (TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?)
   }
 
   public enum class GroupCallFlags(

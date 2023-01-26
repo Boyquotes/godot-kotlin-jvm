@@ -46,7 +46,7 @@ public open class StaticBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STATICBODY3D_GET_PHYSICS_MATERIAL_OVERRIDE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?
+      return (TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -62,7 +62,7 @@ public open class StaticBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STATICBODY3D_GET_CONSTANT_LINEAR_VELOCITY, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
@@ -78,7 +78,7 @@ public open class StaticBody3D : PhysicsBody3D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STATICBODY3D_GET_CONSTANT_ANGULAR_VELOCITY, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)

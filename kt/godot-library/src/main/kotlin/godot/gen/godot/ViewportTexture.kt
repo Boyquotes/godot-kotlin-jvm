@@ -37,7 +37,7 @@ public open class ViewportTexture : Texture2D() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORTTEXTURE_GET_VIEWPORT_PATH_IN_SCENE, NODE_PATH)
-      return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
