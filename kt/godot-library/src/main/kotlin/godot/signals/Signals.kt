@@ -2,6 +2,7 @@ package godot.signals
 
 import godot.Object
 import godot.core.Callable
+import godot.core.KtFunction
 import godot.core.asStringName
 import godot.util.camelToSnakeCase
 
@@ -10,10 +11,6 @@ open class Signal(
     jvmName: String
 ) {
     val name = jvmName.removePrefix("signal").camelToSnakeCase().removePrefix("_").asStringName()
-
-    fun emit(instance: Object, vararg args: Any?) {
-        emitSignal(instance, *args)
-    }
 
     protected fun emitSignal(instance: Object, vararg args: Any?) {
         instance.emitSignal(name, *args)
