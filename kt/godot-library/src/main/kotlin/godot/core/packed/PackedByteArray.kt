@@ -74,6 +74,7 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
      * Returns a new PoolByteArray with the data compressed.
      * Set the compression mode using one of CompressionMode's constants.
      */
+    @JvmOverloads
     fun compress(compressionMode: CompressionMode = CompressionMode.COMPRESSION_FASTLZ): PackedByteArray {
         TransferContext.writeArguments(VariantType.JVM_INT to compressionMode.ordinal)
         Bridge.engine_call_compress(_handle)
@@ -85,6 +86,7 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
      * Set buffer_size to the size of the uncompressed data.
      * Set the compression mode using one of CompressionMode's constants.
      */
+    @JvmOverloads
     fun decompress(
         bufferSize: Int,
         compressionMode: CompressionMode = CompressionMode.COMPRESSION_FASTLZ

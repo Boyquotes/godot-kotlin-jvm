@@ -257,6 +257,7 @@ class Vector4(
     /**
      * Returns the vector with a maximum length by limiting its length to length.
      */
+    @JvmOverloads
     fun limitLength(length: RealT = 1.0): Vector4 {
         val l = length()
         var v = Vector4(this)
