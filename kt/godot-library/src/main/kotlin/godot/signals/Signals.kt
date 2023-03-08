@@ -11,6 +11,10 @@ open class Signal(
 ) {
     val name = jvmName.removePrefix("signal").camelToSnakeCase().removePrefix("_").asStringName()
 
+    fun emit(instance: Object, vararg args: Any?) {
+        emitSignal(instance, *args)
+    }
+
     protected fun emitSignal(instance: Object, vararg args: Any?) {
         instance.emitSignal(name, *args)
     }
