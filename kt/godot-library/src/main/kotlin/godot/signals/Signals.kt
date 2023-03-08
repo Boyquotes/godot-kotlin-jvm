@@ -2,8 +2,6 @@ package godot.signals
 
 import godot.Object
 import godot.core.Callable
-import godot.core.StringName
-import godot.core.VariantArray
 import godot.core.asStringName
 import godot.util.camelToSnakeCase
 
