@@ -6,7 +6,7 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
+import godot.annotation.GodotBaseType
 import godot.core.AABB
 import godot.core.Dictionary
 import godot.core.GodotError
@@ -14,26 +14,8 @@ import godot.core.PackedByteArray
 import godot.core.StringName
 import godot.core.Transform3D
 import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.DICTIONARY
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_BYTE_ARRAY
-import godot.core.VariantType.STRING
-import godot.core.VariantType.STRING_NAME
-import godot.core.VariantType.TRANSFORM3D
+import godot.core.VariantType.*
 import godot.core.memory.TransferContext
-import kotlin.Any
-import kotlin.Boolean
-import kotlin.Double
-import kotlin.Int
-import kotlin.Long
-import kotlin.String
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * [godot.Mesh] type that provides utility for constructing a surface from arrays.
@@ -238,6 +220,7 @@ public open class ArrayMesh : Mesh() {
    *
    * **Note:** When using indices, it is recommended to only use points, lines, or triangles.
    */
+  @JvmOverloads
   public fun addSurfaceFromArrays(
     primitive: Mesh.PrimitiveType,
     arrays: VariantArray<Any?>,

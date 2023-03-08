@@ -21,6 +21,7 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 @GodotBaseType
 public open class Noise internal constructor() : Resource() {
@@ -63,6 +64,7 @@ public open class Noise internal constructor() : Resource() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
+  @JvmOverloads
   public fun getImage(
     width: Long,
     height: Long,
@@ -75,6 +77,7 @@ public open class Noise internal constructor() : Resource() {
     return TransferContext.readReturnValue(OBJECT, true) as Image?
   }
 
+  @JvmOverloads
   public fun getSeamlessImage(
     width: Long,
     height: Long,

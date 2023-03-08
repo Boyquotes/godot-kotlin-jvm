@@ -6,34 +6,17 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
+import godot.annotation.GodotBaseType
 import godot.core.Dictionary
 import godot.core.NodePath
 import godot.core.StringName
 import godot.core.VariantArray
-import godot.core.VariantType.ANY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.NODE_PATH
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.STRING
-import godot.core.VariantType.STRING_NAME
+import godot.core.VariantType.*
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal2
 import godot.signals.Signal3
 import godot.signals.signal
-import kotlin.Any
-import kotlin.Boolean
-import kotlin.Double
-import kotlin.Int
-import kotlin.Long
-import kotlin.NotImplementedError
-import kotlin.String
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Base resource for [godot.AnimationTree] nodes.
@@ -225,6 +208,7 @@ public open class AnimationNode : Resource() {
    *
    * A [loopedFlag] is used by internal processing immediately after the loop. See also [enum Animation.LoopedFlag].
    */
+  @JvmOverloads
   public fun blendAnimation(
     animation: StringName,
     time: Double,
@@ -241,6 +225,7 @@ public open class AnimationNode : Resource() {
   /**
    * Blend another animation node (in case this node contains children animation nodes). This function is only useful if you inherit from [godot.AnimationRootNode] instead, else editors will not display your node for addition.
    */
+  @JvmOverloads
   public fun blendNode(
     name: StringName,
     node: AnimationNode,
@@ -259,6 +244,7 @@ public open class AnimationNode : Resource() {
   /**
    * Blend an input. This is only useful for nodes created for an [godot.AnimationNodeBlendTree]. The [time] parameter is a relative delta, unless [seek] is `true`, in which case it is absolute. A filter mode may be optionally passed (see [enum FilterAction] for options).
    */
+  @JvmOverloads
   public fun blendInput(
     inputIndex: Long,
     time: Double,

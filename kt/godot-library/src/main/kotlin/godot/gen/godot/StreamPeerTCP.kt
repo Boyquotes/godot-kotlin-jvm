@@ -20,6 +20,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * TCP stream peer.
@@ -40,6 +41,7 @@ public open class StreamPeerTCP : StreamPeer() {
    *
    * This method is generally not needed, and only used to force the subsequent call to [connectToHost] to use the specified [host] and [port] as source address. This can be desired in some NAT punchthrough techniques, or when forcing the source network interface.
    */
+  @JvmOverloads
   public fun bind(port: Long, host: String = "*"): GodotError {
     TransferContext.writeArguments(LONG to port, STRING to host)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_BIND, LONG)

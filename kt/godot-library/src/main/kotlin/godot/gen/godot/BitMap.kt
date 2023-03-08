@@ -6,26 +6,13 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
+import godot.annotation.GodotBaseType
 import godot.core.PackedVector2Array
 import godot.core.Rect2i
 import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.RECT2I
-import godot.core.VariantType.VECTOR2I
+import godot.core.VariantType.*
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import kotlin.Boolean
-import kotlin.Double
-import kotlin.Int
-import kotlin.Long
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Boolean matrix.
@@ -50,6 +37,7 @@ public open class BitMap : Resource() {
   /**
    * Creates a bitmap that matches the given image dimensions, every element of the bitmap is set to `false` if the alpha value of the image at that position is equal to [threshold] or less, and `true` in other case.
    */
+  @JvmOverloads
   public fun createFromImageAlpha(image: Image, threshold: Double = 0.1): Unit {
     TransferContext.writeArguments(OBJECT to image, DOUBLE to threshold)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_CREATE_FROM_IMAGE_ALPHA, NIL)
@@ -155,6 +143,7 @@ public open class BitMap : Resource() {
    *
    * [epsilon] is passed to RDP to control how accurately the polygons cover the bitmap: a lower [epsilon] corresponds to more points in the polygons.
    */
+  @JvmOverloads
   public fun opaqueToPolygons(rect: Rect2i, epsilon: Double = 2.0):
       VariantArray<PackedVector2Array> {
     TransferContext.writeArguments(RECT2I to rect, DOUBLE to epsilon)

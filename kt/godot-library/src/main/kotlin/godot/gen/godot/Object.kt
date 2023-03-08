@@ -48,6 +48,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
+import kotlin.jvm.JvmOverloads
 import kotlin.reflect.KCallable
 
 /**
@@ -109,6 +111,7 @@ public open class Object : KtObject() {
     emit(this@Object)
   }
 
+  @JvmOverloads
   public inline fun <reified K : () -> Unit> Signal0.connect(
     target: Object,
     method: K,
@@ -122,6 +125,7 @@ public open class Object : KtObject() {
     emit(this@Object, a0)
   }
 
+  @JvmOverloads
   public inline fun <A0, reified K : (A0) -> Unit> Signal1<A0>.connect(
     target: Object,
     method: K,
@@ -135,6 +139,7 @@ public open class Object : KtObject() {
     emit(this@Object, a0, a1)
   }
 
+  @JvmOverloads
   public inline fun <A0, A1, reified K : (A0, A1) -> Unit> Signal2<A0, A1>.connect(
     target: Object,
     method: K,
@@ -152,6 +157,7 @@ public open class Object : KtObject() {
     emit(this@Object, a0, a1, a2)
   }
 
+  @JvmOverloads
   public inline fun <A0, A1, A2, reified K : (
     A0,
     A1,
@@ -174,6 +180,7 @@ public open class Object : KtObject() {
     emit(this@Object, a0, a1, a2, a3)
   }
 
+  @JvmOverloads
   public inline fun <A0, A1, A2, A3, reified K : (
     A0,
     A1,
@@ -198,6 +205,7 @@ public open class Object : KtObject() {
     emit(this@Object, a0, a1, a2, a3, a4)
   }
 
+  @JvmOverloads
   public inline fun <A0, A1, A2, A3, A4, reified K : (
     A0,
     A1,
@@ -224,6 +232,7 @@ public open class Object : KtObject() {
     emit(this@Object, a0, a1, a2, a3, a4, a5)
   }
 
+  @JvmOverloads
   public inline fun <A0, A1, A2, A3, A4, A5, reified K : (
     A0,
     A1,
@@ -252,6 +261,7 @@ public open class Object : KtObject() {
     emit(this@Object, a0, a1, a2, a3, a4, a5, a6)
   }
 
+  @JvmOverloads
   public inline fun <A0, A1, A2, A3, A4, A5, A6, reified K : (
     A0,
     A1,
@@ -282,6 +292,7 @@ public open class Object : KtObject() {
     emit(this@Object, a0, a1, a2, a3, a4, a5, a6, a7)
   }
 
+  @JvmOverloads
   public inline fun <A0, A1, A2, A3, A4, A5, A6, A7, reified K : (
     A0,
     A1,
@@ -314,6 +325,7 @@ public open class Object : KtObject() {
     emit(this@Object, a0, a1, a2, a3, a4, a5, a6, a7, a8)
   }
 
+  @JvmOverloads
   public inline fun <A0, A1, A2, A3, A4, A5, A6, A7, A8, reified K : (
     A0,
     A1,
@@ -349,6 +361,7 @@ public open class Object : KtObject() {
     emit(this@Object, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9)
   }
 
+  @JvmOverloads
   public inline fun <A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, reified K : (
     A0,
     A1,
@@ -374,6 +387,7 @@ public open class Object : KtObject() {
    *
    * **Note:** This method ignores `class_name` declarations. If this object's script has defined a `class_name`, the base, built-in class name is returned instead.
    */
+  @JvmName("getGodotClass")
   public fun getClass(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_CLASS, STRING)
@@ -684,6 +698,7 @@ public open class Object : KtObject() {
    *
    * [/codeblocks]
    */
+  @JvmOverloads
   public fun notification(what: Long, reversed: Boolean = false): Unit {
     TransferContext.writeArguments(LONG to what, BOOL to reversed)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_NOTIFICATION, NIL)
@@ -753,6 +768,7 @@ public open class Object : KtObject() {
    *
    * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector dock and should not be edited.
    */
+  @JvmOverloads
   public fun getMeta(name: StringName, default: Any? = null): Any? {
     TransferContext.writeArguments(STRING_NAME to name, ANY to default)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_META, ANY)
@@ -829,6 +845,7 @@ public open class Object : KtObject() {
    *
    * [/codeblocks]
    */
+  @JvmOverloads
   public fun addUserSignal(signal: String, arguments: VariantArray<Any?> =
       godot.core.variantArrayOf()): Unit {
     TransferContext.writeArguments(STRING to signal, ARRAY to arguments)
@@ -1342,6 +1359,7 @@ public open class Object : KtObject() {
    *
    * [/codeblocks]
    */
+  @JvmOverloads
   public fun connect(
     signal: StringName,
     callable: Callable,
@@ -1421,6 +1439,7 @@ public open class Object : KtObject() {
    *
    * For detailed examples, see [godot.Internationalizing games]($DOCS_URL/tutorials/i18n/internationalizing_games.html).
    */
+  @JvmOverloads
   public fun tr(message: StringName, context: StringName = StringName("")): String {
     TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_TR, STRING)
@@ -1438,6 +1457,7 @@ public open class Object : KtObject() {
    *
    * **Note:** Negative and [float] numbers may not properly apply to some countable subjects. It's recommended handling these cases with [tr].
    */
+  @JvmOverloads
   public fun trN(
     message: StringName,
     pluralMessage: StringName,

@@ -25,6 +25,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 @GodotBaseType
 public open class RegEx : RefCounted() {
@@ -44,6 +45,7 @@ public open class RegEx : RefCounted() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
+  @JvmOverloads
   public fun search(
     subject: String,
     offset: Long = 0,
@@ -54,6 +56,7 @@ public open class RegEx : RefCounted() {
     return TransferContext.readReturnValue(OBJECT, true) as RegExMatch?
   }
 
+  @JvmOverloads
   public fun searchAll(
     subject: String,
     offset: Long = 0,
@@ -64,6 +67,7 @@ public open class RegEx : RefCounted() {
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<RegExMatch>
   }
 
+  @JvmOverloads
   public fun sub(
     subject: String,
     replacement: String,

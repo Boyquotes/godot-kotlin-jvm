@@ -6,31 +6,15 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
+import godot.annotation.GodotBaseType
 import godot.core.Plane
 import godot.core.RID
 import godot.core.Transform3D
 import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.TRANSFORM3D
-import godot.core.VariantType.VECTOR2
-import godot.core.VariantType.VECTOR3
-import godot.core.VariantType._RID
+import godot.core.VariantType.*
 import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import kotlin.Boolean
-import kotlin.Double
-import kotlin.Int
-import kotlin.Long
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Camera node, displays from a point of view.
@@ -379,6 +363,7 @@ public open class Camera3D : Node3D() {
   /**
    * If this is the current camera, remove it from being current. If [enableNext] is `true`, request to make the next camera current, if any.
    */
+  @JvmOverloads
   public fun clearCurrent(enableNext: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to enableNext)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA3D_CLEAR_CURRENT, NIL)

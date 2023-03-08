@@ -6,20 +6,11 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
+import godot.annotation.GodotBaseType
 import godot.core.PackedStringArray
 import godot.core.StringName
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.NIL
-import godot.core.VariantType.PACKED_STRING_ARRAY
-import godot.core.VariantType.STRING_NAME
+import godot.core.VariantType.*
 import godot.core.memory.TransferContext
-import kotlin.Boolean
-import kotlin.Double
-import kotlin.Int
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Playback control for [godot.AnimationNodeStateMachine].
@@ -65,6 +56,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    *
    * If [resetOnTeleport] is `true`, the animation is played from the beginning when the travel cause a teleportation.
    */
+  @JvmOverloads
   public fun travel(toNode: StringName, resetOnTeleport: Boolean = true): Unit {
     TransferContext.writeArguments(STRING_NAME to toNode, BOOL to resetOnTeleport)
     TransferContext.callMethod(rawPtr,
@@ -76,6 +68,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    *
    * If [reset] is `true`, the animation is played from the beginning.
    */
+  @JvmOverloads
   public fun start(node: StringName, reset: Boolean = true): Unit {
     TransferContext.writeArguments(STRING_NAME to node, BOOL to reset)
     TransferContext.callMethod(rawPtr,

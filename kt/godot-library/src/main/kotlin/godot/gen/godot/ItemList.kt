@@ -38,6 +38,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Control that provides a list of selectable items (and/or icons) in a single column, or optionally in multiple columns.
@@ -299,6 +300,7 @@ public open class ItemList : Control() {
    *
    * If selectable is `true`, the list item will be selectable.
    */
+  @JvmOverloads
   public fun addItem(
     text: String,
     icon: Texture2D? = null,
@@ -312,6 +314,7 @@ public open class ItemList : Control() {
   /**
    * Adds an item to the item list with no text, only an icon. Returns the index of an added item.
    */
+  @JvmOverloads
   public fun addIconItem(icon: Texture2D, selectable: Boolean = true): Long {
     TransferContext.writeArguments(OBJECT to icon, BOOL to selectable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_ADD_ICON_ITEM, LONG)
@@ -576,6 +579,7 @@ public open class ItemList : Control() {
    *
    * **Note:** This method does not trigger the item selection signal.
    */
+  @JvmOverloads
   public fun select(idx: Long, single: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to idx, BOOL to single)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SELECT, NIL)
@@ -662,6 +666,7 @@ public open class ItemList : Control() {
    *
    * When there is no item at that point, -1 will be returned if [exact] is `true`, and the closest item index will be returned otherwise.
    */
+  @JvmOverloads
   public fun getItemAtPosition(position: Vector2, exact: Boolean = false): Long {
     TransferContext.writeArguments(VECTOR2 to position, BOOL to exact)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_AT_POSITION, LONG)

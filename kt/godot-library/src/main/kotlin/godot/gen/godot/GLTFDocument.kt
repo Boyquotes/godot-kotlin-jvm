@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 @GodotBaseType
 public open class GLTFDocument : Resource() {
@@ -31,6 +32,7 @@ public open class GLTFDocument : Resource() {
     return true
   }
 
+  @JvmOverloads
   public fun appendFromFile(
     path: String,
     state: GLTFState,
@@ -42,6 +44,7 @@ public open class GLTFDocument : Resource() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
+  @JvmOverloads
   public fun appendFromBuffer(
     bytes: PackedByteArray,
     basePath: String,
@@ -54,6 +57,7 @@ public open class GLTFDocument : Resource() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
+  @JvmOverloads
   public fun appendFromScene(
     node: Node,
     state: GLTFState,
@@ -65,6 +69,7 @@ public open class GLTFDocument : Resource() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
+  @JvmOverloads
   public fun generateScene(
     state: GLTFState,
     bakeFps: Double = 30.0,

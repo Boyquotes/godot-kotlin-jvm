@@ -35,6 +35,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Node for 2D tile-based maps.
@@ -350,6 +351,7 @@ public open class TileMap : Node2D() {
    *
    * If [sourceId] is set to `-1`, [atlasCoords] to `Vector2i(-1, -1)` or [alternativeTile] to `-1`, the cell will be erased. An erased cell gets **all** its identifiers automatically set to their respective invalid values, namely `-1`, `Vector2i(-1, -1)` and `-1`.
    */
+  @JvmOverloads
   public fun setCell(
     layer: Long,
     coords: Vector2i,
@@ -374,6 +376,7 @@ public open class TileMap : Node2D() {
    *
    * If [useProxies] is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
    */
+  @JvmOverloads
   public fun getCellSourceId(
     layer: Long,
     coords: Vector2i,
@@ -387,6 +390,7 @@ public open class TileMap : Node2D() {
   /**
    * Returns the tile atlas coordinates ID of the cell on layer [layer] at coordinates [coords]. If [useProxies] is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
    */
+  @JvmOverloads
   public fun getCellAtlasCoords(
     layer: Long,
     coords: Vector2i,
@@ -401,6 +405,7 @@ public open class TileMap : Node2D() {
   /**
    * Returns the tile alternative ID of the cell on layer [layer] at [coords]. If [useProxies] is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
    */
+  @JvmOverloads
   public fun getCellAlternativeTile(
     layer: Long,
     coords: Vector2i,
@@ -427,6 +432,7 @@ public open class TileMap : Node2D() {
    * 				        return 0
    * 				```
    */
+  @JvmOverloads
   public fun getCellTileData(
     layer: Long,
     coords: Vector2i,
@@ -488,6 +494,7 @@ public open class TileMap : Node2D() {
    *
    * **Note:** To work correctly, `set_cells_terrain_connect` requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.
    */
+  @JvmOverloads
   public fun setCellsTerrainConnect(
     layer: Long,
     cells: VariantArray<Vector2i>,
@@ -507,6 +514,7 @@ public open class TileMap : Node2D() {
    *
    * **Note:** To work correctly, `set_cells_terrain_path` requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.
    */
+  @JvmOverloads
   public fun setCellsTerrainPath(
     layer: Long,
     path: VariantArray<Vector2i>,
@@ -549,6 +557,7 @@ public open class TileMap : Node2D() {
    *
    * **Warning:** Updating the TileMap is computationally expensive and may impact performance. Try to limit the number of updates and the tiles they impact (by placing frequently updated tiles in a dedicated layer for example).
    */
+  @JvmOverloads
   public fun forceUpdate(layer: Long = -1): Unit {
     TransferContext.writeArguments(LONG to layer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_FORCE_UPDATE, NIL)
@@ -580,6 +589,7 @@ public open class TileMap : Node2D() {
    *
    * A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.
    */
+  @JvmOverloads
   public fun getUsedCellsById(
     layer: Long,
     sourceId: Long = -1,

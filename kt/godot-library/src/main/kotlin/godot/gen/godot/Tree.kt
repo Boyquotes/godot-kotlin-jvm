@@ -30,6 +30,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Control to show a tree of items.
@@ -348,6 +349,7 @@ public open class Tree : Control() {
    *
    * The new item will be the [index]-th child of parent, or it will be the last child if there are not enough siblings.
    */
+  @JvmOverloads
   public fun createItem(parent: TreeItem? = null, index: Long = -1): TreeItem? {
     TransferContext.writeArguments(OBJECT to parent, LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_CREATE_ITEM, OBJECT)
@@ -574,6 +576,7 @@ public open class Tree : Control() {
   /**
    * Returns the rectangle area for the specified [godot.TreeItem]. If [column] is specified, only get the position and size of that column, otherwise get the rectangle containing all columns. If a button index is specified, the rectangle of that button will be returned.
    */
+  @JvmOverloads
   public fun getItemAreaRect(
     item: TreeItem,
     column: Long = -1,
@@ -704,6 +707,7 @@ public open class Tree : Control() {
   /**
    * Causes the [godot.Tree] to jump to the specified [godot.TreeItem].
    */
+  @JvmOverloads
   public fun scrollToItem(item: TreeItem, centerOnItem: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to item, BOOL to centerOnItem)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SCROLL_TO_ITEM, NIL)

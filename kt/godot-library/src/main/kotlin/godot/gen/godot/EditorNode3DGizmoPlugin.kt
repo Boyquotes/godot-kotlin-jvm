@@ -27,6 +27,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Used by the editor to define Node3D gizmo types.
@@ -221,6 +222,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   /**
    * Creates an unshaded material with its variants (selected and/or editable) and adds them to the internal material list. They can then be accessed with [getMaterial] and used in [godot.EditorNode3DGizmo.addMesh] and [godot.EditorNode3DGizmo.addLines]. Should not be overridden.
    */
+  @JvmOverloads
   public fun createMaterial(
     name: String,
     color: Color,
@@ -236,6 +238,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   /**
    * Creates an icon material with its variants (selected and/or editable) and adds them to the internal material list. They can then be accessed with [getMaterial] and used in [godot.EditorNode3DGizmo.addUnscaledBillboard]. Should not be overridden.
    */
+  @JvmOverloads
   public fun createIconMaterial(
     name: String,
     texture: Texture2D,
@@ -252,6 +255,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
    *
    * You can optionally provide a texture to use instead of the default icon.
    */
+  @JvmOverloads
   public fun createHandleMaterial(
     name: String,
     billboard: Boolean = false,
@@ -274,6 +278,7 @@ public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   /**
    * Gets material from the internal list of materials. If an [godot.EditorNode3DGizmo] is provided, it will try to get the corresponding variant (selected and/or editable).
    */
+  @JvmOverloads
   public fun getMaterial(name: String, gizmo: EditorNode3DGizmo? = null): StandardMaterial3D? {
     TransferContext.writeArguments(STRING to name, OBJECT to gizmo)
     TransferContext.callMethod(rawPtr,

@@ -42,6 +42,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Abstraction for working with modern low-level graphics APIs.
@@ -66,6 +67,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun textureCreate(
     format: RDTextureFormat,
     view: RDTextureView,
@@ -90,6 +92,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun textureCreateSharedFromSlice(
     view: RDTextureView,
     withTexture: RID,
@@ -107,6 +110,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun textureUpdate(
     texture: RID,
     layer: Long,
@@ -162,6 +166,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun textureCopy(
     fromTexture: RID,
     toTexture: RID,
@@ -182,6 +187,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun textureClear(
     texture: RID,
     color: Color,
@@ -199,6 +205,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun textureResolveMultisample(
     fromTexture: RID,
     toTexture: RID,
@@ -213,6 +220,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun framebufferFormatCreate(attachments: VariantArray<RDAttachmentFormat>, viewCount: Long
       = 1): Long {
     TransferContext.writeArguments(ARRAY to attachments, LONG to viewCount)
@@ -224,6 +232,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun framebufferFormatCreateMultipass(
     attachments: VariantArray<RDAttachmentFormat>,
     passes: VariantArray<RDFramebufferPass>,
@@ -238,6 +247,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun framebufferFormatCreateEmpty(samples: TextureSamples =
       RenderingDevice.TextureSamples.TEXTURE_SAMPLES_1): Long {
     TransferContext.writeArguments(LONG to samples.id)
@@ -249,6 +259,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun framebufferFormatGetTextureSamples(format: Long, renderPass: Long = 0):
       TextureSamples {
     TransferContext.writeArguments(LONG to format, LONG to renderPass)
@@ -260,6 +271,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun framebufferCreate(
     textures: VariantArray<RID>,
     validateWithFormat: Long = -1,
@@ -274,6 +286,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun framebufferCreateMultipass(
     textures: VariantArray<RID>,
     passes: VariantArray<RDFramebufferPass>,
@@ -289,6 +302,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun framebufferCreateEmpty(
     size: Vector2i,
     samples: TextureSamples = RenderingDevice.TextureSamples.TEXTURE_SAMPLES_1,
@@ -333,6 +347,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun vertexBufferCreate(
     sizeBytes: Long,
     `data`: PackedByteArray = PackedByteArray(),
@@ -357,6 +372,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Creates a vertex array based on the specified buffers. Optionally, [offsets] (in bytes) may be defined for each buffer.
    */
+  @JvmOverloads
   public fun vertexArrayCreate(
     vertexCount: Long,
     vertexFormat: Long,
@@ -372,6 +388,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun indexBufferCreate(
     sizeIndices: Long,
     format: IndexBufferFormat,
@@ -401,6 +418,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun shaderCompileSpirvFromSource(shaderSource: RDShaderSource, allowCache: Boolean = true):
       RDShaderSPIRV? {
     TransferContext.writeArguments(OBJECT to shaderSource, BOOL to allowCache)
@@ -412,6 +430,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun shaderCompileBinaryFromSpirv(spirvData: RDShaderSPIRV, name: String = ""):
       PackedByteArray {
     TransferContext.writeArguments(OBJECT to spirvData, STRING to name)
@@ -424,6 +443,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun shaderCreateFromSpirv(spirvData: RDShaderSPIRV, name: String = ""): RID {
     TransferContext.writeArguments(OBJECT to spirvData, STRING to name)
     TransferContext.callMethod(rawPtr,
@@ -454,6 +474,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun uniformBufferCreate(sizeBytes: Long, `data`: PackedByteArray = PackedByteArray()):
       RID {
     TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data)
@@ -465,6 +486,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun storageBufferCreate(
     sizeBytes: Long,
     `data`: PackedByteArray = PackedByteArray(),
@@ -479,6 +501,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun textureBufferCreate(
     sizeBytes: Long,
     format: DataFormat,
@@ -517,6 +540,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun bufferUpdate(
     buffer: RID,
     offset: Long,
@@ -532,6 +556,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun bufferClear(
     buffer: RID,
     offset: Long,
@@ -546,6 +571,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Returns a copy of the data of the specified [buffer], optionally [offsetBytes] and [sizeBytes] can be set to copy only a portion of the buffer.
    */
+  @JvmOverloads
   public fun bufferGetData(
     buffer: RID,
     offsetBytes: Long = 0,
@@ -560,6 +586,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun renderPipelineCreate(
     shader: RID,
     framebufferFormat: Long,
@@ -593,6 +620,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun computePipelineCreate(shader: RID,
       specializationConstants: VariantArray<RDPipelineSpecializationConstant> =
       godot.core.variantArrayOf()): RID {
@@ -615,6 +643,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun screenGetWidth(screen: Long = 0): Long {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_SCREEN_GET_WIDTH,
@@ -625,6 +654,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun screenGetHeight(screen: Long = 0): Long {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_SCREEN_GET_HEIGHT,
@@ -645,6 +675,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun drawListBeginForScreen(screen: Long = 0, clearColor: Color = Color(Color(0, 0, 0, 1))):
       Long {
     TransferContext.writeArguments(LONG to screen, COLOR to clearColor)
@@ -656,6 +687,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun drawListBegin(
     framebuffer: RID,
     initialColorAction: InitialAction,
@@ -677,6 +709,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun drawListBeginSplit(
     framebuffer: RID,
     splits: Long,
@@ -761,6 +794,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun drawListDraw(
     drawList: Long,
     useIndices: Boolean,
@@ -774,6 +808,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun drawListEnableScissor(drawList: Long, rect: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0)): Unit {
     TransferContext.writeArguments(LONG to drawList, RECT2 to rect)
     TransferContext.callMethod(rawPtr,
@@ -813,6 +848,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun drawListEnd(postBarrier: Long = 7): Unit {
     TransferContext.writeArguments(OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_END, NIL)
@@ -821,6 +857,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun computeListBegin(allowDrawOverlap: Boolean = false): Long {
     TransferContext.writeArguments(BOOL to allowDrawOverlap)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_COMPUTE_LIST_BEGIN,
@@ -889,6 +926,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun computeListEnd(postBarrier: Long = 7): Unit {
     TransferContext.writeArguments(OBJECT to postBarrier)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_COMPUTE_LIST_END,
@@ -1000,6 +1038,7 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun barrier(from: Long = 7, to: Long = 7): Unit {
     TransferContext.writeArguments(OBJECT to from, OBJECT to to)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_BARRIER, NIL)

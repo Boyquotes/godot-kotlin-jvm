@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Godot editor's interface.
@@ -61,6 +62,7 @@ public open class EditorInterface internal constructor() : Node() {
   /**
    * Shows the given property on the given [object] in the editor's Inspector dock. If [inspectorOnly] is `true`, plugins will not attempt to edit [object].
    */
+  @JvmOverloads
   public fun inspectObject(
     _object: Object,
     forProperty: String = "",
@@ -145,6 +147,7 @@ public open class EditorInterface internal constructor() : Node() {
   /**
    * Edits the given [godot.Script]. The line and column on which to open the script can also be specified. The script will be open with the user-configured editor for the script's language which may be an external editor.
    */
+  @JvmOverloads
   public fun editScript(
     script: Script,
     line: Long = -1,
@@ -426,6 +429,7 @@ public open class EditorInterface internal constructor() : Node() {
   /**
    * Saves the scene as a file at [path].
    */
+  @JvmOverloads
   public fun saveSceneAs(path: String, withPreview: Boolean = true): Unit {
     TransferContext.writeArguments(STRING to path, BOOL to withPreview)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SAVE_SCENE_AS, NIL)
@@ -434,6 +438,7 @@ public open class EditorInterface internal constructor() : Node() {
   /**
    * Restarts the editor. This closes the editor and then opens the same project. If [save] is `true`, the project will be saved before restarting.
    */
+  @JvmOverloads
   public fun restartEditor(save: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to save)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_RESTART_EDITOR, NIL)

@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Tile library for tilemaps.
@@ -139,6 +140,7 @@ public open class TileSet : Resource() {
    *
    * The function returns the added source source ID or -1 if the source could not be added.
    */
+  @JvmOverloads
   public fun addSource(source: TileSetSource, atlasSourceIdOverride: Long = -1): Long {
     TransferContext.writeArguments(OBJECT to source, LONG to atlasSourceIdOverride)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_SOURCE, LONG)
@@ -212,6 +214,7 @@ public open class TileSet : Resource() {
    *
    * Occlusion layers allow assigning occlusion polygons to atlas tiles.
    */
+  @JvmOverloads
   public fun addOcclusionLayer(toPosition: Long = -1): Unit {
     TransferContext.writeArguments(LONG to toPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_OCCLUSION_LAYER, NIL)
@@ -286,6 +289,7 @@ public open class TileSet : Resource() {
    *
    * Physics layers allow assigning collision polygons to atlas tiles.
    */
+  @JvmOverloads
   public fun addPhysicsLayer(toPosition: Long = -1): Unit {
     TransferContext.writeArguments(LONG to toPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_PHYSICS_LAYER, NIL)
@@ -378,6 +382,7 @@ public open class TileSet : Resource() {
   /**
    * Adds a new terrain set at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
    */
+  @JvmOverloads
   public fun addTerrainSet(toPosition: Long = -1): Unit {
     TransferContext.writeArguments(LONG to toPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_TERRAIN_SET, NIL)
@@ -428,6 +433,7 @@ public open class TileSet : Resource() {
   /**
    * Adds a new terrain to the given terrain set [terrainSet] at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
    */
+  @JvmOverloads
   public fun addTerrain(terrainSet: Long, toPosition: Long = -1): Unit {
     TransferContext.writeArguments(LONG to terrainSet, LONG to toPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_TERRAIN, NIL)
@@ -510,6 +516,7 @@ public open class TileSet : Resource() {
    *
    * Navigation layers allow assigning a navigable area to atlas tiles.
    */
+  @JvmOverloads
   public fun addNavigationLayer(toPosition: Long = -1): Unit {
     TransferContext.writeArguments(LONG to toPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_NAVIGATION_LAYER, NIL)
@@ -589,6 +596,7 @@ public open class TileSet : Resource() {
    *
    * Custom data layers allow assigning custom properties to atlas tiles.
    */
+  @JvmOverloads
   public fun addCustomDataLayer(toPosition: Long = -1): Unit {
     TransferContext.writeArguments(LONG to toPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_CUSTOM_DATA_LAYER, NIL)
@@ -852,6 +860,7 @@ public open class TileSet : Resource() {
   /**
    * Adds a [godot.TileMapPattern] to be stored in the TileSet resource. If provided, insert it at the given [index].
    */
+  @JvmOverloads
   public fun addPattern(pattern: TileMapPattern, index: Long = -1): Long {
     TransferContext.writeArguments(OBJECT to pattern, LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_ADD_PATTERN, LONG)
@@ -861,6 +870,7 @@ public open class TileSet : Resource() {
   /**
    * Returns the [godot.TileMapPattern] at the given [index].
    */
+  @JvmOverloads
   public fun getPattern(index: Long = -1): TileMapPattern? {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_PATTERN, OBJECT)

@@ -34,6 +34,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Most basic 3D game object, parent of all 3D-related nodes.
@@ -585,6 +586,7 @@ public open class Node3D : Node() {
    *
    * Operations take place in global space, which means that the node must be in the scene tree.
    */
+  @JvmOverloads
   public fun lookAt(target: Vector3, up: Vector3 = Vector3(0, 1, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to target, VECTOR3 to up)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_LOOK_AT, NIL)
@@ -593,6 +595,7 @@ public open class Node3D : Node() {
   /**
    * Moves the node to the specified [position], and then rotates the node to point toward the [target] as per [lookAt]. Operations take place in global space.
    */
+  @JvmOverloads
   public fun lookAtFromPosition(
     position: Vector3,
     target: Vector3,

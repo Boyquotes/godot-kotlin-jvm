@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * A countdown timer.
@@ -137,6 +138,7 @@ public open class Timer : Node() {
    *
    * **Note:** This method will not resume a paused timer. See [paused].
    */
+  @JvmOverloads
   public fun start(timeSec: Double = -1.0): Unit {
     TransferContext.writeArguments(DOUBLE to timeSec)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_START, NIL)

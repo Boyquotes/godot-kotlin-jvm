@@ -34,6 +34,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Manages the game loop via a hierarchy of nodes.
@@ -315,6 +316,7 @@ public open class SceneTree : MainLoop() {
    *
    * The timer will be automatically freed after its time elapses.
    */
+  @JvmOverloads
   public fun createTimer(
     timeSec: Double,
     processAlways: Boolean = true,
@@ -372,6 +374,7 @@ public open class SceneTree : MainLoop() {
    *
    * **Note:** On iOS this method doesn't work. Instead, as recommended by the iOS Human Interface Guidelines, the user is expected to close apps via the Home button.
    */
+  @JvmOverloads
   public fun quit(exitCode: Long = 0): Unit {
     TransferContext.writeArguments(LONG to exitCode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_QUIT, NIL)
@@ -542,6 +545,7 @@ public open class SceneTree : MainLoop() {
   /**
    * Sets a custom [godot.MultiplayerAPI] with the given [rootPath] (controlling also the relative subpaths), or override the default one if [rootPath] is empty.
    */
+  @JvmOverloads
   public fun setMultiplayer(multiplayer: MultiplayerAPI, rootPath: NodePath = NodePath("")): Unit {
     TransferContext.writeArguments(OBJECT to multiplayer, NODE_PATH to rootPath)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_MULTIPLAYER, NIL)
@@ -550,6 +554,7 @@ public open class SceneTree : MainLoop() {
   /**
    * Return the [godot.MultiplayerAPI] configured for the given path, or the default one if [forPath] is empty.
    */
+  @JvmOverloads
   public fun getMultiplayer(forPath: NodePath = NodePath("")): MultiplayerAPI? {
     TransferContext.writeArguments(NODE_PATH to forPath)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_MULTIPLAYER, OBJECT)

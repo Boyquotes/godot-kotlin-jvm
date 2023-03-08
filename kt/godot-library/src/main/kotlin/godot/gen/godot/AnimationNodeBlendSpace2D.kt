@@ -6,24 +6,12 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.STRING
-import godot.core.VariantType.VECTOR2
+import godot.annotation.GodotBaseType
+import godot.core.VariantType.*
 import godot.core.Vector2
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
-import kotlin.Boolean
-import kotlin.Int
-import kotlin.Long
-import kotlin.String
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Blends linearly between three [godot.AnimationNode] of any type placed in a 2D space.
@@ -182,6 +170,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   /**
    * Adds a new point that represents a [node] at the position set by [pos]. You can insert it at a specific index using the [atIndex] argument. If you use the default value for [atIndex], the point is inserted at the end of the blend points array.
    */
+  @JvmOverloads
   public fun addBlendPoint(
     node: AnimationRootNode,
     pos: Vector2,
@@ -252,6 +241,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   /**
    * Creates a new triangle using three points [x], [y], and [z]. Triangles can overlap. You can insert the triangle at a specific index using the [atIndex] argument. If you use the default value for [atIndex], the point is inserted at the end of the blend points array.
    */
+  @JvmOverloads
   public fun addTriangle(
     x: Long,
     y: Long,

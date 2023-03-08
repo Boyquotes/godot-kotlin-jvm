@@ -23,6 +23,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Button control that provides selectable options when pressed.
@@ -95,6 +96,7 @@ public open class OptionButton : Button() {
   /**
    * Adds an item, with text [label] and (optionally) [id]. If no [id] is passed, the item index will be used as the item's ID. New items are appended at the end.
    */
+  @JvmOverloads
   public fun addItem(label: String, id: Long = -1): Unit {
     TransferContext.writeArguments(STRING to label, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_ADD_ITEM, NIL)
@@ -103,6 +105,7 @@ public open class OptionButton : Button() {
   /**
    * Adds an item, with a [texture] icon, text [label] and (optionally) [id]. If no [id] is passed, the item index will be used as the item's ID. New items are appended at the end.
    */
+  @JvmOverloads
   public fun addIconItem(
     texture: Texture2D,
     label: String,
@@ -239,6 +242,7 @@ public open class OptionButton : Button() {
   /**
    * Adds a separator to the list of items. Separators help to group items, and can optionally be given a [text] header. A separator also gets an index assigned, and is appended at the end of the item list.
    */
+  @JvmOverloads
   public fun addSeparator(text: String = ""): Unit {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_ADD_SEPARATOR, NIL)
@@ -323,6 +327,7 @@ public open class OptionButton : Button() {
    *
    * Returns `-1` if no item is found.
    */
+  @JvmOverloads
   public fun getSelectableItem(fromLast: Boolean = false): Long {
     TransferContext.writeArguments(BOOL to fromLast)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_SELECTABLE_ITEM,

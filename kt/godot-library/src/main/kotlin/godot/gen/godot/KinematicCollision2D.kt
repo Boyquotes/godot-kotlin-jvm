@@ -20,6 +20,7 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
  * Collision data for [godot.PhysicsBody2D.moveAndCollide] collisions.
@@ -78,6 +79,7 @@ public open class KinematicCollision2D : RefCounted() {
   /**
    * Returns the collision angle according to [upDirection], which is [godot.Vector2.UP] by default. This value is always positive.
    */
+  @JvmOverloads
   public fun getAngle(upDirection: Vector2 = Vector2(0, -1)): Double {
     TransferContext.writeArguments(VECTOR2 to upDirection)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_ANGLE,

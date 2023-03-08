@@ -38,6 +38,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Base class for all windows.
@@ -806,6 +807,7 @@ public open class Window : Viewport() {
    *
    * See [godot.Control.getThemeColor] for details.
    */
+  @JvmOverloads
   public fun getThemeIcon(name: StringName, themeType: StringName = StringName("")): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_ICON, OBJECT)
@@ -817,6 +819,7 @@ public open class Window : Viewport() {
    *
    * See [godot.Control.getThemeColor] for details.
    */
+  @JvmOverloads
   public fun getThemeStylebox(name: StringName, themeType: StringName = StringName("")): StyleBox? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_STYLEBOX, OBJECT)
@@ -828,6 +831,7 @@ public open class Window : Viewport() {
    *
    * See [godot.Control.getThemeColor] for details.
    */
+  @JvmOverloads
   public fun getThemeFont(name: StringName, themeType: StringName = StringName("")): Font? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_FONT, OBJECT)
@@ -839,6 +843,7 @@ public open class Window : Viewport() {
    *
    * See [godot.Control.getThemeColor] for details.
    */
+  @JvmOverloads
   public fun getThemeFontSize(name: StringName, themeType: StringName = StringName("")): Long {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_FONT_SIZE, LONG)
@@ -850,6 +855,7 @@ public open class Window : Viewport() {
    *
    * See [godot.Control.getThemeColor] for more details.
    */
+  @JvmOverloads
   public fun getThemeColor(name: StringName, themeType: StringName = StringName("")): Color {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_COLOR, COLOR)
@@ -861,6 +867,7 @@ public open class Window : Viewport() {
    *
    * See [godot.Control.getThemeColor] for more details.
    */
+  @JvmOverloads
   public fun getThemeConstant(name: StringName, themeType: StringName = StringName("")): Long {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_CONSTANT, LONG)
@@ -944,6 +951,7 @@ public open class Window : Viewport() {
    *
    * See [godot.Control.getThemeColor] for details.
    */
+  @JvmOverloads
   public fun hasThemeIcon(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_ICON, BOOL)
@@ -955,6 +963,7 @@ public open class Window : Viewport() {
    *
    * See [godot.Control.getThemeColor] for details.
    */
+  @JvmOverloads
   public fun hasThemeStylebox(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_STYLEBOX, BOOL)
@@ -966,6 +975,7 @@ public open class Window : Viewport() {
    *
    * See [godot.Control.getThemeColor] for details.
    */
+  @JvmOverloads
   public fun hasThemeFont(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_FONT, BOOL)
@@ -977,6 +987,7 @@ public open class Window : Viewport() {
    *
    * See [godot.Control.getThemeColor] for details.
    */
+  @JvmOverloads
   public fun hasThemeFontSize(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_FONT_SIZE, BOOL)
@@ -988,6 +999,7 @@ public open class Window : Viewport() {
    *
    * See [godot.Control.getThemeColor] for details.
    */
+  @JvmOverloads
   public fun hasThemeColor(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_COLOR, BOOL)
@@ -999,6 +1011,7 @@ public open class Window : Viewport() {
    *
    * See [godot.Control.getThemeColor] for details.
    */
+  @JvmOverloads
   public fun hasThemeConstant(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_CONSTANT, BOOL)
@@ -1072,6 +1085,7 @@ public open class Window : Viewport() {
    *
    * Fails if called on the main window.
    */
+  @JvmOverloads
   public fun popup(rect: Rect2i = Rect2i(0, 0, 0, 0)): Unit {
     TransferContext.writeArguments(RECT2I to rect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP, NIL)
@@ -1090,6 +1104,7 @@ public open class Window : Viewport() {
   /**
    * Popups the [godot.Window] centered inside its parent [godot.Window] and sets its size as a [ratio] of parent's size.
    */
+  @JvmOverloads
   public fun popupCenteredRatio(ratio: Double = 0.8): Unit {
     TransferContext.writeArguments(DOUBLE to ratio)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP_CENTERED_RATIO, NIL)
@@ -1102,6 +1117,7 @@ public open class Window : Viewport() {
    *
    * **Note:** Calling it with the default value of [minsize] is equivalent to calling it with [size].
    */
+  @JvmOverloads
   public fun popupCentered(minsize: Vector2i = Vector2i(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2I to minsize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP_CENTERED, NIL)
@@ -1114,6 +1130,7 @@ public open class Window : Viewport() {
    *
    * **Note:** Calling it with the default value of [minsize] is equivalent to calling it with [size].
    */
+  @JvmOverloads
   public fun popupCenteredClamped(minsize: Vector2i = Vector2i(0, 0), fallbackRatio: Double = 0.75):
       Unit {
     TransferContext.writeArguments(VECTOR2I to minsize, DOUBLE to fallbackRatio)

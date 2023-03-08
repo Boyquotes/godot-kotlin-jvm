@@ -28,6 +28,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Lightweight object used for general-purpose animation via script, using [godot.Tweener]s.
@@ -633,6 +634,7 @@ public open class Tween : RefCounted() {
   /**
    * If [parallel] is `true`, the [godot.Tweener]s appended after this method will by default run simultaneously, as opposed to sequentially.
    */
+  @JvmOverloads
   public fun setParallel(parallel: Boolean = true): Tween? {
     TransferContext.writeArguments(BOOL to parallel)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_PARALLEL, OBJECT)
@@ -646,6 +648,7 @@ public open class Tween : RefCounted() {
    *
    * **Warning:** Make sure to always add some duration/delay when using infinite loops. To prevent the game freezing, 0-duration looped animations (e.g. a single [godot.CallbackTweener] with no delay) are stopped after a small number of loops, which may produce unexpected results. If a [godot.Tween]'s lifetime depends on some node, always use [bindNode].
    */
+  @JvmOverloads
   public fun setLoops(loops: Long = 0): Tween? {
     TransferContext.writeArguments(LONG to loops)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_LOOPS, OBJECT)

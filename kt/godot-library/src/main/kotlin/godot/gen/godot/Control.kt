@@ -42,6 +42,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * All user interface nodes inherit from Control. A control's anchors and offsets adapt its position and size relative to its parent.
@@ -920,6 +921,7 @@ public open class Control : CanvasItem() {
    *
    * If [keepOffsets] is `true`, control's position will also be updated.
    */
+  @JvmOverloads
   public fun setAnchorsPreset(preset: LayoutPreset, keepOffsets: Boolean = false): Unit {
     TransferContext.writeArguments(LONG to preset.id, BOOL to keepOffsets)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_ANCHORS_PRESET, NIL)
@@ -932,6 +934,7 @@ public open class Control : CanvasItem() {
    *
    * Use parameter [margin] to determine the gap between the [godot.Control] and the edges.
    */
+  @JvmOverloads
   public fun setOffsetsPreset(
     preset: LayoutPreset,
     resizeMode: LayoutPresetMode = Control.LayoutPresetMode.PRESET_MODE_MINSIZE,
@@ -944,6 +947,7 @@ public open class Control : CanvasItem() {
   /**
    * Sets both anchor preset and offset preset. See [setAnchorsPreset] and [setOffsetsPreset].
    */
+  @JvmOverloads
   public fun setAnchorsAndOffsetsPreset(
     preset: LayoutPreset,
     resizeMode: LayoutPresetMode = Control.LayoutPresetMode.PRESET_MODE_MINSIZE,
@@ -961,6 +965,7 @@ public open class Control : CanvasItem() {
    *
    * If [pushOppositeAnchor] is `true` and the opposite anchor overlaps this anchor, the opposite one will have its value overridden. For example, when setting left anchor to 1 and the right anchor has value of 0.5, the right anchor will also get value of 1. If [pushOppositeAnchor] was `false`, the left anchor would get value 0.5.
    */
+  @JvmOverloads
   public fun setAnchor(
     side: Side,
     anchor: Double,
@@ -1000,6 +1005,7 @@ public open class Control : CanvasItem() {
   /**
    * Works the same as [setAnchor], but instead of `keep_offset` argument and automatic update of offset, it allows to set the offset yourself (see [setOffset]).
    */
+  @JvmOverloads
   public fun setAnchorAndOffset(
     side: Side,
     anchor: Double,
@@ -1031,6 +1037,7 @@ public open class Control : CanvasItem() {
    *
    * If [keepOffsets] is `true`, control's anchors will be updated instead of offsets.
    */
+  @JvmOverloads
   public fun setPosition(position: Vector2, keepOffsets: Boolean = false): Unit {
     TransferContext.writeArguments(VECTOR2 to position, BOOL to keepOffsets)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_POSITION, NIL)
@@ -1041,6 +1048,7 @@ public open class Control : CanvasItem() {
    *
    * If [keepOffsets] is `true`, control's anchors will be updated instead of offsets.
    */
+  @JvmOverloads
   public fun setSize(size: Vector2, keepOffsets: Boolean = false): Unit {
     TransferContext.writeArguments(VECTOR2 to size, BOOL to keepOffsets)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_SIZE, NIL)
@@ -1059,6 +1067,7 @@ public open class Control : CanvasItem() {
    *
    * If [keepOffsets] is `true`, control's anchors will be updated instead of offsets.
    */
+  @JvmOverloads
   public fun setGlobalPosition(position: Vector2, keepOffsets: Boolean = false): Unit {
     TransferContext.writeArguments(VECTOR2 to position, BOOL to keepOffsets)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_GLOBAL_POSITION, NIL)
@@ -1416,6 +1425,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
+  @JvmOverloads
   public fun getThemeIcon(name: StringName, themeType: StringName = StringName("")): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_THEME_ICON, OBJECT)
@@ -1427,6 +1437,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
+  @JvmOverloads
   public fun getThemeStylebox(name: StringName, themeType: StringName = StringName("")): StyleBox? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_THEME_STYLEBOX, OBJECT)
@@ -1438,6 +1449,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
+  @JvmOverloads
   public fun getThemeFont(name: StringName, themeType: StringName = StringName("")): Font? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_THEME_FONT, OBJECT)
@@ -1449,6 +1461,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
+  @JvmOverloads
   public fun getThemeFontSize(name: StringName, themeType: StringName = StringName("")): Long {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_THEME_FONT_SIZE, LONG)
@@ -1496,6 +1509,7 @@ public open class Control : CanvasItem() {
    *
    * [/codeblocks]
    */
+  @JvmOverloads
   public fun getThemeColor(name: StringName, themeType: StringName = StringName("")): Color {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_THEME_COLOR, COLOR)
@@ -1507,6 +1521,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
+  @JvmOverloads
   public fun getThemeConstant(name: StringName, themeType: StringName = StringName("")): Long {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_THEME_CONSTANT, LONG)
@@ -1590,6 +1605,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
+  @JvmOverloads
   public fun hasThemeIcon(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_THEME_ICON, BOOL)
@@ -1601,6 +1617,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
+  @JvmOverloads
   public fun hasThemeStylebox(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_THEME_STYLEBOX, BOOL)
@@ -1612,6 +1629,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
+  @JvmOverloads
   public fun hasThemeFont(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_THEME_FONT, BOOL)
@@ -1623,6 +1641,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
+  @JvmOverloads
   public fun hasThemeFontSize(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_THEME_FONT_SIZE, BOOL)
@@ -1634,6 +1653,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
+  @JvmOverloads
   public fun hasThemeColor(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_THEME_COLOR, BOOL)
@@ -1645,6 +1665,7 @@ public open class Control : CanvasItem() {
    *
    * See [getThemeColor] for details.
    */
+  @JvmOverloads
   public fun hasThemeConstant(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_THEME_CONSTANT, BOOL)
@@ -1701,6 +1722,7 @@ public open class Control : CanvasItem() {
    *
    * **Note:** This method can be overridden to customize its behavior. If this method returns an empty [godot.String], no tooltip is displayed.
    */
+  @JvmOverloads
   public fun getTooltip(atPosition: Vector2 = Vector2(0, 0)): String {
     TransferContext.writeArguments(VECTOR2 to atPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_TOOLTIP, STRING)
@@ -1710,6 +1732,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns the mouse cursor shape the control displays on mouse hover. See [enum CursorShape].
    */
+  @JvmOverloads
   public fun getCursorShape(position: Vector2 = Vector2(0, 0)): CursorShape {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_CURSOR_SHAPE, LONG)

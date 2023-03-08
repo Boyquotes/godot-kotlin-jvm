@@ -21,6 +21,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * A TCP server.
@@ -45,6 +46,7 @@ public open class TCPServer : RefCounted() {
    *
    * If [bindAddress] is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc), the server will only listen on the interface with that addresses (or fail if no interface with the given address exists).
    */
+  @JvmOverloads
   public fun listen(port: Long, bindAddress: String = "*"): GodotError {
     TransferContext.writeArguments(LONG to port, STRING to bindAddress)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCPSERVER_LISTEN, LONG)

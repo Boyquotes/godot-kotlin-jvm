@@ -27,6 +27,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
  * A script interface to a scene file's data.
@@ -78,6 +79,7 @@ public open class SceneState internal constructor() : RefCounted() {
    *
    * If [forParent] is `true`, returns the path of the [idx] node's parent instead.
    */
+  @JvmOverloads
   public fun getNodePath(idx: Long, forParent: Boolean = false): NodePath {
     TransferContext.writeArguments(LONG to idx, BOOL to forParent)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENESTATE_GET_NODE_PATH, NODE_PATH)

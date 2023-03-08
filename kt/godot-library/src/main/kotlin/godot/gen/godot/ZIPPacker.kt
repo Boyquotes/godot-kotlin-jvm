@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 @GodotBaseType
 public open class ZIPPacker : RefCounted() {
@@ -27,6 +28,7 @@ public open class ZIPPacker : RefCounted() {
     return true
   }
 
+  @JvmOverloads
   public fun `open`(path: String, append: ZipAppend = ZIPPacker.ZipAppend.APPEND_CREATE):
       GodotError {
     TransferContext.writeArguments(STRING to path, LONG to append.id)

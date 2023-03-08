@@ -6,27 +6,14 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
+import godot.annotation.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.VariantArray
-import godot.core.VariantType.ANY
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DICTIONARY
-import godot.core.VariantType.JVM_INT
-import godot.core.VariantType.LONG
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_STRING_ARRAY
-import godot.core.VariantType.STRING_NAME
+import godot.core.VariantType.*
 import godot.core.memory.TransferContext
-import kotlin.Any
-import kotlin.Boolean
-import kotlin.Int
-import kotlin.Long
-import kotlin.Suppress
 
 /**
  * Class information repository.
@@ -128,6 +115,7 @@ public object ClassDB : Object() {
   /**
    * Returns an array with all the signals of [class] or its ancestry if [noInheritance] is `false`. Every element of the array is a [godot.core.Dictionary] as described in [classGetSignal].
    */
+  @JvmOverloads
   public fun classGetSignalList(_class: StringName, noInheritance: Boolean = false):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
@@ -139,6 +127,7 @@ public object ClassDB : Object() {
   /**
    * Returns an array with all the properties of [class] or its ancestry if [noInheritance] is `false`.
    */
+  @JvmOverloads
   public fun classGetPropertyList(_class: StringName, noInheritance: Boolean = false):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
@@ -172,6 +161,7 @@ public object ClassDB : Object() {
   /**
    * Returns whether [class] (or its ancestry if [noInheritance] is `false`) has a method called [method] or not.
    */
+  @JvmOverloads
   public fun classHasMethod(
     _class: StringName,
     method: StringName,
@@ -187,6 +177,7 @@ public object ClassDB : Object() {
    *
    * **Note:** In exported release builds the debug info is not available, so the returned dictionaries will contain only method names.
    */
+  @JvmOverloads
   public fun classGetMethodList(_class: StringName, noInheritance: Boolean = false):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
@@ -198,6 +189,7 @@ public object ClassDB : Object() {
   /**
    * Returns an array with the names all the integer constants of [class] or its ancestry.
    */
+  @JvmOverloads
   public fun classGetIntegerConstantList(_class: StringName, noInheritance: Boolean = false):
       PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
@@ -229,6 +221,7 @@ public object ClassDB : Object() {
   /**
    * Returns whether [class] or its ancestry has an enum called [name] or not.
    */
+  @JvmOverloads
   public fun classHasEnum(
     _class: StringName,
     name: StringName,
@@ -242,6 +235,7 @@ public object ClassDB : Object() {
   /**
    * Returns an array with all the enums of [class] or its ancestry.
    */
+  @JvmOverloads
   public fun classGetEnumList(_class: StringName, noInheritance: Boolean = false):
       PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
@@ -253,6 +247,7 @@ public object ClassDB : Object() {
   /**
    * Returns an array with all the keys in [enum] of [class] or its ancestry.
    */
+  @JvmOverloads
   public fun classGetEnumConstants(
     _class: StringName,
     _enum: StringName,
@@ -267,6 +262,7 @@ public object ClassDB : Object() {
   /**
    * Returns which enum the integer constant [name] of [class] or its ancestry belongs to.
    */
+  @JvmOverloads
   public fun classGetIntegerConstantEnum(
     _class: StringName,
     name: StringName,

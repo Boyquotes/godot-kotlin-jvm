@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Helper to manage undo/redo operations in the editor or custom tools.
@@ -156,6 +157,7 @@ public open class UndoRedo : Object() {
    *
    * The way actions are merged is dictated by [mergeMode]. See [enum MergeMode] for details.
    */
+  @JvmOverloads
   public fun createAction(name: String, mergeMode: MergeMode = UndoRedo.MergeMode.MERGE_DISABLE):
       Unit {
     TransferContext.writeArguments(STRING to name, LONG to mergeMode.id)
@@ -165,6 +167,7 @@ public open class UndoRedo : Object() {
   /**
    * Commit the action. If [execute] is `true` (which it is by default), all "do" methods/properties are called/set when this function is called.
    */
+  @JvmOverloads
   public fun commitAction(execute: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to execute)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_COMMIT_ACTION, NIL)
@@ -285,6 +288,7 @@ public open class UndoRedo : Object() {
    *
    * Passing `false` to [increaseVersion] will prevent the version number from increasing when the history is cleared.
    */
+  @JvmOverloads
   public fun clearHistory(increaseVersion: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to increaseVersion)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_CLEAR_HISTORY, NIL)

@@ -72,6 +72,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Server for anything visible.
@@ -383,6 +384,7 @@ public object RenderingServer : Object() {
   /**
    * Returns a texture [RID] that can be used with [godot.RenderingDevice].
    */
+  @JvmOverloads
   public fun textureGetRdTexture(texture: RID, srgb: Boolean = false): RID {
     TransferContext.writeArguments(_RID to texture, BOOL to srgb)
     TransferContext.callMethod(rawPtr,
@@ -454,6 +456,7 @@ public object RenderingServer : Object() {
    *
    * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
+  @JvmOverloads
   public fun shaderSetDefaultTextureParameter(
     shader: RID,
     name: StringName,
@@ -470,6 +473,7 @@ public object RenderingServer : Object() {
    *
    * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
+  @JvmOverloads
   public fun shaderGetDefaultTextureParameter(
     shader: RID,
     name: StringName,
@@ -546,6 +550,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun meshCreateFromSurfaces(surfaces: VariantArray<Dictionary<Any?, Any?>>,
       blendShapeCount: Long = 0): RID {
     TransferContext.writeArguments(ARRAY to surfaces, LONG to blendShapeCount)
@@ -623,6 +628,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun meshAddSurfaceFromArrays(
     mesh: RID,
     primitive: PrimitiveType,
@@ -824,6 +830,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun multimeshAllocateData(
     multimesh: RID,
     instances: Long,
@@ -1020,6 +1027,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun skeletonAllocateData(
     skeleton: RID,
     bones: Long,
@@ -2532,6 +2540,7 @@ public object RenderingServer : Object() {
    *
    * Using this can result in significant optimization, especially on lower-end devices. However, it comes at the cost of having to manage your viewports manually. For further optimization, see [viewportSetRenderDirectToScreen].
    */
+  @JvmOverloads
   public fun viewportAttachToScreen(
     viewport: RID,
     rect: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
@@ -2798,6 +2807,7 @@ public object RenderingServer : Object() {
    *
    * **Note:** If this is set to `0`, no shadows will be visible at all (including directional shadows).
    */
+  @JvmOverloads
   public fun viewportSetPositionalShadowAtlasSize(
     viewport: RID,
     size: Long,
@@ -3099,6 +3109,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun environmentSetAmbientLight(
     env: RID,
     color: Color,
@@ -3852,6 +3863,7 @@ public object RenderingServer : Object() {
    *
    * **Warning:** This function is primarily intended for editor usage. For in-game use cases, prefer physics collision.
    */
+  @JvmOverloads
   public fun instancesCullAabb(aabb: AABB, scenario: RID = RID()): PackedInt64Array {
     TransferContext.writeArguments(godot.core.VariantType.AABB to aabb, _RID to scenario)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_INSTANCES_CULL_AABB,
@@ -3864,6 +3876,7 @@ public object RenderingServer : Object() {
    *
    * **Warning:** This function is primarily intended for editor usage. For in-game use cases, prefer physics collision.
    */
+  @JvmOverloads
   public fun instancesCullRay(
     from: Vector3,
     to: Vector3,
@@ -3880,6 +3893,7 @@ public object RenderingServer : Object() {
    *
    * **Warning:** This function is primarily intended for editor usage. For in-game use cases, prefer physics collision.
    */
+  @JvmOverloads
   public fun instancesCullConvex(convex: VariantArray<Plane>, scenario: RID = RID()):
       PackedInt64Array {
     TransferContext.writeArguments(ARRAY to convex, _RID to scenario)
@@ -4094,6 +4108,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun canvasItemSetCustomRect(
     item: RID,
     useCustomRect: Boolean,
@@ -4134,6 +4149,7 @@ public object RenderingServer : Object() {
   /**
    * Draws a line on the [godot.CanvasItem] pointed to by the [item] [RID]. See also [godot.CanvasItem.drawLine].
    */
+  @JvmOverloads
   public fun canvasItemAddLine(
     item: RID,
     from: Vector2,
@@ -4150,6 +4166,7 @@ public object RenderingServer : Object() {
   /**
    * Draws a 2D polyline on the [godot.CanvasItem] pointed to by the [item] [RID]. See also [godot.CanvasItem.drawPolyline].
    */
+  @JvmOverloads
   public fun canvasItemAddPolyline(
     item: RID,
     points: PackedVector2Array,
@@ -4192,6 +4209,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun canvasItemAddTextureRect(
     item: RID,
     rect: Rect2,
@@ -4208,6 +4226,7 @@ public object RenderingServer : Object() {
   /**
    * See also [godot.CanvasItem.drawMsdfTextureRectRegion].
    */
+  @JvmOverloads
   public fun canvasItemAddMsdfTextureRectRegion(
     item: RID,
     rect: Rect2,
@@ -4241,6 +4260,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun canvasItemAddTextureRectRegion(
     item: RID,
     rect: Rect2,
@@ -4258,6 +4278,7 @@ public object RenderingServer : Object() {
   /**
    * Draws a nine-patch rectangle on the [godot.CanvasItem] pointed to by the [item] [RID].
    */
+  @JvmOverloads
   public fun canvasItemAddNinePatch(
     item: RID,
     rect: Rect2,
@@ -4293,6 +4314,7 @@ public object RenderingServer : Object() {
   /**
    * Draws a 2D polygon on the [godot.CanvasItem] pointed to by the [item] [RID]. See also [godot.CanvasItem.drawPolygon].
    */
+  @JvmOverloads
   public fun canvasItemAddPolygon(
     item: RID,
     points: PackedVector2Array,
@@ -4308,6 +4330,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun canvasItemAddTriangleArray(
     item: RID,
     indices: PackedInt32Array,
@@ -4327,6 +4350,7 @@ public object RenderingServer : Object() {
   /**
    * Draws a mesh created with [meshCreate] with given [transform], [modulate] color, and [texture]. This is used internally by [godot.MeshInstance2D].
    */
+  @JvmOverloads
   public fun canvasItemAddMesh(
     item: RID,
     mesh: RID,
@@ -4342,6 +4366,7 @@ public object RenderingServer : Object() {
   /**
    * Draws a 2D [godot.MultiMesh] on the [godot.CanvasItem] pointed to by the [item] [RID]. See also [godot.CanvasItem.drawMultimesh].
    */
+  @JvmOverloads
   public fun canvasItemAddMultimesh(
     item: RID,
     mesh: RID,
@@ -4386,6 +4411,7 @@ public object RenderingServer : Object() {
   /**
    * Subsequent drawing commands will be ignored unless they fall within the specified animation slice. This is a faster way to implement animations that loop on background rather than redrawing constantly.
    */
+  @JvmOverloads
   public fun canvasItemAddAnimationSlice(
     item: RID,
     animationLength: Double,
@@ -4492,6 +4518,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun canvasItemSetCanvasGroupMode(
     item: RID,
     mode: CanvasGroupMode,
@@ -5007,6 +5034,7 @@ public object RenderingServer : Object() {
   /**
    * Sets a boot image. The color defines the background color. If [scale] is `true`, the image will be scaled to fit the screen size. If [useFilter] is `true`, the image will be scaled with linear interpolation. If [useFilter] is `false`, the image will be scaled with nearest-neighbor interpolation.
    */
+  @JvmOverloads
   public fun setBootImage(
     image: Image,
     color: Color,
@@ -5098,6 +5126,7 @@ public object RenderingServer : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun forceDraw(swapBuffers: Boolean = true, frameStep: Double = 0.0): Unit {
     TransferContext.writeArguments(BOOL to swapBuffers, DOUBLE to frameStep)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_FORCE_DRAW, NIL)

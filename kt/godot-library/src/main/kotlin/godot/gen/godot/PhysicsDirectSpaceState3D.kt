@@ -22,6 +22,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
  * Direct access object to a space in the [godot.PhysicsServer3D].
@@ -51,6 +52,7 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    *
    * The number of intersections can be limited with the [maxResults] parameter, to reduce the processing time.
    */
+  @JvmOverloads
   public fun intersectPoint(parameters: PhysicsPointQueryParameters3D, maxResults: Long = 32):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults)
@@ -98,6 +100,7 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    *
    * **Note:** This method does not take into account the `motion` property of the object.
    */
+  @JvmOverloads
   public fun intersectShape(parameters: PhysicsShapeQueryParameters3D, maxResults: Long = 32):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults)
@@ -127,6 +130,7 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    *
    * **Note:** This method does not take into account the `motion` property of the object.
    */
+  @JvmOverloads
   public fun collideShape(parameters: PhysicsShapeQueryParameters3D, maxResults: Long = 32):
       VariantArray<PackedVector3Array> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults)

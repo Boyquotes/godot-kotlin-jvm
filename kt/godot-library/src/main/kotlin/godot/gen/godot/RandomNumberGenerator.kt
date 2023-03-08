@@ -17,6 +17,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * A class for generating pseudo-random numbers.
@@ -119,6 +120,7 @@ public open class RandomNumberGenerator : RefCounted() {
   /**
    * Returns a [normally-distributed](https://en.wikipedia.org/wiki/Normal_distribution) pseudo-random number, using Box-Muller transform with the specified [mean] and a standard [deviation]. This is also called Gaussian distribution.
    */
+  @JvmOverloads
   public fun randfn(mean: Double = 0.0, deviation: Double = 1.0): Double {
     TransferContext.writeArguments(DOUBLE to mean, DOUBLE to deviation)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDFN,

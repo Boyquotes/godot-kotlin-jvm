@@ -6,25 +6,12 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
+import godot.annotation.GodotBaseType
 import godot.core.StringName
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.STRING
-import godot.core.VariantType.STRING_NAME
+import godot.core.VariantType.*
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
-import kotlin.Boolean
-import kotlin.Double
-import kotlin.Int
-import kotlin.Long
-import kotlin.String
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * 2D sprite node in 3D world, that can use multiple 2D textures for animation.
@@ -176,6 +163,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    *
    * If this method is called with that same animation [name], or with no [name] parameter, the assigned animation will resume playing if it was paused.
    */
+  @JvmOverloads
   public fun play(
     name: StringName = StringName(""),
     customSpeed: Double = 1.0,
@@ -190,6 +178,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    *
    * This method is a shorthand for [play] with `custom_speed = -1.0` and `from_end = true`, so see its description for more information.
    */
+  @JvmOverloads
   public fun playBackwards(name: StringName = StringName("")): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_PLAY_BACKWARDS,

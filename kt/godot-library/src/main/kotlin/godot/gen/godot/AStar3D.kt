@@ -6,25 +6,12 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
+import godot.annotation.GodotBaseType
 import godot.core.PackedInt64Array
 import godot.core.PackedVector3Array
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.PACKED_INT_64_ARRAY
-import godot.core.VariantType.PACKED_VECTOR3_ARRAY
-import godot.core.VariantType.VECTOR3
+import godot.core.VariantType.*
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import kotlin.Boolean
-import kotlin.Double
-import kotlin.Int
-import kotlin.Long
-import kotlin.NotImplementedError
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * An implementation of A* to find the shortest paths among connected points in space.
@@ -153,6 +140,7 @@ public open class AStar3D : RefCounted() {
    *
    * If there already exists a point for the given [id], its position and weight scale are updated to the given values.
    */
+  @JvmOverloads
   public fun addPoint(
     id: Long,
     position: Vector3,
@@ -287,6 +275,7 @@ public open class AStar3D : RefCounted() {
   /**
    * Disables or enables the specified point for pathfinding. Useful for making a temporary obstacle.
    */
+  @JvmOverloads
   public fun setPointDisabled(id: Long, disabled: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to id, BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_SET_POINT_DISABLED, NIL)
@@ -332,6 +321,7 @@ public open class AStar3D : RefCounted() {
    *
    * [/codeblocks]
    */
+  @JvmOverloads
   public fun connectPoints(
     id: Long,
     toId: Long,
@@ -344,6 +334,7 @@ public open class AStar3D : RefCounted() {
   /**
    * Deletes the segment between the given points. If [bidirectional] is `false`, only movement from [id] to [toId] is prevented, and a unidirectional segment possibly remains.
    */
+  @JvmOverloads
   public fun disconnectPoints(
     id: Long,
     toId: Long,
@@ -356,6 +347,7 @@ public open class AStar3D : RefCounted() {
   /**
    * Returns whether the two given points are directly connected by a segment. If [bidirectional] is `false`, returns whether movement from [id] to [toId] is possible through this segment.
    */
+  @JvmOverloads
   public fun arePointsConnected(
     id: Long,
     toId: Long,
@@ -405,6 +397,7 @@ public open class AStar3D : RefCounted() {
    *
    * **Note:** If several points are the closest to [toPosition], the one with the smallest ID will be returned, ensuring a deterministic result.
    */
+  @JvmOverloads
   public fun getClosestPoint(toPosition: Vector3, includeDisabled: Boolean = false): Long {
     TransferContext.writeArguments(VECTOR3 to toPosition, BOOL to includeDisabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_CLOSEST_POINT, LONG)

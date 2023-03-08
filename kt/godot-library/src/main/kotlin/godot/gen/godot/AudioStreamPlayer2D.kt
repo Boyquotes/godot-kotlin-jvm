@@ -6,23 +6,12 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
+import godot.annotation.GodotBaseType
 import godot.core.StringName
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.STRING_NAME
+import godot.core.VariantType.*
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
-import kotlin.Boolean
-import kotlin.Double
-import kotlin.Int
-import kotlin.Long
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Plays positional sound in 2D space.
@@ -241,6 +230,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * Queues the audio to play on the next physics frame, from the given position [fromPosition], in seconds.
    */
+  @JvmOverloads
   public fun play(fromPosition: Double = 0.0): Unit {
     TransferContext.writeArguments(DOUBLE to fromPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_PLAY, NIL)

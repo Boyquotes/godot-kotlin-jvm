@@ -6,25 +6,12 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
+import godot.annotation.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
-import godot.core.VariantType.ANY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.JVM_INT
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.PACKED_BYTE_ARRAY
-import godot.core.VariantType.PACKED_STRING_ARRAY
-import godot.core.VariantType.STRING
+import godot.core.VariantType.*
 import godot.core.memory.TransferContext
-import kotlin.Any
-import kotlin.Boolean
-import kotlin.Int
-import kotlin.String
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Helper class to handle INI-style files.
@@ -214,6 +201,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Returns the current value for the specified section and key. If either the section or the key do not exist, the method returns the fallback [default] value. If [default] is not specified or set to `null`, an error is also raised.
    */
+  @JvmOverloads
   public fun getValue(
     section: String,
     key: String,

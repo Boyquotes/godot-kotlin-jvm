@@ -17,6 +17,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Exposes a set of scenes as tiles for a [godot.TileSet] resource.
@@ -67,6 +68,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    *
    * Returns a newly generated unique ID.
    */
+  @JvmOverloads
   public fun createSceneTile(packedScene: PackedScene, idOverride: Long = -1): Long {
     TransferContext.writeArguments(OBJECT to packedScene, LONG to idOverride)
     TransferContext.callMethod(rawPtr,

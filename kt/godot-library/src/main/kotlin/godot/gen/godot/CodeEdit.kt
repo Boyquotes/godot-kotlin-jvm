@@ -6,36 +6,18 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
+import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.PackedInt32Array
 import godot.core.VariantArray
-import godot.core.VariantType.ANY
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.COLOR
-import godot.core.VariantType.DICTIONARY
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_INT_32_ARRAY
-import godot.core.VariantType.STRING
-import godot.core.VariantType.VECTOR2
+import godot.core.VariantType.*
 import godot.core.Vector2
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal3
 import godot.signals.signal
-import kotlin.Any
-import kotlin.Boolean
-import kotlin.Int
-import kotlin.Long
-import kotlin.NotImplementedError
-import kotlin.String
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Multiline text control intended for editing code.
@@ -659,6 +641,7 @@ public open class CodeEdit : TextEdit() {
    *
    * [lineOnly] denotes if the region should continue until the end of the line or carry over on to the next line. If the end key is blank this is automatically set to `true`.
    */
+  @JvmOverloads
   public fun addStringDelimiter(
     startKey: String,
     endKey: String,
@@ -698,6 +681,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Returns the delimiter index if [line] [column] is in a string. If [column] is not provided, will return the delimiter index if the entire [line] is a string. Otherwise `-1`.
    */
+  @JvmOverloads
   public fun isInString(line: Long, column: Long = -1): Long {
     TransferContext.writeArguments(LONG to line, LONG to column)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_IN_STRING, LONG)
@@ -711,6 +695,7 @@ public open class CodeEdit : TextEdit() {
    *
    * [lineOnly] denotes if the region should continue until the end of the line or carry over on to the next line. If the end key is blank this is automatically set to `true`.
    */
+  @JvmOverloads
   public fun addCommentDelimiter(
     startKey: String,
     endKey: String,
@@ -751,6 +736,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Returns delimiter index if [line] [column] is in a comment. If [column] is not provided, will return delimiter index if the entire [line] is a comment. Otherwise `-1`.
    */
+  @JvmOverloads
   public fun isInComment(line: Long, column: Long = -1): Long {
     TransferContext.writeArguments(LONG to line, LONG to column)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_IN_COMMENT, LONG)
@@ -827,6 +813,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Emits [codeCompletionRequested], if [force] is true will bypass all checks. Otherwise will check that the caret is in a word or in front of a prefix. Will ignore the request if all current options are of type file path, node path or signal.
    */
+  @JvmOverloads
   public fun requestCodeCompletion(force: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to force)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_REQUEST_CODE_COMPLETION,
@@ -838,6 +825,7 @@ public open class CodeEdit : TextEdit() {
    *
    * **Note:** This list will replace all current candidates.
    */
+  @JvmOverloads
   public fun addCodeCompletionOption(
     type: CodeCompletionKind,
     displayText: String,
@@ -916,6 +904,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Inserts the selected entry into the text. If [replace] is true, any existing text is replaced rather then merged.
    */
+  @JvmOverloads
   public fun confirmCodeCompletion(replace: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to replace)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CONFIRM_CODE_COMPLETION,

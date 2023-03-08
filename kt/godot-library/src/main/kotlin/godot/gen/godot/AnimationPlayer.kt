@@ -6,37 +6,18 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
+import godot.annotation.GodotBaseType
 import godot.core.GodotError
 import godot.core.NodePath
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.NODE_PATH
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_STRING_ARRAY
-import godot.core.VariantType.STRING
-import godot.core.VariantType.STRING_NAME
+import godot.core.VariantType.*
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
-import kotlin.Any
-import kotlin.Boolean
-import kotlin.Double
-import kotlin.Int
-import kotlin.Long
-import kotlin.NotImplementedError
-import kotlin.String
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Player of [godot.Animation] resources.
@@ -461,6 +442,7 @@ public open class AnimationPlayer : Node() {
    *
    * **Note:** The animation will be updated the next time the [godot.AnimationPlayer] is processed. If other variables are updated at the same time this is called, they may be updated too early. To perform the update immediately, call `advance(0)`.
    */
+  @JvmOverloads
   public fun play(
     name: StringName = StringName(""),
     customBlend: Double = -1.0,
@@ -476,6 +458,7 @@ public open class AnimationPlayer : Node() {
    *
    * This method is a shorthand for [play] with `custom_speed = -1.0` and `from_end = true`, so see its description for more information.
    */
+  @JvmOverloads
   public fun playBackwards(name: StringName = StringName(""), customBlend: Double = -1.0): Unit {
     TransferContext.writeArguments(STRING_NAME to name, DOUBLE to customBlend)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_PLAY_BACKWARDS, NIL)
@@ -498,6 +481,7 @@ public open class AnimationPlayer : Node() {
    *
    * **Note:** The method / audio / animation playback tracks will not be processed by this method.
    */
+  @JvmOverloads
   public fun stop(keepState: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to keepState)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_STOP, NIL)
@@ -585,6 +569,7 @@ public open class AnimationPlayer : Node() {
    *
    * **Note:** Seeking to the end of the animation doesn't emit [animationFinished]. If you want to skip animation and emit the signal, use [advance].
    */
+  @JvmOverloads
   public fun seek(seconds: Double, update: Boolean = false): Unit {
     TransferContext.writeArguments(DOUBLE to seconds, BOOL to update)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SEEK, NIL)

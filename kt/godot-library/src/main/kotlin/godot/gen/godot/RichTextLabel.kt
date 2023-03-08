@@ -39,6 +39,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Label that displays rich text.
@@ -476,6 +477,7 @@ public open class RichTextLabel : Control() {
    *
    * If [width] and [height] are not set, but [region] is, the region's rect will be used.
    */
+  @JvmOverloads
   public fun addImage(
     image: Texture2D,
     width: Long = 0,
@@ -594,6 +596,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[p]` tag to the tag stack.
    */
+  @JvmOverloads
   public fun pushParagraph(
     alignment: HorizontalAlignment,
     baseDirection: Control.TextDirection = Control.TextDirection.TEXT_DIRECTION_AUTO,
@@ -661,6 +664,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[table=columns,inline_align]` tag to the tag stack.
    */
+  @JvmOverloads
   public fun pushTable(
     columns: Long,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_TOP_TO,
@@ -673,6 +677,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a `[dropcap]` tag to the tag stack. Drop cap (dropped capital) is a decorative element at the beginning of a paragraph that is larger than the rest of the text.
    */
+  @JvmOverloads
   public fun pushDropcap(
     string: String,
     font: Font,

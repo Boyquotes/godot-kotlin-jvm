@@ -21,6 +21,7 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Singleton that manages [godot.InputEventAction].
@@ -60,6 +61,7 @@ public object InputMap : Object() {
    *
    * An [godot.InputEvent] can then be added to this action with [actionAddEvent].
    */
+  @JvmOverloads
   public fun addAction(action: StringName, deadzone: Double = 0.5): Unit {
     TransferContext.writeArguments(STRING_NAME to action, DOUBLE to deadzone)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ADD_ACTION, NIL)
@@ -140,6 +142,7 @@ public object InputMap : Object() {
    *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
+  @JvmOverloads
   public fun eventIsAction(
     event: InputEvent,
     action: StringName,

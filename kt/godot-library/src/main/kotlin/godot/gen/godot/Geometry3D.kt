@@ -25,6 +25,7 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
  * Helper node to calculate generic geometry operations in 3D space.
@@ -50,6 +51,7 @@ public object Geometry3D : Object() {
   /**
    * Returns an array of [godot.core.Plane]s closely bounding a faceted cylinder centered at the origin with radius [radius] and height [height]. The parameter [sides] defines how many planes will be generated for the round part of the cylinder. The parameter [axis] describes the axis along which the cylinder is oriented (0 for X, 1 for Y, 2 for Z).
    */
+  @JvmOverloads
   public fun buildCylinderPlanes(
     radius: Double,
     height: Double,
@@ -65,6 +67,7 @@ public object Geometry3D : Object() {
   /**
    * Returns an array of [godot.core.Plane]s closely bounding a faceted capsule centered at the origin with radius [radius] and height [height]. The parameter [sides] defines how many planes will be generated for the side part of the capsule, whereas [lats] gives the number of latitudinal steps at the bottom and top of the capsule. The parameter [axis] describes the axis along which the capsule is oriented (0 for X, 1 for Y, 2 for Z).
    */
+  @JvmOverloads
   public fun buildCapsulePlanes(
     radius: Double,
     height: Double,

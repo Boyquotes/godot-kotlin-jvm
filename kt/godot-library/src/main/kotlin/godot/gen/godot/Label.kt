@@ -24,6 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
  * Displays plain text in a line or wrapped inside a rectangle. For formatted text, use [godot.RichTextLabel].
@@ -303,6 +304,7 @@ public open class Label : Control() {
    *
    * If there are no lines, returns font size in pixels.
    */
+  @JvmOverloads
   public fun getLineHeight(line: Long = -1): Long {
     TransferContext.writeArguments(LONG to line)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_LINE_HEIGHT, LONG)

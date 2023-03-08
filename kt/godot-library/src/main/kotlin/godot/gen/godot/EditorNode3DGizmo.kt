@@ -33,6 +33,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Gizmo for editing Node3D objects.
@@ -150,6 +151,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   /**
    * Adds lines to the gizmo (as sets of 2 points), with a given material. The lines are used for visualizing the gizmo. Call this method during [_redraw].
    */
+  @JvmOverloads
   public fun addLines(
     lines: PackedVector3Array,
     material: Material,
@@ -163,6 +165,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   /**
    * Adds a mesh to the gizmo with the specified [material], local [transform] and [skeleton]. Call this method during [_redraw].
    */
+  @JvmOverloads
   public fun addMesh(
     mesh: Mesh,
     material: Material? = null,
@@ -194,6 +197,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   /**
    * Adds an unscaled billboard for visualization and selection. Call this method during [_redraw].
    */
+  @JvmOverloads
   public fun addUnscaledBillboard(
     material: Material,
     defaultScale: Double = 1.0,
@@ -211,6 +215,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    *
    * There are virtual methods which will be called upon editing of these handles. Call this method during [_redraw].
    */
+  @JvmOverloads
   public fun addHandles(
     handles: PackedVector3Array,
     material: Material,

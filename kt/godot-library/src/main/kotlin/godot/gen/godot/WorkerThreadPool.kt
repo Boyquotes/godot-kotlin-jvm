@@ -20,6 +20,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  *
@@ -34,6 +35,7 @@ public object WorkerThreadPool : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun addTask(
     action: Callable,
     highPriority: Boolean = false,
@@ -66,6 +68,7 @@ public object WorkerThreadPool : Object() {
   /**
    *
    */
+  @JvmOverloads
   public fun addGroupTask(
     action: Callable,
     elements: Long,

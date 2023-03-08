@@ -17,6 +17,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
  * An abstraction of a serialized scene.
@@ -177,6 +178,7 @@ public open class PackedScene : Resource() {
   /**
    * Instantiates the scene's node hierarchy. Triggers child scene instantiation(s). Triggers a [godot.Node.NOTIFICATION_SCENE_INSTANTIATED] notification on the root node.
    */
+  @JvmOverloads
   public fun instantiate(editState: GenEditState =
       PackedScene.GenEditState.GEN_EDIT_STATE_DISABLED): Node? {
     TransferContext.writeArguments(LONG to editState.id)

@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Control that provides single-line string editing.
@@ -632,6 +633,7 @@ public open class LineEdit : Control() {
    *
    * [/codeblocks]
    */
+  @JvmOverloads
   public fun select(from: Long = 0, to: Long = -1): Unit {
     TransferContext.writeArguments(LONG to from, LONG to to)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SELECT, NIL)

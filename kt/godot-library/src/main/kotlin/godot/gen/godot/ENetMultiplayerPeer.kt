@@ -20,6 +20,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 @GodotBaseType
 public open class ENetMultiplayerPeer : MultiplayerPeer() {
@@ -36,6 +37,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     return true
   }
 
+  @JvmOverloads
   public fun createServer(
     port: Long,
     maxClients: Long = 32,
@@ -49,6 +51,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
+  @JvmOverloads
   public fun createClient(
     address: String,
     port: Long,

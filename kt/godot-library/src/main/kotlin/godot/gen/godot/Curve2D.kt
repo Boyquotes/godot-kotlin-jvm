@@ -24,6 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Describes a Bézier curve in 2D space.
@@ -72,6 +73,7 @@ public open class Curve2D : Resource() {
    *
    * If [index] is given, the new point is inserted before the existing point identified by index [index]. Every existing point starting from [index] is shifted further down the list of points. The index must be greater than or equal to `0` and must not exceed the number of existing points in the line. See [pointCount].
    */
+  @JvmOverloads
   public fun addPoint(
     position: Vector2,
     _in: Vector2 = Vector2(0, 0),
@@ -185,6 +187,7 @@ public open class Curve2D : Resource() {
    *
    * Cubic interpolation tends to follow the curves better, but linear is faster (and often, precise enough).
    */
+  @JvmOverloads
   public fun sampleBaked(offset: Double = 0.0, cubic: Boolean = false): Vector2 {
     TransferContext.writeArguments(DOUBLE to offset, BOOL to cubic)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SAMPLE_BAKED, VECTOR2)
@@ -200,6 +203,7 @@ public open class Curve2D : Resource() {
    * 				rotation = transform.get_rotation()
    * 				```
    */
+  @JvmOverloads
   public fun sampleBakedWithRotation(offset: Double = 0.0, cubic: Boolean = false): Transform2D {
     TransferContext.writeArguments(DOUBLE to offset, BOOL to cubic)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SAMPLE_BAKED_WITH_ROTATION,
@@ -248,6 +252,7 @@ public open class Curve2D : Resource() {
    *
    * [toleranceDegrees] controls how many degrees the midpoint of a segment may deviate from the real curve, before the segment has to be subdivided.
    */
+  @JvmOverloads
   public fun tessellate(maxStages: Long = 5, toleranceDegrees: Double = 4.0): PackedVector2Array {
     TransferContext.writeArguments(LONG to maxStages, DOUBLE to toleranceDegrees)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_TESSELLATE,
@@ -260,6 +265,7 @@ public open class Curve2D : Resource() {
    *
    * [toleranceLength] controls the maximal distance between two neighboring points, before the segment has to be subdivided.
    */
+  @JvmOverloads
   public fun tessellateEvenLength(maxStages: Long = 5, toleranceLength: Double = 20.0):
       PackedVector2Array {
     TransferContext.writeArguments(LONG to maxStages, DOUBLE to toleranceLength)

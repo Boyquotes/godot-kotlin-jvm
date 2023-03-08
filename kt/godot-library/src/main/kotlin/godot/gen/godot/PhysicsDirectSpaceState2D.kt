@@ -22,6 +22,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.jvm.JvmOverloads
 
 /**
  * Direct access object to a space in the [godot.PhysicsServer2D].
@@ -53,6 +54,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    *
    * **Note:** [godot.ConcavePolygonShape2D]s and [godot.CollisionPolygon2D]s in `Segments` build mode are not solid shapes. Therefore, they will not be detected.
    */
+  @JvmOverloads
   public fun intersectPoint(parameters: PhysicsPointQueryParameters2D, maxResults: Long = 32):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults)
@@ -98,6 +100,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    *
    * The number of intersections can be limited with the [maxResults] parameter, to reduce the processing time.
    */
+  @JvmOverloads
   public fun intersectShape(parameters: PhysicsShapeQueryParameters2D, maxResults: Long = 32):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults)
@@ -125,6 +128,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    *
    * Returned points are a list of pairs of contact points. For each pair the first one is in the shape passed in [godot.PhysicsShapeQueryParameters2D] object, second one is in the collided shape from the physics space.
    */
+  @JvmOverloads
   public fun collideShape(parameters: PhysicsShapeQueryParameters2D, maxResults: Long = 32):
       VariantArray<PackedVector2Array> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults)

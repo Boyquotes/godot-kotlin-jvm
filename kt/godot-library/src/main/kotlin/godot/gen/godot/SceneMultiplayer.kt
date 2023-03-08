@@ -31,6 +31,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 @GodotBaseType
 public open class SceneMultiplayer : MultiplayerAPI() {
@@ -154,6 +155,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
+  @JvmOverloads
   public fun sendBytes(
     bytes: PackedByteArray,
     id: Long = 0,

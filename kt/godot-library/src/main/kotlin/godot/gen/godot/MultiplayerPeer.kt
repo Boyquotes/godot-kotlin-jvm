@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Abstract class for specialized [godot.PacketPeer]s used by the [godot.MultiplayerAPI].
@@ -159,6 +160,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   /**
    * Disconnects the given [peer] from this host. If [force] is `true` the [peerDisconnected] signal will not be emitted for this peer.
    */
+  @JvmOverloads
   public fun disconnectPeer(peer: Long, force: Boolean = false): Unit {
     TransferContext.writeArguments(LONG to peer, BOOL to force)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_DISCONNECT_PEER,

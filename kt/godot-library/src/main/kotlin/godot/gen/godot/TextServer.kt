@@ -51,6 +51,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Interface for the fonts and complex text layouts.
@@ -1160,6 +1161,7 @@ public open class TextServer internal constructor() : RefCounted() {
    *
    * **Note:** If there are pending glyphs to render, calling this function might trigger the texture cache update.
    */
+  @JvmOverloads
   public fun fontDrawGlyph(
     fontRid: RID,
     canvas: RID,
@@ -1179,6 +1181,7 @@ public open class TextServer internal constructor() : RefCounted() {
    *
    * **Note:** If there are pending glyphs to render, calling this function might trigger the texture cache update.
    */
+  @JvmOverloads
   public fun fontDrawGlyphOutline(
     fontRid: RID,
     canvas: RID,
@@ -1390,6 +1393,7 @@ public open class TextServer internal constructor() : RefCounted() {
    *
    * **Note:** Orientation is ignored if server does not support [FEATURE_VERTICAL_LAYOUT] feature (supported by [godot.TextServerAdvanced]).
    */
+  @JvmOverloads
   public fun createShapedText(direction: Direction = TextServer.Direction.DIRECTION_AUTO,
       orientation: Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL): RID {
     TransferContext.writeArguments(LONG to direction.id, LONG to orientation.id)
@@ -1410,6 +1414,7 @@ public open class TextServer internal constructor() : RefCounted() {
    *
    * **Note:** Direction is ignored if server does not support [FEATURE_BIDI_LAYOUT] feature (supported by [godot.TextServerAdvanced]).
    */
+  @JvmOverloads
   public fun shapedTextSetDirection(shaped: RID, direction: Direction =
       TextServer.Direction.DIRECTION_AUTO): Unit {
     TransferContext.writeArguments(_RID to shaped, LONG to direction.id)
@@ -1472,6 +1477,7 @@ public open class TextServer internal constructor() : RefCounted() {
    *
    * **Note:** Orientation is ignored if server does not support [FEATURE_VERTICAL_LAYOUT] feature (supported by [godot.TextServerAdvanced]).
    */
+  @JvmOverloads
   public fun shapedTextSetOrientation(shaped: RID, orientation: Orientation =
       TextServer.Orientation.ORIENTATION_HORIZONTAL): Unit {
     TransferContext.writeArguments(_RID to shaped, LONG to orientation.id)
@@ -1555,6 +1561,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Adds text span and font to draw it to the text buffer.
    */
+  @JvmOverloads
   public fun shapedTextAddString(
     shaped: RID,
     text: String,
@@ -1573,6 +1580,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Adds inline object to the text buffer, [key] must be unique. In the text, object is represented as [length] object replacement characters.
    */
+  @JvmOverloads
   public fun shapedTextAddObject(
     shaped: RID,
     key: Any,
@@ -1590,6 +1598,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets new size and alignment of embedded object.
    */
+  @JvmOverloads
   public fun shapedTextResizeObject(
     shaped: RID,
     key: Any,
@@ -1626,6 +1635,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Changes text span font, font size and OpenType features, without changing the text.
    */
+  @JvmOverloads
   public fun shapedSetSpanUpdateFont(
     shaped: RID,
     index: Long,
@@ -1664,6 +1674,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Adjusts text with to fit to specified width, returns new text width.
    */
+  @JvmOverloads
   public fun shapedTextFitToWidth(
     shaped: RID,
     width: Double,
@@ -1749,6 +1760,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Breaks text to the lines and columns. Returns character ranges for each segment.
    */
+  @JvmOverloads
   public fun shapedTextGetLineBreaksAdv(
     shaped: RID,
     width: PackedFloat32Array,
@@ -1765,6 +1777,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Breaks text to the lines and returns character ranges for each line.
    */
+  @JvmOverloads
   public fun shapedTextGetLineBreaks(
     shaped: RID,
     width: Double,
@@ -1780,6 +1793,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Breaks text into words and returns array of character ranges. Use [graphemeFlags] to set what characters are used for breaking (see [enum GraphemeFlag]).
    */
+  @JvmOverloads
   public fun shapedTextGetWordBreaks(shaped: RID, graphemeFlags: Long = 264): PackedInt32Array {
     TransferContext.writeArguments(_RID to shaped, OBJECT to graphemeFlags)
     TransferContext.callMethod(rawPtr,
@@ -1830,6 +1844,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Trims text if it exceeds the given width.
    */
+  @JvmOverloads
   public fun shapedTextOverrunTrimToWidth(
     shaped: RID,
     width: Double = 0.0,
@@ -2001,6 +2016,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Draw shaped text into a canvas item at a given position, with [color]. [pos] specifies the leftmost point of the baseline (for horizontal layout) or topmost point of the baseline (for vertical layout).
    */
+  @JvmOverloads
   public fun shapedTextDraw(
     shaped: RID,
     canvas: RID,
@@ -2016,6 +2032,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Draw the outline of the shaped text into a canvas item at a given position, with [color]. [pos] specifies the leftmost point of the baseline (for horizontal layout) or topmost point of the baseline (for vertical layout).
    */
+  @JvmOverloads
   public fun shapedTextDrawOutline(
     shaped: RID,
     canvas: RID,
@@ -2049,6 +2066,7 @@ public open class TextServer internal constructor() : RefCounted() {
    *
    * If [language] is omitted, the active locale will be used.
    */
+  @JvmOverloads
   public fun formatNumber(number: String, language: String = ""): String {
     TransferContext.writeArguments(STRING to number, STRING to language)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FORMAT_NUMBER, STRING)
@@ -2058,6 +2076,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Converts [number] from the numeral systems used in [language] to Western Arabic (0..9).
    */
+  @JvmOverloads
   public fun parseNumber(number: String, language: String = ""): String {
     TransferContext.writeArguments(STRING to number, STRING to language)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_PARSE_NUMBER, STRING)
@@ -2067,6 +2086,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns percent sign used in the [language].
    */
+  @JvmOverloads
   public fun percentSign(language: String = ""): String {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_PERCENT_SIGN, STRING)
@@ -2084,6 +2104,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * 				print(ts.string_get_word_breaks("Godot Engine", "en", 5)) # Prints [0, 5, 6, 11, 11, 12]
    * 				```
    */
+  @JvmOverloads
   public fun stringGetWordBreaks(
     string: String,
     language: String = "",
@@ -2163,6 +2184,7 @@ public open class TextServer internal constructor() : RefCounted() {
    *
    * **Note:** The result may be longer or shorter than the original.
    */
+  @JvmOverloads
   public fun stringToUpper(string: String, language: String = ""): String {
     TransferContext.writeArguments(STRING to string, STRING to language)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_STRING_TO_UPPER, STRING)
@@ -2176,6 +2198,7 @@ public open class TextServer internal constructor() : RefCounted() {
    *
    * **Note:** The result may be longer or shorter than the original.
    */
+  @JvmOverloads
   public fun stringToLower(string: String, language: String = ""): String {
     TransferContext.writeArguments(STRING to string, STRING to language)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_STRING_TO_LOWER, STRING)

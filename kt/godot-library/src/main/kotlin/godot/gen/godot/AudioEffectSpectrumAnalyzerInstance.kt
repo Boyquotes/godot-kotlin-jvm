@@ -6,17 +6,10 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.VECTOR2
+import godot.annotation.GodotBaseType
+import godot.core.VariantType.*
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import kotlin.Boolean
-import kotlin.Double
-import kotlin.Int
-import kotlin.Long
-import kotlin.Suppress
 
 /**
  *
@@ -32,6 +25,7 @@ public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : A
   /**
    *
    */
+  @JvmOverloads
   public fun getMagnitudeForFrequencyRange(
     fromHz: Double,
     toHz: Double,

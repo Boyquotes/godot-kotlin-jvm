@@ -38,6 +38,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 import kotlin.reflect.KFunction0
 import kotlin.reflect.KFunction1
 import kotlin.reflect.KFunction10
@@ -604,6 +605,7 @@ public open class Node : Object() {
    *
    * **Note:** If this node is internal, the new sibling will be internal too (see `internal` parameter in [addChild]).
    */
+  @JvmOverloads
   public fun addSibling(sibling: Node, forceReadableName: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to sibling, BOOL to forceReadableName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_ADD_SIBLING, NIL)
@@ -654,6 +656,7 @@ public open class Node : Object() {
    *
    * **Note:** If you want a child to be persisted to a [godot.PackedScene], you must set [owner] in addition to calling [addChild]. This is typically relevant for [tool scripts]($DOCS_URL/tutorials/plugins/running_code_in_the_editor.html) and [editor plugins]($DOCS_URL/tutorials/plugins/editor/index.html). If [addChild] is called without setting [owner], the newly added [godot.Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
    */
+  @JvmOverloads
   public fun addChild(
     node: Node,
     forceReadableName: Boolean = false,
@@ -678,6 +681,7 @@ public open class Node : Object() {
    *
    * If [keepGlobalTransform] is `true`, the node's global transform will be preserved if supported. [godot.Node2D], [godot.Node3D] and [godot.Control] support this argument (but [godot.Control] keeps only position).
    */
+  @JvmOverloads
   public fun reparent(newParent: Node, keepGlobalTransform: Boolean = true): Unit {
     TransferContext.writeArguments(OBJECT to newParent, BOOL to keepGlobalTransform)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REPARENT, NIL)
@@ -688,6 +692,7 @@ public open class Node : Object() {
    *
    * If [includeInternal] is `false`, internal children aren't counted (see `internal` parameter in [addChild]).
    */
+  @JvmOverloads
   public fun getChildCount(includeInternal: Boolean = false): Long {
     TransferContext.writeArguments(BOOL to includeInternal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CHILD_COUNT, LONG)
@@ -699,6 +704,7 @@ public open class Node : Object() {
    *
    * If [includeInternal] is `false`, the returned array won't include internal children (see `internal` parameter in [addChild]).
    */
+  @JvmOverloads
   public fun getChildren(includeInternal: Boolean = false): VariantArray<Node> {
     TransferContext.writeArguments(BOOL to includeInternal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CHILDREN, ARRAY)
@@ -714,6 +720,7 @@ public open class Node : Object() {
    *
    * To access a child node via its name, use [getNode].
    */
+  @JvmOverloads
   public fun getChild(idx: Long, includeInternal: Boolean = false): Node? {
     TransferContext.writeArguments(LONG to idx, BOOL to includeInternal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CHILD, OBJECT)
@@ -816,6 +823,7 @@ public open class Node : Object() {
    *
    * **Note:** To find all descendant nodes matching a pattern or a class type, see [findChildren].
    */
+  @JvmOverloads
   public fun findChild(
     pattern: String,
     recursive: Boolean = true,
@@ -843,6 +851,7 @@ public open class Node : Object() {
    *
    * **Note:** If you only want to find the first descendant node that matches a pattern, see [findChild].
    */
+  @JvmOverloads
   public fun findChildren(
     pattern: String,
     type: String = "",
@@ -956,6 +965,7 @@ public open class Node : Object() {
    *
    * **Note:** If you get a relative path which starts from a unique node, the path may be longer than a normal relative path due to the addition of the unique node's name.
    */
+  @JvmOverloads
   public fun getPathTo(node: Node, useUniquePath: Boolean = false): NodePath {
     TransferContext.writeArguments(OBJECT to node, BOOL to useUniquePath)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PATH_TO, NODE_PATH)
@@ -969,6 +979,7 @@ public open class Node : Object() {
    *
    * **Note:** For performance reasons, the order of node groups is *not* guaranteed. The order of node groups should not be relied upon as it can vary across project runs.
    */
+  @JvmOverloads
   public fun addToGroup(group: StringName, persistent: Boolean = false): Unit {
     TransferContext.writeArguments(STRING_NAME to group, BOOL to persistent)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_ADD_TO_GROUP, NIL)
@@ -1055,6 +1066,7 @@ public open class Node : Object() {
    *
    * If [includeInternal] is `false`, the index won't take internal children into account, i.e. first non-internal child will have index of 0 (see `internal` parameter in [addChild]).
    */
+  @JvmOverloads
   public fun getIndex(includeInternal: Boolean = false): Long {
     TransferContext.writeArguments(BOOL to includeInternal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_INDEX, LONG)
@@ -1110,6 +1122,7 @@ public open class Node : Object() {
   /**
    * Calls the given method (if present) with the arguments given in [args] on this node and recursively on all its children. If the [parentFirst] argument is `true`, the method will be called on the current node first, then on all its children. If [parentFirst] is `false`, the children will be called first.
    */
+  @JvmOverloads
   public fun propagateCall(
     method: StringName,
     args: VariantArray<Any?> = godot.core.variantArrayOf(),
@@ -1362,6 +1375,7 @@ public open class Node : Object() {
    *
    * **Note:** It will not work properly if the node contains a script with constructor arguments (i.e. needs to supply arguments to [godot.Object.Init] method). In that case, the node will be duplicated without a script.
    */
+  @JvmOverloads
   public fun duplicate(flags: Long = 15): Node? {
     TransferContext.writeArguments(LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_DUPLICATE, OBJECT)
@@ -1377,6 +1391,7 @@ public open class Node : Object() {
    *
    * **Note:** The replaced node is not automatically freed, so you either need to keep it in a variable for later use or free it using [godot.Object.free].
    */
+  @JvmOverloads
   public fun replaceBy(node: Node, keepGroups: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to node, BOOL to keepGroups)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REPLACE_BY, NIL)
@@ -1446,6 +1461,7 @@ public open class Node : Object() {
   /**
    * Sets the node's multiplayer authority to the peer with the given peer ID. The multiplayer authority is the peer that has authority over the node on the network. Useful in conjunction with [rpcConfig] and the [godot.MultiplayerAPI]. Inherited from the parent node by default, which ultimately defaults to peer ID 1 (the server). If [recursive], the given peer is recursively set as the authority for all children of this node.
    */
+  @JvmOverloads
   public fun setMultiplayerAuthority(id: Long, recursive: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to id, BOOL to recursive)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_MULTIPLAYER_AUTHORITY, NIL)

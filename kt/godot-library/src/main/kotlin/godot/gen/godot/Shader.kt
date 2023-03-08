@@ -25,6 +25,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * A custom shader program.
@@ -71,6 +72,7 @@ public open class Shader : Resource() {
    *
    * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
+  @JvmOverloads
   public fun setDefaultTextureParameter(
     name: StringName,
     texture: Texture2D,
@@ -88,6 +90,7 @@ public open class Shader : Resource() {
    *
    * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
+  @JvmOverloads
   public fun getDefaultTextureParameter(name: StringName, index: Long = 0): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to name, LONG to index)
     TransferContext.callMethod(rawPtr,
@@ -100,6 +103,7 @@ public open class Shader : Resource() {
    *
    * If argument [getGroups] is true, parameter grouping hints will be provided.
    */
+  @JvmOverloads
   public fun getShaderUniformList(getGroups: Boolean = false): VariantArray<Any?> {
     TransferContext.writeArguments(BOOL to getGroups)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_SHADER_UNIFORM_LIST,

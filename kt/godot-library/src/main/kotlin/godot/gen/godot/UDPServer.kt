@@ -21,6 +21,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Helper class to implement a UDP server.
@@ -285,6 +286,7 @@ public open class UDPServer : RefCounted() {
   /**
    * Starts the server by opening a UDP socket listening on the given [port]. You can optionally specify a [bindAddress] to only listen for packets sent to that address. See also [godot.PacketPeerUDP.bind].
    */
+  @JvmOverloads
   public fun listen(port: Long, bindAddress: String = "*"): GodotError {
     TransferContext.writeArguments(LONG to port, STRING to bindAddress)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_LISTEN, LONG)

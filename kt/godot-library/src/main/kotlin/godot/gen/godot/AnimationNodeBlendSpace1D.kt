@@ -6,22 +6,9 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.STRING
+import godot.annotation.GodotBaseType
+import godot.core.VariantType.*
 import godot.core.memory.TransferContext
-import kotlin.Boolean
-import kotlin.Double
-import kotlin.Int
-import kotlin.Long
-import kotlin.String
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Blends linearly between two of any number of [godot.AnimationNode] of any type placed on a virtual axis.
@@ -145,6 +132,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   /**
    * Adds a new point that represents a [node] on the virtual axis at a given position set by [pos]. You can insert it at a specific index using the [atIndex] argument. If you use the default value for [atIndex], the point is inserted at the end of the blend points array.
    */
+  @JvmOverloads
   public fun addBlendPoint(
     node: AnimationRootNode,
     pos: Double,

@@ -48,6 +48,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Singleton for window management functions.
@@ -117,6 +118,7 @@ public object DisplayServer : Object() {
    * 				"_dock" - Dock popup menu (macOS).
    * 				```
    */
+  @JvmOverloads
   public fun globalMenuAddSubmenuItem(
     menuRoot: String,
     label: String,
@@ -147,6 +149,7 @@ public object DisplayServer : Object() {
    * 				"_dock" - Dock popup menu (macOS).
    * 				```
    */
+  @JvmOverloads
   public fun globalMenuAddItem(
     menuRoot: String,
     label: String,
@@ -180,6 +183,7 @@ public object DisplayServer : Object() {
    * 				"_dock" - Dock popup menu (macOS).
    * 				```
    */
+  @JvmOverloads
   public fun globalMenuAddCheckItem(
     menuRoot: String,
     label: String,
@@ -213,6 +217,7 @@ public object DisplayServer : Object() {
    * 				"_dock" - Dock popup menu (macOS).
    * 				```
    */
+  @JvmOverloads
   public fun globalMenuAddIconItem(
     menuRoot: String,
     icon: Texture2D,
@@ -247,6 +252,7 @@ public object DisplayServer : Object() {
    * 				"_dock" - Dock popup menu (macOS).
    * 				```
    */
+  @JvmOverloads
   public fun globalMenuAddIconCheckItem(
     menuRoot: String,
     icon: Texture2D,
@@ -283,6 +289,7 @@ public object DisplayServer : Object() {
    * 				"_dock" - Dock popup menu (macOS).
    * 				```
    */
+  @JvmOverloads
   public fun globalMenuAddRadioCheckItem(
     menuRoot: String,
     label: String,
@@ -318,6 +325,7 @@ public object DisplayServer : Object() {
    * 				"_dock" - Dock popup menu (macOS).
    * 				```
    */
+  @JvmOverloads
   public fun globalMenuAddIconRadioCheckItem(
     menuRoot: String,
     icon: Texture2D,
@@ -356,6 +364,7 @@ public object DisplayServer : Object() {
    * 				"_dock" - Dock popup menu (macOS).
    * 				```
    */
+  @JvmOverloads
   public fun globalMenuAddMultistateItem(
     menuRoot: String,
     label: String,
@@ -387,6 +396,7 @@ public object DisplayServer : Object() {
    * 				"_dock" - Dock popup menu (macOS).
    * 				```
    */
+  @JvmOverloads
   public fun globalMenuAddSeparator(menuRoot: String, index: Long = -1): Long {
     TransferContext.writeArguments(STRING to menuRoot, LONG to index)
     TransferContext.callMethod(rawPtr,
@@ -952,6 +962,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
    */
+  @JvmOverloads
   public fun ttsSpeak(
     text: String,
     voice: String,
@@ -1209,6 +1220,7 @@ public object DisplayServer : Object() {
    *
    * See also [screenGetSize].
    */
+  @JvmOverloads
   public fun screenGetPosition(screen: Long = -1): Vector2i {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_GET_POSITION,
@@ -1219,6 +1231,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the screen's size in pixels. See also [screenGetPosition] and [screenGetUsableRect].
    */
+  @JvmOverloads
   public fun screenGetSize(screen: Long = -1): Vector2i {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_GET_SIZE,
@@ -1229,6 +1242,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the portion of the screen that is not obstructed by a status bar in pixels. See also [screenGetSize].
    */
+  @JvmOverloads
   public fun screenGetUsableRect(screen: Long = -1): Rect2i {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr,
@@ -1254,6 +1268,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Android, Linux (X11), macOS and Windows. Returns `72` on unsupported platforms.
    */
+  @JvmOverloads
   public fun screenGetDpi(screen: Long = -1): Long {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_GET_DPI, LONG)
@@ -1267,6 +1282,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
+  @JvmOverloads
   public fun screenGetScale(screen: Long = -1): Double {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_SCREEN_GET_SCALE,
@@ -1311,6 +1327,7 @@ public object DisplayServer : Object() {
    * 				    refresh_rate = 60.0
    * 				```
    */
+  @JvmOverloads
   public fun screenGetRefreshRate(screen: Long = -1): Double {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr,
@@ -1321,6 +1338,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the [screen]'s [orientation]. See also [screenGetOrientation].
    */
+  @JvmOverloads
   public fun screenSetOrientation(orientation: ScreenOrientation, screen: Long = -1): Unit {
     TransferContext.writeArguments(LONG to orientation.id, LONG to screen)
     TransferContext.callMethod(rawPtr,
@@ -1332,6 +1350,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Android and iOS.
    */
+  @JvmOverloads
   public fun screenGetOrientation(screen: Long = -1): ScreenOrientation {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr,
@@ -1394,6 +1413,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Android, Linux (X11), macOS and Windows.
    */
+  @JvmOverloads
   public fun windowGetNativeHandle(handleType: HandleType, windowId: Long = 0): Long {
     TransferContext.writeArguments(LONG to handleType.id, LONG to windowId)
     TransferContext.callMethod(rawPtr,
@@ -1437,6 +1457,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** Avoid changing the window title every frame, as this can cause performance issues on certain window managers. Try to change the window title only a few times per second at most.
    */
+  @JvmOverloads
   public fun windowSetTitle(title: String, windowId: Long = 0): Unit {
     TransferContext.writeArguments(STRING to title, LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_TITLE, NIL)
@@ -1495,6 +1516,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Linux (X11), macOS and Windows.
    */
+  @JvmOverloads
   public fun windowSetMousePassthrough(region: PackedVector2Array, windowId: Long = 0): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to region, LONG to windowId)
     TransferContext.callMethod(rawPtr,
@@ -1504,6 +1526,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the screen the window specified by [windowId] is currently positioned on. If the screen overlaps multiple displays, the screen where the window's center is located is returned. See also [windowSetCurrentScreen].
    */
+  @JvmOverloads
   public fun windowGetCurrentScreen(windowId: Long = 0): Long {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr,
@@ -1514,6 +1537,7 @@ public object DisplayServer : Object() {
   /**
    * Moves the window specified by [windowId] to the specified [screen]. See also [windowGetCurrentScreen].
    */
+  @JvmOverloads
   public fun windowSetCurrentScreen(screen: Long, windowId: Long = 0): Unit {
     TransferContext.writeArguments(LONG to screen, LONG to windowId)
     TransferContext.callMethod(rawPtr,
@@ -1523,6 +1547,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the position of the client area of the given window on the screen.
    */
+  @JvmOverloads
   public fun windowGetPosition(windowId: Long = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_POSITION,
@@ -1533,6 +1558,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the position of the given window on the screen including the borders drawn by the operating system. See also [windowGetPosition].
    */
+  @JvmOverloads
   public fun windowGetPositionWithDecorations(windowId: Long = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr,
@@ -1556,6 +1582,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** It's recommended to change this value using [godot.Window.position] instead.
    */
+  @JvmOverloads
   public fun windowSetPosition(position: Vector2i, windowId: Long = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to position, LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_POSITION,
@@ -1565,6 +1592,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the size of the window specified by [windowId] (in pixels), excluding the borders drawn by the operating system. This is also called the "client area". See also [windowGetSizeWithDecorations], [windowSetSize] and [windowGetPosition].
    */
+  @JvmOverloads
   public fun windowGetSize(windowId: Long = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_SIZE,
@@ -1577,6 +1605,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** It's recommended to change this value using [godot.Window.size] instead.
    */
+  @JvmOverloads
   public fun windowSetSize(size: Vector2i, windowId: Long = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to size, LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_SIZE, NIL)
@@ -1585,6 +1614,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the [callback] that will be called when the window specified by [windowId] is moved or resized.
    */
+  @JvmOverloads
   public fun windowSetRectChangedCallback(callback: Callable, windowId: Long = 0): Unit {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId)
     TransferContext.callMethod(rawPtr,
@@ -1594,6 +1624,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the [callback] that will be called when an event occurs in the window specified by [windowId].
    */
+  @JvmOverloads
   public fun windowSetWindowEventCallback(callback: Callable, windowId: Long = 0): Unit {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId)
     TransferContext.callMethod(rawPtr,
@@ -1603,6 +1634,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the [callback] that should be called when any [godot.InputEvent] is sent to the window specified by [windowId].
    */
+  @JvmOverloads
   public fun windowSetInputEventCallback(callback: Callable, windowId: Long = 0): Unit {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId)
     TransferContext.callMethod(rawPtr,
@@ -1612,6 +1644,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the [callback] that should be called when text is entered using the virtual keyboard to the window specified by [windowId].
    */
+  @JvmOverloads
   public fun windowSetInputTextCallback(callback: Callable, windowId: Long = 0): Unit {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId)
     TransferContext.callMethod(rawPtr,
@@ -1623,6 +1656,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Windows, macOS, Linux (X11) and Web.
    */
+  @JvmOverloads
   public fun windowSetDropFilesCallback(callback: Callable, windowId: Long = 0): Unit {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId)
     TransferContext.callMethod(rawPtr,
@@ -1632,6 +1666,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the [godot.Object.getInstanceId] of the [godot.Window] the [windowId] is attached to. also [windowGetAttachedInstanceId].
    */
+  @JvmOverloads
   public fun windowGetAttachedInstanceId(windowId: Long = 0): Long {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr,
@@ -1642,6 +1677,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the window's maximum size (in pixels). See also [windowSetMaxSize].
    */
+  @JvmOverloads
   public fun windowGetMaxSize(windowId: Long = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_MAX_SIZE,
@@ -1656,6 +1692,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** Using third-party tools, it is possible for users to disable window geometry restrictions and therefore bypass this limit.
    */
+  @JvmOverloads
   public fun windowSetMaxSize(maxSize: Vector2i, windowId: Long = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to maxSize, LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_MAX_SIZE,
@@ -1665,6 +1702,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the window's minimum size (in pixels). See also [windowSetMinSize].
    */
+  @JvmOverloads
   public fun windowGetMinSize(windowId: Long = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_MIN_SIZE,
@@ -1681,6 +1719,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** Using third-party tools, it is possible for users to disable window geometry restrictions and therefore bypass this limit.
    */
+  @JvmOverloads
   public fun windowSetMinSize(minSize: Vector2i, windowId: Long = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to minSize, LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_MIN_SIZE,
@@ -1690,6 +1729,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the size of the window specified by [windowId] (in pixels), including the borders drawn by the operating system. See also [windowGetSize].
    */
+  @JvmOverloads
   public fun windowGetSizeWithDecorations(windowId: Long = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr,
@@ -1700,6 +1740,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the mode of the given window.
    */
+  @JvmOverloads
   public fun windowGetMode(windowId: Long = 0): WindowMode {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_MODE, LONG)
@@ -1711,6 +1752,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** Setting the window to full screen forcibly sets the borderless flag to `true`, so make sure to set it back to `false` when not wanted.
    */
+  @JvmOverloads
   public fun windowSetMode(mode: WindowMode, windowId: Long = 0): Unit {
     TransferContext.writeArguments(LONG to mode.id, LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_MODE, NIL)
@@ -1719,6 +1761,7 @@ public object DisplayServer : Object() {
   /**
    * Enables or disables the given window's given [flag]. See [enum WindowFlags] for possible values and their behavior.
    */
+  @JvmOverloads
   public fun windowSetFlag(
     flag: WindowFlags,
     enabled: Boolean,
@@ -1731,6 +1774,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the current value of the given window's [flag].
    */
+  @JvmOverloads
   public fun windowGetFlag(flag: WindowFlags, windowId: Long = 0): Boolean {
     TransferContext.writeArguments(LONG to flag.id, LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_FLAG, BOOL)
@@ -1742,6 +1786,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This flag is implemented on macOS.
    */
+  @JvmOverloads
   public fun windowSetWindowButtonsOffset(offset: Vector2i, windowId: Long = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to offset, LONG to windowId)
     TransferContext.callMethod(rawPtr,
@@ -1751,6 +1796,7 @@ public object DisplayServer : Object() {
   /**
    * Returns left margins (`x`), right margins (`y`) and height (`z`) of the title that are safe to use (contains no buttons or other elements) when [WINDOW_FLAG_EXTEND_TO_TITLE] flag is set.
    */
+  @JvmOverloads
   public fun windowGetSafeTitleMargins(windowId: Long = 0): Vector3i {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr,
@@ -1761,6 +1807,7 @@ public object DisplayServer : Object() {
   /**
    * Makes the window specified by [windowId] request attention, which is materialized by the window title and taskbar entry blinking until the window is focused. This usually has no visible effect if the window is currently focused. The exact behavior varies depending on the operating system.
    */
+  @JvmOverloads
   public fun windowRequestAttention(windowId: Long = 0): Unit {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr,
@@ -1770,6 +1817,7 @@ public object DisplayServer : Object() {
   /**
    * Moves the window specified by [windowId] to the foreground, so that it is visible over other windows.
    */
+  @JvmOverloads
   public fun windowMoveToForeground(windowId: Long = 0): Unit {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr,
@@ -1779,6 +1827,7 @@ public object DisplayServer : Object() {
   /**
    * Returns `true` if anything can be drawn in the window specified by [windowId], `false` otherwise. Using the `--disable-render-loop` command line argument or a headless build will return `false`.
    */
+  @JvmOverloads
   public fun windowCanDraw(windowId: Long = 0): Boolean {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_CAN_DRAW, BOOL)
@@ -1814,6 +1863,7 @@ public object DisplayServer : Object() {
   /**
    * Sets whether [godot.Input Method Editor](https://en.wikipedia.org/wiki/Input_method) should be enabled for the window specified by [windowId]. See also [windowSetImePosition].
    */
+  @JvmOverloads
   public fun windowSetImeActive(active: Boolean, windowId: Long = 0): Unit {
     TransferContext.writeArguments(BOOL to active, LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_IME_ACTIVE,
@@ -1823,6 +1873,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the position of the [godot.Input Method Editor](https://en.wikipedia.org/wiki/Input_method) popup for the specified [windowId]. Only effective if [windowSetImeActive] was set to `true` for the specified [windowId].
    */
+  @JvmOverloads
   public fun windowSetImePosition(position: Vector2i, windowId: Long = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to position, LONG to windowId)
     TransferContext.callMethod(rawPtr,
@@ -1838,6 +1889,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** V-Sync modes other than [VSYNC_ENABLED] are only supported in the Forward+ and Mobile rendering methods, not Compatibility.
    */
+  @JvmOverloads
   public fun windowSetVsyncMode(vsyncMode: VSyncMode, windowId: Long = 0): Unit {
     TransferContext.writeArguments(LONG to vsyncMode.id, LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_VSYNC_MODE,
@@ -1847,6 +1899,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the V-Sync mode of the given window.
    */
+  @JvmOverloads
   public fun windowGetVsyncMode(windowId: Long = 0): VSyncMode {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_VSYNC_MODE,
@@ -1857,6 +1910,7 @@ public object DisplayServer : Object() {
   /**
    * Returns `true` if the given window can be maximized (the maximize button is enabled).
    */
+  @JvmOverloads
   public fun windowIsMaximizeAllowed(windowId: Long = 0): Boolean {
     TransferContext.writeArguments(LONG to windowId)
     TransferContext.callMethod(rawPtr,
@@ -1928,6 +1982,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Android, iOS and Web.
    */
+  @JvmOverloads
   public fun virtualKeyboardShow(
     existingText: String,
     position: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
@@ -1981,6 +2036,7 @@ public object DisplayServer : Object() {
   /**
    * Sets a custom mouse cursor image for the defined [shape]. This means the user's operating system and mouse cursor theme will no longer influence the mouse cursor's appearance. The image must be `256x256` or smaller for correct appearance. [hotspot] can optionally be set to define the area where the cursor will click. By default, [hotspot] is set to `Vector2(0, 0)`, which is the top-left corner of the image. See also [cursorSetShape].
    */
+  @JvmOverloads
   public fun cursorSetCustomImage(
     cursor: Resource,
     shape: CursorShape = DisplayServer.CursorShape.CURSOR_ARROW,

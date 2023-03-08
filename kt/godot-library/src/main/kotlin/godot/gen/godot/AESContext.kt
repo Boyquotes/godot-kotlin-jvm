@@ -6,19 +6,11 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
+import godot.annotation.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedByteArray
-import godot.core.VariantType.JVM_INT
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.PACKED_BYTE_ARRAY
+import godot.core.VariantType.*
 import godot.core.memory.TransferContext
-import kotlin.Boolean
-import kotlin.Int
-import kotlin.Long
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Interface to low level AES encryption features.
@@ -175,6 +167,7 @@ public open class AESContext : RefCounted() {
   /**
    * Start the AES context in the given [mode]. A [key] of either 16 or 32 bytes must always be provided, while an [iv] (initialization vector) of exactly 16 bytes, is only needed when [mode] is either [MODE_CBC_ENCRYPT] or [MODE_CBC_DECRYPT].
    */
+  @JvmOverloads
   public fun start(
     mode: Mode,
     key: PackedByteArray,

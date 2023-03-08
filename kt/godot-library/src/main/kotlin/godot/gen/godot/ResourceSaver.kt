@@ -23,6 +23,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Singleton for saving Godot-specific resource types.
@@ -45,6 +46,7 @@ public object ResourceSaver : Object() {
    *
    * Returns [OK] on success.
    */
+  @JvmOverloads
   public fun save(
     resource: Resource,
     path: String = "",
@@ -70,6 +72,7 @@ public object ResourceSaver : Object() {
    *
    * This method is performed implicitly for ResourceFormatSavers written in GDScript (see [godot.ResourceFormatSaver] for more information).
    */
+  @JvmOverloads
   public fun addResourceFormatSaver(formatSaver: ResourceFormatSaver, atFront: Boolean = false):
       Unit {
     TransferContext.writeArguments(OBJECT to formatSaver, BOOL to atFront)

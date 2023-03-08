@@ -24,6 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 @GodotBaseType
 public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
@@ -32,6 +33,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
     return true
   }
 
+  @JvmOverloads
   public fun createServer(channelsConfig: VariantArray<Any?> = godot.core.variantArrayOf()):
       GodotError {
     TransferContext.writeArguments(ARRAY to channelsConfig)
@@ -40,6 +42,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
+  @JvmOverloads
   public fun createClient(peerId: Long, channelsConfig: VariantArray<Any?> =
       godot.core.variantArrayOf()): GodotError {
     TransferContext.writeArguments(LONG to peerId, ARRAY to channelsConfig)
@@ -48,6 +51,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
+  @JvmOverloads
   public fun createMesh(peerId: Long, channelsConfig: VariantArray<Any?> =
       godot.core.variantArrayOf()): GodotError {
     TransferContext.writeArguments(LONG to peerId, ARRAY to channelsConfig)
@@ -56,6 +60,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
+  @JvmOverloads
   public fun addPeer(
     peer: WebRTCPeerConnection,
     peerId: Long,

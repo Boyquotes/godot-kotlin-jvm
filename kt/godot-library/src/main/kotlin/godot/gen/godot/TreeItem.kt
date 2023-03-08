@@ -34,6 +34,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Control for a single item inside a [godot.Tree].
@@ -166,6 +167,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Propagates this item's checked status to its children and parents for the given [column]. It is possible to process the items affected by this method call by connecting to [godot.Tree.checkPropagatedToItem]. The order that the items affected will be processed is as follows: the item invoking this method, children of that item, and finally parents of that item. If [emitSignal] is `false`, then [godot.Tree.checkPropagatedToItem] will not be emitted.
    */
+  @JvmOverloads
   public fun propagateCheck(column: Long, emitSignal: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to column, BOOL to emitSignal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_PROPAGATE_CHECK, NIL)
@@ -368,6 +370,7 @@ public open class TreeItem internal constructor() : Object() {
    *
    * If [expr] is `true`, the edit mode slider will use an exponential scale as with [godot.Range.expEdit].
    */
+  @JvmOverloads
   public fun setRangeConfig(
     column: Long,
     min: Double,
@@ -434,6 +437,7 @@ public open class TreeItem internal constructor() : Object() {
    *
    * If [onlyVisible] is `true` it ignores non-visible [godot.TreeItem]s.
    */
+  @JvmOverloads
   public fun isAnyCollapsed(onlyVisible: Boolean = false): Boolean {
     TransferContext.writeArguments(BOOL to onlyVisible)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_IS_ANY_COLLAPSED, BOOL)
@@ -569,6 +573,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets the given column's custom background color and whether to just use it as an outline.
    */
+  @JvmOverloads
   public fun setCustomBgColor(
     column: Long,
     color: Color,
@@ -616,6 +621,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Adds a button with [godot.Texture2D] [button] at column [column]. The [id] is used to identify the button in the according [godot.Tree.buttonClicked] signal and can be different from the buttons index. If not specified, the next available index is used, which may be retrieved by calling [getButtonCount] immediately before this method. Optionally, the button can be [disabled] and have a [tooltipText].
    */
+  @JvmOverloads
   public fun addButton(
     column: Long,
     button: Texture2D,
@@ -782,6 +788,7 @@ public open class TreeItem internal constructor() : Object() {
    *
    * The new item will be inserted as position [index] (the default value `-1` means the last position), or it will be the last child if [index] is higher than the child count.
    */
+  @JvmOverloads
   public fun createChild(index: Long = -1): TreeItem? {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_CREATE_CHILD, OBJECT)
@@ -838,6 +845,7 @@ public open class TreeItem internal constructor() : Object() {
    *
    * If [wrap] is enabled, the method will wrap around to the first visible element in the tree when called on the last visible element, otherwise it returns `null`.
    */
+  @JvmOverloads
   public fun getNextVisible(wrap: Boolean = false): TreeItem? {
     TransferContext.writeArguments(BOOL to wrap)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_NEXT_VISIBLE, OBJECT)
@@ -849,6 +857,7 @@ public open class TreeItem internal constructor() : Object() {
    *
    * If [wrap] is enabled, the method will wrap around to the last visible element in the tree when called on the first visible element, otherwise it returns `null`.
    */
+  @JvmOverloads
   public fun getPrevVisible(wrap: Boolean = false): TreeItem? {
     TransferContext.writeArguments(BOOL to wrap)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_PREV_VISIBLE, OBJECT)

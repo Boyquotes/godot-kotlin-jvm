@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Stream peer handling GZIP and deflate compression/decompresison.
@@ -36,6 +37,7 @@ public open class StreamPeerGZIP : StreamPeer() {
   /**
    * Start the stream in compression mode with the given [bufferSize], if [useDeflate] is `true` uses deflate instead of GZIP.
    */
+  @JvmOverloads
   public fun startCompression(useDeflate: Boolean = false, bufferSize: Long = 65535): GodotError {
     TransferContext.writeArguments(BOOL to useDeflate, LONG to bufferSize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERGZIP_START_COMPRESSION,
@@ -46,6 +48,7 @@ public open class StreamPeerGZIP : StreamPeer() {
   /**
    * Start the stream in decompression mode with the given [bufferSize], if [useDeflate] is `true` uses deflate instead of GZIP.
    */
+  @JvmOverloads
   public fun startDecompression(useDeflate: Boolean = false, bufferSize: Long = 65535): GodotError {
     TransferContext.writeArguments(BOOL to useDeflate, LONG to bufferSize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERGZIP_START_DECOMPRESSION,

@@ -27,6 +27,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Direct access object to a physics body in the [godot.PhysicsServer3D].
@@ -234,6 +235,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * This is equivalent to using [applyImpulse] at the body's center of mass.
    */
+  @JvmOverloads
   public fun applyCentralImpulse(impulse: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse)
     TransferContext.callMethod(rawPtr,
@@ -247,6 +249,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse, VECTOR3 to position)
     TransferContext.callMethod(rawPtr,
@@ -271,6 +274,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * This is equivalent to using [applyForce] at the body's center of mass.
    */
+  @JvmOverloads
   public fun applyCentralForce(force: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force)
     TransferContext.callMethod(rawPtr,
@@ -282,6 +286,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun applyForce(force: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(rawPtr,
@@ -304,6 +309,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * This is equivalent to using [addConstantForce] at the body's center of mass.
    */
+  @JvmOverloads
   public fun addConstantCentralForce(force: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force)
     TransferContext.callMethod(rawPtr,
@@ -315,6 +321,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
    *
    * [position] is the offset from the body origin in global coordinates.
    */
+  @JvmOverloads
   public fun addConstantForce(force: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(rawPtr,

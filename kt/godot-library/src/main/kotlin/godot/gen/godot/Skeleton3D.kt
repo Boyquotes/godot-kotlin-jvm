@@ -37,6 +37,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Skeleton for characters and animated objects.
@@ -391,6 +392,7 @@ public open class Skeleton3D : Node3D() {
   /**
    * Disables the pose for the bone at [boneIdx] if `false`, enables the bone pose if `true`.
    */
+  @JvmOverloads
   public fun setBoneEnabled(boneIdx: Long, enabled: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to boneIdx, BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_SET_BONE_ENABLED, NIL)
@@ -412,6 +414,7 @@ public open class Skeleton3D : Node3D() {
    *
    * **Note:** The pose transform needs to be a global pose! To convert a world transform from a [godot.Node3D] to a global bone pose, multiply the [godot.Transform3D.affineInverse] of the node's [godot.Node3D.globalTransform] by the desired world transform.
    */
+  @JvmOverloads
   public fun setBoneGlobalPoseOverride(
     boneIdx: Long,
     pose: Transform3D,
@@ -485,6 +488,7 @@ public open class Skeleton3D : Node3D() {
    *
    * Optionally, a list of bone names can be passed-in, allowing only the passed-in bones to be simulated.
    */
+  @JvmOverloads
   public fun physicalBonesStartSimulation(bones: VariantArray<StringName> =
       godot.core.variantArrayOf()): Unit {
     TransferContext.writeArguments(ARRAY to bones)

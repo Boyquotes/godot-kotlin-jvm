@@ -6,28 +6,13 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
+import godot.annotation.GodotBaseType
 import godot.core.PackedVector2Array
 import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.PACKED_VECTOR2_ARRAY
-import godot.core.VariantType.VECTOR2
-import godot.core.VariantType.VECTOR2I
+import godot.core.VariantType.*
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import kotlin.Boolean
-import kotlin.Double
-import kotlin.Int
-import kotlin.Long
-import kotlin.NotImplementedError
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * A* (or "A-Star") pathfinding tailored to find the shortest paths on 2D grids.
@@ -246,6 +231,7 @@ public open class AStarGrid2D : RefCounted() {
    *
    * **Note:** Calling [update] is not needed after the call of this function.
    */
+  @JvmOverloads
   public fun setPointSolid(id: Vector2i, solid: Boolean = true): Unit {
     TransferContext.writeArguments(VECTOR2I to id, BOOL to solid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_SET_POINT_SOLID, NIL)

@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * PopupMenu displays a list of options.
@@ -169,6 +170,7 @@ public open class PopupMenu : Popup() {
    *
    * **Note:** The provided [id] is used only in [idPressed] and [idFocused] signals. It's not related to the `index` arguments in e.g. [setItemChecked].
    */
+  @JvmOverloads
   public fun addItem(
     label: String,
     id: Long = -1,
@@ -183,6 +185,7 @@ public open class PopupMenu : Popup() {
    *
    * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
    */
+  @JvmOverloads
   public fun addIconItem(
     texture: Texture2D,
     label: String,
@@ -200,6 +203,7 @@ public open class PopupMenu : Popup() {
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
+  @JvmOverloads
   public fun addCheckItem(
     label: String,
     id: Long = -1,
@@ -216,6 +220,7 @@ public open class PopupMenu : Popup() {
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
+  @JvmOverloads
   public fun addIconCheckItem(
     texture: Texture2D,
     label: String,
@@ -233,6 +238,7 @@ public open class PopupMenu : Popup() {
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
+  @JvmOverloads
   public fun addRadioCheckItem(
     label: String,
     id: Long = -1,
@@ -245,6 +251,7 @@ public open class PopupMenu : Popup() {
   /**
    * Same as [addIconCheckItem], but uses a radio check button.
    */
+  @JvmOverloads
   public fun addIconRadioCheckItem(
     texture: Texture2D,
     label: String,
@@ -263,6 +270,7 @@ public open class PopupMenu : Popup() {
    *
    * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
    */
+  @JvmOverloads
   public fun addMultistateItem(
     label: String,
     maxStates: Long,
@@ -279,6 +287,7 @@ public open class PopupMenu : Popup() {
    *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    */
+  @JvmOverloads
   public fun addShortcut(
     shortcut: Shortcut,
     id: Long = -1,
@@ -293,6 +302,7 @@ public open class PopupMenu : Popup() {
    *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    */
+  @JvmOverloads
   public fun addIconShortcut(
     texture: Texture2D,
     shortcut: Shortcut,
@@ -310,6 +320,7 @@ public open class PopupMenu : Popup() {
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
+  @JvmOverloads
   public fun addCheckShortcut(
     shortcut: Shortcut,
     id: Long = -1,
@@ -326,6 +337,7 @@ public open class PopupMenu : Popup() {
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
+  @JvmOverloads
   public fun addIconCheckShortcut(
     texture: Texture2D,
     shortcut: Shortcut,
@@ -344,6 +356,7 @@ public open class PopupMenu : Popup() {
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
+  @JvmOverloads
   public fun addRadioCheckShortcut(
     shortcut: Shortcut,
     id: Long = -1,
@@ -357,6 +370,7 @@ public open class PopupMenu : Popup() {
   /**
    * Same as [addIconCheckShortcut], but uses a radio check button.
    */
+  @JvmOverloads
   public fun addIconRadioCheckShortcut(
     texture: Texture2D,
     shortcut: Shortcut,
@@ -373,6 +387,7 @@ public open class PopupMenu : Popup() {
    *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    */
+  @JvmOverloads
   public fun addSubmenuItem(
     label: String,
     submenu: String,
@@ -505,6 +520,7 @@ public open class PopupMenu : Popup() {
   /**
    * Sets a [godot.Shortcut] for the item at the given [index].
    */
+  @JvmOverloads
   public fun setItemShortcut(
     index: Long,
     shortcut: Shortcut,
@@ -770,6 +786,7 @@ public open class PopupMenu : Popup() {
    *
    * A [label] can optionally be provided, which will appear at the center of the separator.
    */
+  @JvmOverloads
   public fun addSeparator(label: String = "", id: Long = -1): Unit {
     TransferContext.writeArguments(STRING to label, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_SEPARATOR, NIL)

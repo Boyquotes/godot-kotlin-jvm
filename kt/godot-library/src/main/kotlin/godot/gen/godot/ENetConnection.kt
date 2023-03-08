@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 @GodotBaseType
 public open class ENetConnection : RefCounted() {
@@ -36,6 +37,7 @@ public open class ENetConnection : RefCounted() {
     return true
   }
 
+  @JvmOverloads
   public fun createHostBound(
     bindAddress: String,
     bindPort: Long,
@@ -50,6 +52,7 @@ public open class ENetConnection : RefCounted() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
+  @JvmOverloads
   public fun createHost(
     maxPeers: Long = 32,
     maxChannels: Long = 0,
@@ -66,6 +69,7 @@ public open class ENetConnection : RefCounted() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_DESTROY, NIL)
   }
 
+  @JvmOverloads
   public fun connectToHost(
     address: String,
     port: Long,
@@ -78,6 +82,7 @@ public open class ENetConnection : RefCounted() {
     return TransferContext.readReturnValue(OBJECT, true) as ENetPacketPeer?
   }
 
+  @JvmOverloads
   public fun service(timeout: Long = 0): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to timeout)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_SERVICE, ARRAY)
@@ -89,6 +94,7 @@ public open class ENetConnection : RefCounted() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_FLUSH, NIL)
   }
 
+  @JvmOverloads
   public fun bandwidthLimit(inBandwidth: Long = 0, outBandwidth: Long = 0): Unit {
     TransferContext.writeArguments(LONG to inBandwidth, LONG to outBandwidth)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_BANDWIDTH_LIMIT, NIL)
@@ -120,6 +126,7 @@ public open class ENetConnection : RefCounted() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
+  @JvmOverloads
   public fun dtlsClientSetup(hostname: String, clientOptions: TLSOptions? = null): GodotError {
     TransferContext.writeArguments(STRING to hostname, OBJECT to clientOptions)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENETCONNECTION_DTLS_CLIENT_SETUP,

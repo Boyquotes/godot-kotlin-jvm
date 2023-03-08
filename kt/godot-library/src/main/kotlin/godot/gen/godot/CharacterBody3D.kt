@@ -6,21 +6,10 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.VECTOR3
+import godot.annotation.GodotBaseType
+import godot.core.VariantType.*
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import kotlin.Boolean
-import kotlin.Double
-import kotlin.Int
-import kotlin.Long
-import kotlin.Suppress
 
 /**
  * Specialized 3D physics body node for characters moved by script.
@@ -420,6 +409,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   /**
    * Returns the floor's collision angle at the last collision point according to [upDirection], which is `Vector3.UP` by default. This value is always positive and only valid after calling [moveAndSlide] and when [isOnFloor] returns `true`.
    */
+  @JvmOverloads
   public fun getFloorAngle(upDirection: Vector3 = Vector3(0, 1, 0)): Double {
     TransferContext.writeArguments(VECTOR3 to upDirection)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_FLOOR_ANGLE,

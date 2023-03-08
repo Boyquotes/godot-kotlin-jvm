@@ -46,6 +46,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Helper tool to create geometry.
@@ -247,6 +248,7 @@ public open class SurfaceTool : RefCounted() {
    *
    * Requires the primitive type be set to [godot.Mesh.PRIMITIVE_TRIANGLES].
    */
+  @JvmOverloads
   public fun addTriangleFan(
     vertices: PackedVector3Array,
     uvs: PackedVector2Array = PackedVector2Array(),
@@ -290,6 +292,7 @@ public open class SurfaceTool : RefCounted() {
    *
    * **Note:** [generateNormals] takes smooth groups into account. To generate smooth normals, set the smooth group to a value greater than or equal to `0` using [setSmoothGroup] or leave the smooth group at the default of `0`. To generate flat normals, set the smooth group to `-1` using [setSmoothGroup] prior to adding vertices.
    */
+  @JvmOverloads
   public fun generateNormals(flip: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to flip)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GENERATE_NORMALS, NIL)
@@ -327,6 +330,7 @@ public open class SurfaceTool : RefCounted() {
    *
    * Deprecated. Unused internally and neglects to preserve normals or UVs. Consider using [godot.ImporterMesh.generateLods] instead.
    */
+  @JvmOverloads
   public fun generateLod(ndThreshold: Double, targetIndexCount: Long = 3): PackedInt32Array {
     TransferContext.writeArguments(DOUBLE to ndThreshold, LONG to targetIndexCount)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GENERATE_LOD,
@@ -398,6 +402,7 @@ public open class SurfaceTool : RefCounted() {
    *
    * **FIXME:** Document possible values for [flags], it changed in 4.0. Likely some combinations of [enum Mesh.ArrayFormat].
    */
+  @JvmOverloads
   public fun commit(existing: ArrayMesh? = null, flags: Long = 0): ArrayMesh? {
     TransferContext.writeArguments(OBJECT to existing, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_COMMIT, OBJECT)

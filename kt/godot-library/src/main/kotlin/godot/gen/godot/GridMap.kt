@@ -32,6 +32,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 @GodotBaseType
 public open class GridMap : Node3D() {
@@ -215,6 +216,7 @@ public open class GridMap : Node3D() {
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
+  @JvmOverloads
   public fun setCellItem(
     position: Vector3i,
     item: Long,
@@ -316,6 +318,7 @@ public open class GridMap : Node3D() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_CLEAR_BAKED_MESHES, NIL)
   }
 
+  @JvmOverloads
   public fun makeBakedMeshes(genLightmapUv: Boolean = false, lightmapUvTexelSize: Double = 0.1):
       Unit {
     TransferContext.writeArguments(BOOL to genLightmapUv, DOUBLE to lightmapUvTexelSize)

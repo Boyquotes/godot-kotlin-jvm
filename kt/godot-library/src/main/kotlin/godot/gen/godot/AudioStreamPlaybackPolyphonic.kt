@@ -6,19 +6,9 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
+import godot.annotation.GodotBaseType
+import godot.core.VariantType.*
 import godot.core.memory.TransferContext
-import kotlin.Boolean
-import kotlin.Double
-import kotlin.Int
-import kotlin.Long
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Playback instance for [godot.AudioStreamPolyphonic].
@@ -41,6 +31,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
    *
    * This function returns [INVALID_ID] if the amount of streams currently playing equals [godot.AudioStreamPolyphonic.polyphony]. If you need a higher amount of maximum polyphony, raise this value.
    */
+  @JvmOverloads
   public fun playStream(
     stream: AudioStream,
     fromOffset: Double = 0.0,

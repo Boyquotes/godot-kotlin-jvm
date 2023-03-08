@@ -6,28 +6,13 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
+import godot.annotation.GodotBaseType
 import godot.core.PackedStringArray
 import godot.core.StringName
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_STRING_ARRAY
-import godot.core.VariantType.STRING
-import godot.core.VariantType.STRING_NAME
+import godot.core.VariantType.*
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
-import kotlin.Boolean
-import kotlin.Double
-import kotlin.Int
-import kotlin.Long
-import kotlin.String
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Server interface for low-level audio access.
@@ -71,6 +56,7 @@ public object AudioServer : Object() {
   /**
    * Adds a bus at [atPosition].
    */
+  @JvmOverloads
   public fun addBus(atPosition: Long = -1): Unit {
     TransferContext.writeArguments(LONG to atPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_ADD_BUS, NIL)
@@ -211,6 +197,7 @@ public object AudioServer : Object() {
   /**
    * Adds an [godot.AudioEffect] effect to the bus [busIdx] at [atPosition].
    */
+  @JvmOverloads
   public fun addBusEffect(
     busIdx: Long,
     effect: AudioEffect,
@@ -250,6 +237,7 @@ public object AudioServer : Object() {
   /**
    * Returns the [godot.AudioEffectInstance] assigned to the given bus and effect indices (and optionally channel).
    */
+  @JvmOverloads
   public fun getBusEffectInstance(
     busIdx: Long,
     effectIdx: Long,

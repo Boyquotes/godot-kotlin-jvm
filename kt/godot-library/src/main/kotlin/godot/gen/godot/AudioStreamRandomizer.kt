@@ -6,19 +6,9 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
+import godot.annotation.GodotBaseType
+import godot.core.VariantType.*
 import godot.core.memory.TransferContext
-import kotlin.Boolean
-import kotlin.Double
-import kotlin.Int
-import kotlin.Long
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Wraps a pool of audio streams with pitch and volume shifting.
@@ -99,6 +89,7 @@ public open class AudioStreamRandomizer : AudioStream() {
   /**
    * Insert a stream at the specified index. If the index is less than zero, the insertion occurs at the end of the underlying pool.
    */
+  @JvmOverloads
   public fun addStream(
     index: Long,
     stream: AudioStream,

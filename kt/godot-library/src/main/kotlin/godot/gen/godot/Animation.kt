@@ -6,34 +6,15 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
+import godot.annotation.GodotBaseType
 import godot.core.NodePath
 import godot.core.Quaternion
 import godot.core.StringName
 import godot.core.VariantArray
-import godot.core.VariantType.ANY
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.NODE_PATH
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.QUATERNION
-import godot.core.VariantType.STRING_NAME
-import godot.core.VariantType.VECTOR2
-import godot.core.VariantType.VECTOR3
+import godot.core.VariantType.*
 import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import kotlin.Any
-import kotlin.Boolean
-import kotlin.Double
-import kotlin.Int
-import kotlin.Long
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Contains data used to animate everything in the engine.
@@ -141,6 +122,7 @@ public open class Animation : Resource() {
   /**
    * Adds a track to the Animation.
    */
+  @JvmOverloads
   public fun addTrack(type: TrackType, atPosition: Long = -1): Long {
     TransferContext.writeArguments(LONG to type.id, LONG to atPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_ADD_TRACK, LONG)
@@ -326,6 +308,7 @@ public open class Animation : Resource() {
   /**
    * Inserts a generic key in a given track. Returns the key index.
    */
+  @JvmOverloads
   public fun trackInsertKey(
     trackIdx: Long,
     time: Double,
@@ -432,6 +415,7 @@ public open class Animation : Resource() {
   /**
    * Finds the key index by time in a given track. Optionally, only find it if the approx/exact time is given.
    */
+  @JvmOverloads
   public fun trackFindKey(
     trackIdx: Long,
     time: Double,
@@ -543,6 +527,7 @@ public open class Animation : Resource() {
    *
    * [inHandle] is the left-side weight of the added Bezier curve point, [outHandle] is the right-side one, while [value] is the actual value at this point.
    */
+  @JvmOverloads
   public fun bezierTrackInsertKey(
     trackIdx: Long,
     time: Double,
@@ -572,6 +557,7 @@ public open class Animation : Resource() {
   /**
    * Sets the in handle of the key identified by [keyIdx] to value [inHandle]. The [trackIdx] must be the index of a Bezier Track.
    */
+  @JvmOverloads
   public fun bezierTrackSetKeyInHandle(
     trackIdx: Long,
     keyIdx: Long,
@@ -586,6 +572,7 @@ public open class Animation : Resource() {
   /**
    * Sets the out handle of the key identified by [keyIdx] to value [outHandle]. The [trackIdx] must be the index of a Bezier Track.
    */
+  @JvmOverloads
   public fun bezierTrackSetKeyOutHandle(
     trackIdx: Long,
     keyIdx: Long,
@@ -642,6 +629,7 @@ public open class Animation : Resource() {
    *
    * [stream] is the [godot.AudioStream] resource to play. [startOffset] is the number of seconds cut off at the beginning of the audio stream, while [endOffset] is at the ending.
    */
+  @JvmOverloads
   public fun audioTrackInsertKey(
     trackIdx: Long,
     time: Double,
@@ -805,6 +793,7 @@ public open class Animation : Resource() {
    *
    * **Note:** Compressed tracks have various limitations (such as not being editable from the editor), so only use compressed animations if you actually need them.
    */
+  @JvmOverloads
   public fun compress(
     pageSize: Long = 8192,
     fps: Long = 120,

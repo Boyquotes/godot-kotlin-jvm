@@ -6,38 +6,19 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
+import godot.CanvasItem.Companion.NOTIFICATION_DRAW
+import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.PackedColorArray
 import godot.core.PackedVector2Array
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.Transform2D
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.COLOR
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_COLOR_ARRAY
-import godot.core.VariantType.PACKED_VECTOR2_ARRAY
-import godot.core.VariantType.RECT2
-import godot.core.VariantType.STRING
-import godot.core.VariantType.TRANSFORM2D
-import godot.core.VariantType.VECTOR2
-import godot.core.VariantType._RID
+import godot.core.VariantType.*
 import godot.core.Vector2
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
-import kotlin.Boolean
-import kotlin.Double
-import kotlin.Int
-import kotlin.Long
-import kotlin.String
-import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Base class of anything 2D.
@@ -383,6 +364,7 @@ public open class CanvasItem internal constructor() : Node() {
    *
    * If [width] is negative, then a two-point primitive will be drawn instead of a four-point one. This means that when the CanvasItem is scaled, the line will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
    */
+  @JvmOverloads
   public fun drawLine(
     from: Vector2,
     to: Vector2,
@@ -399,6 +381,7 @@ public open class CanvasItem internal constructor() : Node() {
    *
    * If [width] is negative, then a two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the line parts will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
    */
+  @JvmOverloads
   public fun drawDashedLine(
     from: Vector2,
     to: Vector2,
@@ -416,6 +399,7 @@ public open class CanvasItem internal constructor() : Node() {
    *
    * If [width] is negative, the polyline is drawn using [godot.RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the polyline will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
    */
+  @JvmOverloads
   public fun drawPolyline(
     points: PackedVector2Array,
     color: Color,
@@ -431,6 +415,7 @@ public open class CanvasItem internal constructor() : Node() {
    *
    * If [width] is negative, then the polyline is drawn using [godot.RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the polyline will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
    */
+  @JvmOverloads
   public fun drawPolylineColors(
     points: PackedVector2Array,
     colors: PackedColorArray,
@@ -449,6 +434,7 @@ public open class CanvasItem internal constructor() : Node() {
    *
    * The arc is drawn from [startAngle] towards the value of [endAngle] so in clockwise direction if `start_angle < end_angle` and counter-clockwise otherwise. Passing the same angles but in reversed order will produce the same arc. If absolute difference of [startAngle] and [endAngle] is greater than [@GDScript.TAU] radians, then a full circle arc is drawn (i.e. arc will not overlap itself).
    */
+  @JvmOverloads
   public fun drawArc(
     center: Vector2,
     radius: Double,
@@ -468,6 +454,7 @@ public open class CanvasItem internal constructor() : Node() {
    *
    * If [width] is negative, then two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
    */
+  @JvmOverloads
   public fun drawMultiline(
     points: PackedVector2Array,
     color: Color,
@@ -482,6 +469,7 @@ public open class CanvasItem internal constructor() : Node() {
    *
    * If [width] is negative, then two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
    */
+  @JvmOverloads
   public fun drawMultilineColors(
     points: PackedVector2Array,
     colors: PackedColorArray,
@@ -501,6 +489,7 @@ public open class CanvasItem internal constructor() : Node() {
    *
    * **Note:** Unfilled rectangles drawn with a negative [width] may not display perfectly. For example, corners may be missing or brighter due to overlapping lines (for a translucent [color]).
    */
+  @JvmOverloads
   public fun drawRect(
     rect: Rect2,
     color: Color,
@@ -526,6 +515,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a texture at a given position.
    */
+  @JvmOverloads
   public fun drawTexture(
     texture: Texture2D,
     position: Vector2,
@@ -538,6 +528,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a textured rectangle at a given position, optionally modulated by a color. If [transpose] is `true`, the texture will have its X and Y coordinates swapped.
    */
+  @JvmOverloads
   public fun drawTextureRect(
     texture: Texture2D,
     rect: Rect2,
@@ -552,6 +543,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a textured rectangle region at a given position, optionally modulated by a color. If [transpose] is `true`, the texture will have its X and Y coordinates swapped.
    */
+  @JvmOverloads
   public fun drawTextureRectRegion(
     texture: Texture2D,
     rect: Rect2,
@@ -572,6 +564,7 @@ public open class CanvasItem internal constructor() : Node() {
    *
    * Value of the [pixelRange] should the same that was used during distance field texture generation.
    */
+  @JvmOverloads
   public fun drawMsdfTextureRectRegion(
     texture: Texture2D,
     rect: Rect2,
@@ -598,6 +591,7 @@ public open class CanvasItem internal constructor() : Node() {
    * 				dst.a = modulate.a + dst.a * (1.0 - modulate.a);
    * 				```
    */
+  @JvmOverloads
   public fun drawLcdTextureRectRegion(
     texture: Texture2D,
     rect: Rect2,
@@ -620,6 +614,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a custom primitive. 1 point for a point, 2 points for a line, 3 points for a triangle, and 4 points for a quad. If 0 points or more than 4 points are specified, nothing will be drawn and an error message will be printed. See also [drawLine], [drawPolyline], [drawPolygon], and [drawRect].
    */
+  @JvmOverloads
   public fun drawPrimitive(
     points: PackedVector2Array,
     colors: PackedColorArray,
@@ -633,6 +628,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a solid polygon of any number of points, convex or concave. Unlike [drawColoredPolygon], each point's color can be changed individually. See also [drawPolyline] and [drawPolylineColors].
    */
+  @JvmOverloads
   public fun drawPolygon(
     points: PackedVector2Array,
     colors: PackedColorArray,
@@ -646,6 +642,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a colored polygon of any number of points, convex or concave. Unlike [drawPolygon], a single color must be specified for the whole polygon.
    */
+  @JvmOverloads
   public fun drawColoredPolygon(
     points: PackedVector2Array,
     color: Color,
@@ -700,6 +697,7 @@ public open class CanvasItem internal constructor() : Node() {
    *
    * See also [godot.Font.drawString].
    */
+  @JvmOverloads
   public fun drawString(
     font: Font,
     pos: Vector2,
@@ -719,6 +717,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Breaks [text] into lines and draws it using the specified [font] at the [pos] (top-left corner). The text will have its color multiplied by [modulate]. If [width] is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
    */
+  @JvmOverloads
   public fun drawMultilineString(
     font: Font,
     pos: Vector2,
@@ -741,6 +740,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws [text] outline using the specified [font] at the [pos] (bottom-left corner using the baseline of the font). The text will have its color multiplied by [modulate]. If [width] is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
    */
+  @JvmOverloads
   public fun drawStringOutline(
     font: Font,
     pos: Vector2,
@@ -761,6 +761,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Breaks [text] to the lines and draws text outline using the specified [font] at the [pos] (top-left corner). The text will have its color multiplied by [modulate]. If [width] is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
    */
+  @JvmOverloads
   public fun drawMultilineStringOutline(
     font: Font,
     pos: Vector2,
@@ -784,6 +785,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a string first character using a custom font.
    */
+  @JvmOverloads
   public fun drawChar(
     font: Font,
     pos: Vector2,
@@ -798,6 +800,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a string first character outline using a custom font.
    */
+  @JvmOverloads
   public fun drawCharOutline(
     font: Font,
     pos: Vector2,
@@ -813,6 +816,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a [godot.Mesh] in 2D, using the provided texture. See [godot.MeshInstance2D] for related documentation.
    */
+  @JvmOverloads
   public fun drawMesh(
     mesh: Mesh,
     texture: Texture2D,
@@ -836,6 +840,7 @@ public open class CanvasItem internal constructor() : Node() {
    *
    * **Note:** [godot.FontFile.oversampling] does *not* take [scale] into account. This means that scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font rendering by enabling [godot.ProjectSettings.gui/theme/defaultFontMultichannelSignedDistanceField] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [godot.SystemFont.multichannelSignedDistanceField] can be enabled in the inspector.
    */
+  @JvmOverloads
   public fun drawSetTransform(
     position: Vector2,
     rotation: Double = 0.0,
@@ -857,6 +862,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Subsequent drawing commands will be ignored unless they fall within the specified animation slice. This is a faster way to implement animations that loop on background rather than redrawing constantly.
    */
+  @JvmOverloads
   public fun drawAnimationSlice(
     animationLength: Double,
     sliceBegin: Double,
