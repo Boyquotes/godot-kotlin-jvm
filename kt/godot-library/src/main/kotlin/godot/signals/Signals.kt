@@ -2,7 +2,6 @@ package godot.signals
 
 import godot.Object
 import godot.core.Callable
-import godot.core.KtFunction
 import godot.core.asStringName
 import godot.util.camelToSnakeCase
 
