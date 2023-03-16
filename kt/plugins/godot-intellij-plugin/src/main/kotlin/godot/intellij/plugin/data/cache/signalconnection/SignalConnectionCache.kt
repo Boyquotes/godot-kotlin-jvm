@@ -4,6 +4,7 @@ import com.intellij.openapi.project.Project
 import com.utopiarise.serialization.godot.model.SignalConnection
 import godot.intellij.plugin.data.model.IncomingSignalConnectionDataContainer
 import godot.intellij.plugin.data.model.OutgoingSignalConnectionDataContainer
+import godot.tools.common.extensions.capitalize
 import godot.tools.common.extensions.convertToCamelCase
 
 class SignalConnectionCache {

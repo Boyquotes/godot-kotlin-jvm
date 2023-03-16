@@ -4,6 +4,8 @@ import com.intellij.lang.annotation.AnnotationHolder
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
 import godot.intellij.plugin.extension.registerProblem
+import godot.intellij.plugin.extension.resolve
+import godot.intellij.plugin.extension.type
 import godot.intellij.plugin.quickfix.TargetFunctionNotRegisteredQuickFix
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
@@ -11,8 +13,6 @@ import godot.tools.common.constants.godotApiPackage
 import org.jetbrains.kotlin.idea.refactoring.fqName.fqName
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
-import org.jetbrains.kotlin.nj2k.postProcessing.resolve
-import org.jetbrains.kotlin.nj2k.postProcessing.type
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtCallableReferenceExpression
 import org.jetbrains.kotlin.psi.KtClass

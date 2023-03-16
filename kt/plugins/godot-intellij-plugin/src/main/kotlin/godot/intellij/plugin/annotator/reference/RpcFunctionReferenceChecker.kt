@@ -5,8 +5,10 @@ import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
 import godot.intellij.plugin.data.model.RPC_ANNOTATION
 import godot.intellij.plugin.extension.registerProblem
+import godot.intellij.plugin.extension.resolve
 import godot.intellij.plugin.quickfix.TargetFunctionHasNoRpcAnnotationQuickFix
 import godot.intellij.plugin.quickfix.TargetFunctionNotRegisteredQuickFix
+import org.jetbrains.kotlin.idea.base.psi.kotlinFqName
 import godot.intellij.plugin.quickfix.TargetFunctionsRpcAnnotationHasRpcModeDisabled
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
@@ -15,7 +17,6 @@ import godot.tools.common.constants.godotApiPackage
 import org.jetbrains.kotlin.idea.base.utils.fqname.getKotlinFqName
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
-import org.jetbrains.kotlin.nj2k.postProcessing.resolve
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtCallableReferenceExpression
 import org.jetbrains.kotlin.psi.KtNameReferenceExpression
@@ -82,7 +83,7 @@ object RpcFunctionReferenceChecker {
                             ?.getChildrenOfType<KtNameReferenceExpression>()
                             ?.lastOrNull()
                             ?.resolve()
-                            ?.getKotlinFqName()
+                            ?.kotlinFqName
                             ?.asString() == "$godotAnnotationPackage.${GodotKotlinJvmTypes.rpcMode}.DISABLED"
                     ) {
                         holder.registerProblem(

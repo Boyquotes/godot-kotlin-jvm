@@ -9,15 +9,19 @@ import godot.intellij.plugin.data.model.EXPORT_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
+import godot.intellij.plugin.extension.type
 import godot.intellij.plugin.quickfix.PropertyNotRegisteredQuickFix
 import godot.intellij.plugin.quickfix.PropertyRemoveExportAnnotationQuickFix
 import godot.intellij.plugin.quickfix.RegisterPropertyMutabilityQuickFix
-import godot.tools.common.constants.*
+import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.godotAnnotationPackage
+import godot.tools.common.constants.godotApiPackage
+import godot.tools.common.constants.godotCorePackage
+import godot.tools.common.constants.kotlinCollectionsPackage
 import org.jetbrains.kotlin.idea.intentions.loopToCallChain.isConstant
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.js.descriptorUtils.getJetTypeFqName
 import org.jetbrains.kotlin.name.FqName
-import org.jetbrains.kotlin.nj2k.postProcessing.type
 import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.types.typeUtil.isEnum
 import org.jetbrains.kotlin.types.typeUtil.supertypes
@@ -38,6 +42,7 @@ class RegisterPropertiesAnnotator : Annotator {
                 checkMutability(element, holder)
                 checkRegisteredType(element, holder)
                 checkIfDefaultValueIsConstantWhenExported(element, holder)
+                checkNotGeneric(element, holder)
             }
             // outside to check if the property is also registered
             propertyHintAnnotationChecker.checkPropertyHintAnnotations(element, holder)

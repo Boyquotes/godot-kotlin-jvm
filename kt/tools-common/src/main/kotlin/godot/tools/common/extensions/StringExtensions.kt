@@ -1,5 +1,7 @@
 package godot.tools.common.extensions
 
+import java.util.*
+
 fun String.escapeUnderscore(): String {
     if (this == "") return this
 
@@ -38,6 +40,8 @@ fun String.convertToSnakeCase(): String =
     }.toString()
 
 fun String.escapeKotlinReservedNames() = if (kotlinReservedNames.find { s -> s == this } != null) "_$this" else this
+
+fun String.capitalize() = this.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.US) else it.toString() }
 
 private val kotlinReservedNames = listOf(
     "class",

@@ -9,6 +9,7 @@ import godot.intellij.plugin.annotator.general.checkNotGeneric
 import godot.intellij.plugin.data.model.REGISTER_SIGNAL_ANNOTATION
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
+import godot.intellij.plugin.extension.type
 import godot.intellij.plugin.quickfix.RegisterSignalInitializerQuickFix
 import godot.intellij.plugin.quickfix.RegisterSignalMutabilityQuickFix
 import godot.tools.common.constants.GodotKotlinJvmTypes
@@ -16,7 +17,6 @@ import godot.tools.common.constants.signalPackage
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.js.descriptorUtils.getJetTypeFqName
 import org.jetbrains.kotlin.name.FqName
-import org.jetbrains.kotlin.nj2k.postProcessing.type
 import org.jetbrains.kotlin.psi.KtProperty
 
 class RegisterSignalAnnotator : Annotator {
@@ -30,6 +30,7 @@ class RegisterSignalAnnotator : Annotator {
             checkNotGeneric(element, holder)
             checkMutability(element, holder)
             checkRegisteredType(element, holder)
+            checkNotGeneric(element, holder)
         }
     }
 
