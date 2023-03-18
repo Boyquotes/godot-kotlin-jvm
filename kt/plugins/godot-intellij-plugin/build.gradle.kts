@@ -1,8 +1,8 @@
-import org.jetbrains.changelog.markdownToHTML
+import godot.dependencies.gradle.fullGodotKotlinJvmVersion
 import godot.dependencies.gradle.helper.BuildConfig
 import godot.dependencies.gradle.helper.VersionRange
-import godot.dependencies.gradle.fullGodotKotlinJvmVersion
 import godot.dependencies.gradle.isSnapshot
+import org.jetbrains.changelog.markdownToHTML
 
 plugins {
     // Java support
@@ -70,8 +70,10 @@ kotlin {
 
 dependencies {
     implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
-    implementation("com.utopia-rise:jvm-godot-resource-serialization:0.1.0")
     implementation(project(":godot-build-props"))
+    implementation(project(":godot-gradle-plugin"))
+
+    implementation("com.utopia-rise:jvm-godot-resource-serialization:0.1.0")
 }
 
 tasks {
