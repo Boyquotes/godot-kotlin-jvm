@@ -5,6 +5,7 @@ import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.annotator.general.checkNotGeneric
+import godot.intellij.plugin.data.model.CORE_TYPE_HELPER_ANNOTATION
 import godot.intellij.plugin.data.model.EXPORT_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
 import godot.intellij.plugin.extension.isInGodotRoot
@@ -22,7 +23,12 @@ import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.js.descriptorUtils.getJetTypeFqName
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtProperty
+import org.jetbrains.kotlin.types.KotlinType
+import org.jetbrains.kotlin.types.checker.SimpleClassicTypeSystemContext.hasAnnotation
+import org.jetbrains.kotlin.types.typeUtil.isBooleanOrNullableBoolean
+import org.jetbrains.kotlin.types.typeUtil.isByte
 import org.jetbrains.kotlin.types.typeUtil.isEnum
+import org.jetbrains.kotlin.types.typeUtil.isPrimitiveNumberOrNullableType
 import org.jetbrains.kotlin.types.typeUtil.supertypes
 
 class RegisterPropertiesAnnotator : Annotator {
@@ -67,11 +73,12 @@ class RegisterPropertiesAnnotator : Annotator {
                 )
             }
             if (
-                ktProperty.type()?.supertypes()?.any { it.getJetTypeFqName(false) == "$godotApiPackage.${GodotKotlinJvmTypes.obj}" } == true &&
-                ktProperty.type()?.supertypes()?.any { it.getJetTypeFqName(false) == "$godotApiPackage.${GodotKotlinJvmTypes.refCounted}" } == false
+                ktProperty.type()?.supertypes()?.none { it.getJetTypeFqName(false) == "$godotApiPackage.${GodotKotlinJvmTypes.obj}" } == true &&
+                ktProperty.type()?.supertypes()?.none { it.hasAnnotation(FqName(CORE_TYPE_HELPER_ANNOTATION)) } == true &&
+                ktProperty.type()?.supertypes()?.none { it.isSupportedPrimitiveType() } == true
             ) {
                 holder.registerProblem(
-                    GodotPluginBundle.message("problem.property.export.triedToExportObject"),
+                    GodotPluginBundle.message("problem.property.export.exportedTypeNotSupported"),
                     ktProperty.nameIdentifier ?: ktProperty.navigationElement,
                     propertyRemoveExportAnnotationQuickFix
                 )
@@ -107,4 +114,11 @@ class RegisterPropertiesAnnotator : Annotator {
 
     private fun getInitializerProblemLocation(ktProperty: KtProperty) =
         ktProperty.initializer?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
+
+    private fun KotlinType.isSupportedPrimitiveType(): Boolean {
+        return isPrimitiveNumberOrNullableType() ||
+            isByte() ||
+            isBooleanOrNullableBoolean() ||
+            getJetTypeFqName(false) == String::class.qualifiedName
+    }
 }
