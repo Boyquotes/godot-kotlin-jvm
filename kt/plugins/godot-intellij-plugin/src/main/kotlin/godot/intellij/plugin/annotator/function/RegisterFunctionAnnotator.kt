@@ -12,6 +12,7 @@ import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.FunctionNotRegisteredQuickFix
 import godot.tools.common.constants.GodotTypes
+import godot.tools.common.constants.MAX_ARG_COUNT
 import org.jetbrains.kotlin.idea.caches.resolve.resolveToDescriptorIfAny
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
@@ -41,7 +42,21 @@ class RegisterFunctionAnnotator : Annotator {
 
             if (element.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION)) != null) {
                 checkNotGeneric(element, holder)
+                checkArgumentCount(element, holder)
             }
+        }
+    }
+
+    private fun checkArgumentCount(ktFunction: KtNamedFunction, holder: AnnotationHolder) {
+        if (ktFunction.valueParameters.size > MAX_ARG_COUNT) {
+            holder.registerProblem(
+                GodotPluginBundle.message("problem.general.toArguments", MAX_ARG_COUNT),
+                ktFunction
+                    .valueParameterList
+                    ?.psiOrParent
+                    ?: ktFunction.nameIdentifier
+                    ?: ktFunction.navigationElement
+            )
         }
     }
 

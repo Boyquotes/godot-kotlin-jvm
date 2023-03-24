@@ -21,6 +21,7 @@ import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.ClassAlreadyRegisteredQuickFix
 import godot.intellij.plugin.quickfix.ClassNotRegisteredQuickFix
 import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.MAX_ARG_COUNT
 import godot.tools.common.constants.godotCorePackage
 import org.jetbrains.kotlin.idea.caches.resolve.resolveToDescriptorIfAny
 import org.jetbrains.kotlin.idea.util.findAnnotation
@@ -33,8 +34,6 @@ import org.jetbrains.kotlin.psi.allConstructors
 import org.jetbrains.kotlin.psi.psiUtil.isAbstract
 import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
 import org.jetbrains.kotlin.resolve.descriptorUtil.getAllSuperclassesWithoutAny
-
-private const val MAX_CONSTRUCTOR_ARGS = 5
 
 class RegisterClassAnnotator : Annotator {
     private val classNotRegisteredQuickFix by lazy { ClassNotRegisteredQuickFix() }
@@ -127,9 +126,9 @@ class RegisterClassAnnotator : Annotator {
             .allConstructors
             .filter { it.findAnnotation(FqName(REGISTER_CONSTRUCTOR_ANNOTATION)) != null }
             .forEach { ktConstructor ->
-                if (ktConstructor.valueParameters.size > MAX_CONSTRUCTOR_ARGS) {
+                if (ktConstructor.valueParameters.size > MAX_ARG_COUNT) {
                     holder.registerProblem(
-                        GodotPluginBundle.message("problem.class.constructor.toManyParams"),
+                        GodotPluginBundle.message("problem.general.toArguments", MAX_ARG_COUNT),
                         ktConstructor
                             .valueParameterList
                             ?.psiOrParent
