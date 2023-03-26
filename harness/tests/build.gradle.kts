@@ -11,6 +11,7 @@ repositories {
 godot {
     registrationFileBaseDir.set(projectDir.resolve("scripts").also { it.mkdirs() })
     isRegistrationFileHierarchyEnabled.set(true)
+    isFqNameRegistrationEnabled.set(true)
 
     //uncomment to test android
 //    isAndroidExportEnabled.set(true)

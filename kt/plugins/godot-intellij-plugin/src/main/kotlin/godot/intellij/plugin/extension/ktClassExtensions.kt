@@ -14,8 +14,8 @@ import org.jetbrains.kotlin.psi.KtValueArgumentName
  *
  * @return fqName to registered class name or `null` if the classes fqName cannot be resolved
  */
-fun KtClass.getRegisteredClassName(project: Project): Pair<String, String>? {
-    val isFqNameRegistrationEnabled = project.godotJvmExtension.isAndroidExportEnabled.getOrElse(false) // FIXME after merge of https://github.com/utopia-rise/godot-kotlin-jvm/pull/441
+fun KtClass.getRegisteredClassName(): Pair<String, String>? {
+    val isFqNameRegistrationEnabled = false //project.godotJvmExtension.isAndroidExportEnabled.getOrElse(false) // FIXME after merge of https://github.com/utopia-rise/godot-kotlin-jvm/pull/441
 
     // the whole `@RegisterClass(...)` annotation
     val ktAnnotationEntry = annotationEntries

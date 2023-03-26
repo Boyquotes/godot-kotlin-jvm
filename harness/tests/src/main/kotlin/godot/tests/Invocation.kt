@@ -64,7 +64,7 @@ class Invocation : Node3D() {
 
 	@RegisterProperty
 	var vectorList = PackedVector3Array()
-
+    
 	@Export
 	@RegisterProperty
 	var enumListMutable = mutableListOf(TestEnum.ENUM_1, TestEnum.ENUM_2)

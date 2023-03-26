@@ -13,6 +13,7 @@ import godot.gradle.tasks.graal.checkPresenceOfDefaultGraalJniConfigTask
 import godot.gradle.tasks.graal.createGraalNativeImageTask
 import godot.gradle.tasks.packageBootstrapJarTask
 import godot.gradle.tasks.packageMainJarTask
+import godot.gradle.tasks.saveIdePluginDataTask
 import godot.gradle.tasks.setupBuildTask
 import godot.gradle.tasks.setupCleanTask
 import godot.gradle.tasks.setupAfterIdeaSyncTasks
@@ -83,7 +84,8 @@ fun Project.setupTasks() {
             )
 
             setupAfterIdeaSyncTasks(
-                generateGdIgnoreFilesTask = generateGdIgnoreFilesTask
+                generateGdIgnoreFilesTask = generateGdIgnoreFilesTask,
+                saveConfigurationForIdePluginToPropertiesFileTask = saveIdePluginDataTask()
             )
         }
     }

@@ -9,10 +9,11 @@ import org.jetbrains.gradle.ext.taskTriggers
 
 fun Project.setupAfterIdeaSyncTasks(
     generateGdIgnoreFilesTask: TaskProvider<out Task>,
+    saveConfigurationForIdePluginToPropertiesFileTask: TaskProvider<out Task>,
 ) {
     ideaExtension.project.settings {
         taskTriggers {
-            afterSync(generateGdIgnoreFilesTask)
+            afterSync(generateGdIgnoreFilesTask, saveConfigurationForIdePluginToPropertiesFileTask)
         }
     }
 }
